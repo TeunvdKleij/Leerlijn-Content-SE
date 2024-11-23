@@ -1,11 +1,10 @@
-name: Test for taxonomie codes
+name: Test for pipeline
 on:
   push:
     branches:
       - staging
     paths:
-      - '.github/**'
-      - 'test_cases/**'
+      - ".github/**"
 
 jobs:
   run-parser-and-create-pr:
@@ -39,4 +38,4 @@ jobs:
 
       - name: Run wikiversie_parser.py script
         run: |
-          python .github/wikiversie_parser.py --src "./content" --dest "./build" --dataset .github/dataset.xlsx --testing --testdir "./test_cases" --verbose
+          python .github/wikiversie_parser.py --src "./content" --dest "./build" --dataset .github/test_dataset.xlsx --testing --testdir ".github/test_cases" --verbose

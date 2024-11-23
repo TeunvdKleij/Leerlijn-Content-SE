@@ -17,7 +17,7 @@ Successful_test_files = [] # Track which files where successful in testing
 Failed_test_files = [] # Track which files failed in testing
 Verbose = False # Verbose output flag
 Testing = False # Testing output flag
-Taxonomie_pattern = r'^[a-z]{2}-\d{1,3}\.[123]\.[^\s\.]+(\.[^\s\.]+)*\.[A-Z]{2}$' # Taxonomie pattern
+Taxonomie_pattern = r'^[a-z]{2}-\d{1,3}\.[123]\.[^\s\.]+(\.[^\s\.]+)*\.(?:OI|DT|PI|LT)$' # Taxonomie pattern
 ValidDynamicLinkPrefixes = ['https://', 'http://', 'tags/'] # List of valid dynamic links
 
 Rapport_1 = {} # Rapport 1 data
@@ -266,15 +266,15 @@ Args:
 Returns:
     tags (list): List of tags generated from the taxonomie values.
 """
-def generate_tags(taxonomies, file_path):
+def generate_tags(taxonomies, file_path, existing_tags):
     global Rapport_2
 
     tags = []
     errors = []
+    combined_tags = []
     if taxonomies is not None:
         for taxonomie in taxonomies:
-            if Verbose: print(f"Generating tags for taxonomie: {taxonomie}")
-
+            if Verbose : print(f"Generating tags for taxonomie: {taxonomie}")
             # Check if the taxonomie is in the correct format
             if not re.match(Taxonomie_pattern, taxonomie):
                 errors.append(f"Invalid taxonomie: {taxonomie}")
@@ -285,7 +285,7 @@ def generate_tags(taxonomies, file_path):
             tc_1, tc_2, tc_3, tc_4 = split_taxonomie(taxonomie)
 
             # if the parts are all valid
-            if tc_1 and tc_2 and tc_3:
+            if tc_1 and tc_2 and tc_3 and tc_4:
                 # Loop trough every row in the dataset
                 for row in Dataset[1:]:
                     # Check if the first part of the taxonomie is equal to the second column (TC1) in the dataset
@@ -318,20 +318,25 @@ def generate_tags(taxonomies, file_path):
                             tags.sort(key=lambda x: x.startswith('HBO-i'), reverse=True)
                             
                             update_rapport1_data(tc_1, tc_2)
-                            update_rapport2_data(get_file_type(file_path), tc_1, tc_2, tc_3)
-
+                            update_rapport2_data(get_file_type(file_path), tc_1, tc_2, tc_3)   
         # If no tags were found, add an error
-        if NOT_NECESSARY in tags: 
-            tags.remove(NOT_NECESSARY)
-            errors.append(f"Taxonomie used where it is not needed: {taxonomie}")
-        if tags == [] and not errors:
-            errors.append(f"Taxonomie not found in dataset: {taxonomie}")
-            if Verbose: print(f"Taxonomie not found in dataset: {taxonomie}")
+            if NOT_NECESSARY in tags: 
+                tags.remove(NOT_NECESSARY)
+                errors.append(f"Taxonomie used where it is not needed: {taxonomie}")
+            if tags == [] and not errors:
+                    errors.append(f"Taxonomie not found in dataset: {taxonomie}")
+                    if Verbose: print(f"Taxonomie not found in dataset: {taxonomie}")
+
+        taxonomies = list(set(taxonomies))
+        if existing_tags:
+            combined_tags = existing_tags + tags + taxonomies if taxonomies and tags else existing_tags
+        else:
+            combined_tags = tags + taxonomies if taxonomies and tags else tags   
+
     else:
         errors.append(ERROR_MISSING_TAXCO)
         if Verbose: print(ERROR_MISSING_TAXCO)
-
-    return tags, errors
+    return combined_tags, errors
 
 """
 Update the Rapport 1 data with the new values.
@@ -502,9 +507,9 @@ def generate_report():
         # Rapport 1 Section
         f.write('## Rapport 1 - Processtappen\n')
         f.write('*Doel: achterhalen welke processtappen nog helemaal niet zijn geïmplementeerd*\n\n')
-        f.write('- ✅ Er bestaat een bestand met deze taxonomiecode op dit niveau \n')
-        f.write('- ⛔️ Er is geen enkel bestand met deze taxonomiecode op dit niveau \n')
-        f.write('- 🏳️ De taxonomiecode wordt niet aangeboden op dit niveau (X in de Dataset) \n')
+        f.write('- ✅ Er bestaat een bestand met deze taxonomiecode op dit niveau \n\n')
+        f.write('- ⛔️ Er is geen enkel bestand met deze taxonomiecode op dit niveau \n\n')
+        f.write('- 🏳️ De taxonomiecode wordt niet aangeboden op dit niveau (X in de Dataset) \n\n')
         f.write('\n')
         f.write(generate_rapport_1())
 
@@ -514,9 +519,9 @@ def generate_report():
         f.write('## Rapport 2 - Onderwerpen Catalogus\n')
         f.write('*Doel: Lijst met onderwerpen + gekoppelde taxonomie code voor inzicht in aangeboden onderwerpen.*\n')
         f.write('Bij kolom *TC2*, *Leertaken*, *Ondersteunende informatie*, *Procedurele informatie* en *Deeltaken* zijn drie tekens aanwezig om de drie HBO-i niveaus weer te geven\n\n')
-        f.write('- ✅ Het onderwerp met taxonomie code wordt aangeboden op het aangegeven niveau \n')
-        f.write('- ⛔️ Het onderwerp met taxonomie code wordt **niet** aangeboden op het aangegeven niveau \n')
-        f.write('- 🏳️ Het onderwerp hoeft met deze taxonomie code niet aangeboden te worden op het aangegeven niveau \n')
+        f.write('- ✅ Het onderwerp met taxonomie code wordt aangeboden op het aangegeven niveau \n\n')
+        f.write('- ⛔️ Het onderwerp met taxonomie code wordt **niet** aangeboden op het aangegeven niveau \n\n')
+        f.write('- 🏳️ Het onderwerp hoeft met deze taxonomie code niet aangeboden te worden op het aangegeven niveau \n\n')
         f.write('\n')
         f.write(generate_rapport_2())
 
@@ -533,9 +538,9 @@ def generate_report():
         # Failed Files Section
         f.write("## Gefaalde bestanden\n")
         f.write("*Doel: De onderstaande bestanden zijn niet succesvol verwerkt.*\n\n")
-        f.write('❌ Dit bestand bevat nog geen taxonomie code\n')
-        f.write('⚠️ Dit bestand bevat een foute taxonomie code. Zie de *Errors* kolom om te weten wat er mis is\n')
-        f.write('🟠 Dit bestand bevat een taxonomie code die niet toegevoegd hoeft te zijn\n')
+        f.write('❌ Dit bestand bevat nog geen taxonomie code\n\n')
+        f.write('⚠️ Dit bestand bevat een foute taxonomie code. Zie de *Errors* kolom om te weten wat er mis is\n\n')
+        f.write('🟠 Dit bestand bevat een taxonomie code die niet toegevoegd hoeft te zijn\n\n')
         f.write('\n')
         f.write(format_file_report_table(Failed_files))
 
@@ -724,7 +729,7 @@ def parse_markdown_files(src_dir, dest_dir):
         # Extract existing tags and taxonomie
         existing_tags = extract_values(content, 'tags')
         taxonomie = extract_values(content, 'taxonomie')
-        new_tags, tags_errors = generate_tags(taxonomie, file_path)
+        new_tags, tags_errors = generate_tags(taxonomie, file_path, existing_tags)
         difficulty = extract_values(content, 'difficulty')
 
         # Combine all errors
@@ -742,16 +747,10 @@ def parse_markdown_files(src_dir, dest_dir):
         else:
             Successful_files.append(create_file_report(SUCCESS, file_path, src_dir, taxonomie, new_tags, errors))
 
-        # Combine existing and new tags
-        if existing_tags:
-            combined_tags = existing_tags + new_tags + taxonomie if taxonomie and new_tags else existing_tags
-        else:
-            combined_tags = new_tags + taxonomie if taxonomie and new_tags else new_tags
-
         # Create the new content with updated tags
         new_content = (
             f"---\ntitle: {file_path.stem}\ntaxonomie: {taxonomie}\ntags:\n" +
-            '\n'.join([f"- {tag}" for tag in combined_tags]) +
+            '\n'.join([f"- {tag}" for tag in new_tags]) +
             "\n"
         )
 
@@ -774,7 +773,31 @@ def parse_markdown_files(src_dir, dest_dir):
     generate_report()
 
 
-def check_test_cases(test_dir):
+"""
+Tests the file with incorrect links. This check makes sure inccorrect links get noticed and "content/" gets filtered out.
+"""
+def test_link_file(test_dir):
+    yaml_pattern = re.compile(r"^---\s*([\s\S]*?)\s*---", re.MULTILINE)
+    for file_path in Path(test_dir).rglob("*.md"): 
+        with open(file_path, "r", encoding="utf-8") as f:
+            content = f.read()
+            match = yaml_pattern.match(content)
+            if match:
+                front_matter = match.group(1) 
+                if "linktest" in front_matter:
+                    content, errors = update_dynamic_links(file_path, content)
+                    error_first_link = "Invalid dynamic link: `[[foutieveLinkEen]]`"
+                    error_second_link = "Invalid dynamic link: `[[foutieveLinkTwee]]`"
+                    if error_first_link in errors and error_second_link in errors:
+                        return True
+    return False     
+
+"""
+Runs the functions to test the pipeline
+Args:
+    test_dir (str): Test directory with the test case files.
+"""
+def run_test_cases(test_dir):
     for file_path in Path(test_dir).rglob('*.md'):
         if Verbose: print(f"Testing file: {file_path}")
 
@@ -782,8 +805,9 @@ def check_test_cases(test_dir):
             content = f.read()
 
         # Extract existing tags and taxonomie
+        existing_tags = extract_values(content, 'tags')
         taxonomie = extract_values(content, 'taxonomie')
-        tags, errors = generate_tags(taxonomie, file_path)
+        tags, errors = generate_tags(taxonomie, file_path, existing_tags)
 
         if errors:
             if(ERROR_MISSING_TAXCO in errors): 
@@ -797,32 +821,81 @@ def check_test_cases(test_dir):
             Successful_test_files.append(create_test_file_result(file_path, taxonomie, tags, errors))
     return validate_test();    
 
+
+"""
+Validates the test cases against the expected outcome
+"""
 def validate_test():
-    Expected_successful_test_files = [{'file': '7. Dezelfde taxonomie code 2 keer', 'taxonomie': 'rv-8.1.interviewen-met-stakeholder.OI<br>rv-8.1.interviewen-met-stakeholder.OI', 'tags': 'HBO-i/niveau-1<br>Requirementsanalyseproces<br>Verzamelen requirements<br>interviewen-met-stakeholder', 'errors': 'N/A'}, 
-                                      {'file': '1. Succesvolle taxonomie codes', 'taxonomie': 'rv-8.1.interviewen-met-stakeholder.OI<br>rv-8.2.interviewen-met-stakeholder.OI<br>rv-8.3.interviewen-met-stakeholder.OI<br>ra-9.2.toestandsdiagrammen.OI', 'tags': 'HBO-i/niveau-1<br>HBO-i/niveau-2<br>HBO-i/niveau-3<br>Requirementsanalyseproces<br>Verzamelen requirements<br>interviewen-met-stakeholder<br>Analyseren requirements<br>toestandsdiagrammen', 'errors': 'N/A'}]
-    Expected_failed_test_files = [{'file': '3. Taxonomie code die niet moet bestaan ( combo die een 🏳️ toont)', 'taxonomie': 'ib-21.1.object-oriëntatie-applicatielagen.OI', 'tags': 'HBO-i/niveau-1<br>Implementatieproces<br>Beredeneren bouwkeuzes<br>object-oriëntatie-applicatielagen', 'errors': 'Taxonomie used where it is not needed: ib-21.1.object-oriëntatie-applicatielagen.OI'}, 
-                                  {'file': '9. 0 als niveau meegeven', 'taxonomie': 'rv-8.0.interviewen-met-stakeholder.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: rv-8.0.interviewen-met-stakeholder.OI'}, 
-                                  {'file': '12. Spaties in de taxonomie code', 'taxonomie': 'rv-8.1.interviewen met stakeholder.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: rv-8.1.interviewen met stakeholder.OI'}, 
-                                  {'file': '4. Mismatch met tc-1 en tc-3', 'taxonomie': 'ra-9.1.interviewen-met-stakeholder.OI', 'tags': 'N/A', 'errors': 'Taxonomie not found in dataset: ra-9.1.interviewen-met-stakeholder.OI'}, 
-                                  {'file': '11. 0 als tc-1 meegeven', 'taxonomie': 'rv-0.1.inteviewen-met-stakeholder.OI', 'tags': 'N/A', 'errors': 'Taxonomie not found in dataset: rv-0.1.inteviewen-met-stakeholder.OI'}, 
-                                  {'file': '2. Taxonomie code op niveau 4', 'taxonomie': 'rv-8.1.interviewen-met-stakeholder.OI<br>rv-8.2.interviewen-met-stakeholder.OI<br>rv-8.3.interviewen-met-stakeholder.OI<br>rv-8.4.interviewen-met-stakeholder.OI', 'tags': 'HBO-i/niveau-1<br>HBO-i/niveau-2<br>HBO-i/niveau-3<br>Requirementsanalyseproces<br>Verzamelen requirements<br>interviewen-met-stakeholder', 'errors': 'Invalid taxonomie: rv-8.4.interviewen-met-stakeholder.OI'}, 
-                                  {'file': '8. Negatieve getallen in tc-2', 'taxonomie': 'rv-8.-1.interviewen-met-stakeholder.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: rv-8.-1.interviewen-met-stakeholder.OI'}, 
-                                  {'file': '6. Niet bestaande tc-3 (onderwerp)', 'taxonomie': 'rv-8.1.niet-bestaand-onderwerp.OI', 'tags': 'N/A', 'errors': 'Taxonomie not found in dataset: rv-8.1.niet-bestaand-onderwerp.OI'}, 
-                                  {'file': '5. Niet bestaande tc-1 (processtap)', 'taxonomie': 'rv-9.1.interviewen-met-stakeholder.OI', 'tags': 'N/A', 'errors': 'Taxonomie not found in dataset: rv-9.1.interviewen-met-stakeholder.OI'}, 
-                                  {'file': '10. Negatieve getallen in tc-1', 'taxonomie': 'rv--8.1.interviewen-met-stakeholder.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: rv--8.1.interviewen-met-stakeholder.OI'}]
+    Expected_successful_test_files =   [{'file': '19. Dezelfde taxonomie code twee keer', 'taxonomie': 'bg-24.2.Alleen-Niveau-Twee.OI<br>bg-24.2.Alleen-Niveau-Twee.OI', 'tags': 'HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Alleen-Niveau-Twee<br>bg-24.2.Alleen-Niveau-Twee.OI', 'errors': 'N/A'}, 
+                                        {'file': '1. Correct taxonomie codes', 'taxonomie': 'bg-24.2.Alleen-Niveau-Twee.OI<br>bg-24.2.Alleen-Niveau-Twee.DT<br>bg-24.2.Niveau-Twee-En-Drie.OI<br>bg-24.3.Niveau-Twee-En-Drie.OI<br>ib-19.2.Ander-Eerste-Onderdeel.PI<br>ib-19.3.Ander-Eerste-Onderdeel.PI', 'tags': 'HBO-i/niveau-2<br>HBO-i/niveau-3<br>Beheerproces<br>Gebruiken beheersysteem<br>Alleen-Niveau-Twee<br>Niveau-Twee-En-Drie<br>Implentatieproces<br>Bouwen softwaresysteem<br>Ander-Eerste-Onderdeel<br>bg-24.2.Alleen-Niveau-Twee.DT<br>ib-19.3.Ander-Eerste-Onderdeel.PI<br>bg-24.3.Niveau-Twee-En-Drie.OI<br>bg-24.2.Alleen-Niveau-Twee.OI<br>bg-24.2.Niveau-Twee-En-Drie.OI<br>ib-19.2.Ander-Eerste-Onderdeel.PI', 'errors': 'N/A'}, 
+                                        {'file': '20. Dezelfde taxonomie code twee keer, maar ander niveau', 'taxonomie': 'bg-24.3.Niveau-Twee-En-Drie.OI<br>bg-24.2.Niveau-Twee-En-Drie.OI', 'tags': 'HBO-i/niveau-3<br>HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Niveau-Twee-En-Drie<br>bg-24.3.Niveau-Twee-En-Drie.OI<br>bg-24.2.Niveau-Twee-En-Drie.OI', 'errors': 'N/A'}]
+
+    Expected_failed_test_files =   [{'file': '13. Taxonomie code met 0 in tc-1', 'taxonomie': 'bg-0.2.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Taxonomie not found in dataset: bg-0.2.Alleen-Niveau-Twee.OI'}, 
+                                    {'file': '21. Fouten in dynamisch link opgelost', 'taxonomie': 'N/A', 'tags': 'N/A', 'errors': 'No taxonomie found in file.'}, 
+                                    {'file': '16. Taxonomie code tussen tc-2 en tc-3', 'taxonomie': 'bg-24.2. Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.2. Alleen-Niveau-Twee.OI'}, 
+                                    {'file': '8. Taxonomie code met een niet bestaand 4CID component', 'taxonomie': 'bg-24.2.Alleen-Niveau-Twee.JH', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.2.Alleen-Niveau-Twee.JH'}, 
+                                    {'file': '2. Taxonomie code op negatief niveau', 'taxonomie': 'bg-24.-2.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.-2.Alleen-Niveau-Twee.OI'}, 
+                                    {'file': '10. Taxonomie code zonder onderwerp (tc-3)', 'taxonomie': 'bg-24.2.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.2.OI'}, 
+                                    {'file': '7. Taxonomie code met niet bestaand onderwerp', 'taxonomie': 'bg-24.2.Dit-Onderwerp-Bestaat-Niet.OI', 'tags': 'N/A', 'errors': 'Taxonomie not found in dataset: bg-24.2.Dit-Onderwerp-Bestaat-Niet.OI'}, 
+                                    {'file': '4. Taxonomie code op niveau 4', 'taxonomie': 'bg-24.4.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.4.Alleen-Niveau-Twee.OI'}, 
+                                    {'file': '9. Taxonomie code zonder 4CID component (tc-4)', 'taxonomie': 'bg-24.2.Alleen-Niveau-Twee', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.2.Alleen-Niveau-Twee'}, 
+                                    {'file': '17. Taxonomie code tussen tc-3 en tc-4', 'taxonomie': 'bg-24.2.Alleen-Niveau-Twee. OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.2.Alleen-Niveau-Twee. OI'}, 
+                                    {'file': '11. Taxonomie code zonder niveau (tc-2)', 'taxonomie': 'bg-24.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.Alleen-Niveau-Twee.OI'}, 
+                                    {'file': '6. Taxonomie code met verkeerd tc-1 nummer', 'taxonomie': 'bg-19.2.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Taxonomie not found in dataset: bg-19.2.Alleen-Niveau-Twee.OI'}, 
+                                    {'file': '14. Taxonomie code met spaties in tc-3', 'taxonomie': 'bg-24.2.Alleen Niveau Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.2.Alleen Niveau Twee.OI'}, 
+                                    {'file': '12. Taxonomie code zonder tc-1', 'taxonomie': '2.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: 2.Alleen-Niveau-Twee.OI'}, 
+                                    {'file': '22. Twee taxonomie codes met fouten', 'taxonomie': 'bg-0.2.Alleen-Niveau-Twee.OI<br>bg-24.2.Alleen-Niveau-Twee.JH', 'tags': 'N/A', 'errors': 'Taxonomie not found in dataset: bg-0.2.Alleen-Niveau-Twee.OI<br>Invalid taxonomie: bg-24.2.Alleen-Niveau-Twee.JH'}, 
+                                    {'file': '5. Taxonomie code met negatieve tc-1', 'taxonomie': 'bg--24.2.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg--24.2.Alleen-Niveau-Twee.OI'}, 
+                                    {'file': '3. Taxonomie code op niveau 0', 'taxonomie': 'bg-24.0.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.0.Alleen-Niveau-Twee.OI'}, 
+                                    {'file': '15. Taxonomie code tussen tc-1 en tc-2', 'taxonomie': 'bg-24. 2.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24. 2.Alleen-Niveau-Twee.OI'}, 
+                                    {'file': '18. Taxonomie code die niet behandeld hoeft te worden', 'taxonomie': 'bg-24.2.Geen-Niveau.OI<br>bg-24.3.Alleen-Niveau-Twee.OI', 'tags': 'HBO-i/niveau-2<br>HBO-i/niveau-3<br>Beheerproces<br>Gebruiken beheersysteem<br>Geen-Niveau<br>Alleen-Niveau-Twee<br>bg-24.3.Alleen-Niveau-Twee.OI<br>bg-24.2.Geen-Niveau.OI', 'errors': 'Taxonomie used where it is not needed: bg-24.2.Geen-Niveau.OI<br>Taxonomie used where it is not needed: bg-24.3.Alleen-Niveau-Twee.OI'}]
+    
     return check_files_set_equal(Successful_test_files, Expected_successful_test_files) and check_files_set_equal(Failed_test_files, Expected_failed_test_files)
 
-def check_files_set_equal(unsorted_list, expected_unsorted):
-    sorted_1 = sorted([json.dumps(d, sort_keys=True) for d in unsorted_list])
-    sorted_2 = sorted([json.dumps(d, sort_keys=True) for d in expected_unsorted])
-    return sorted_1 == sorted_2
+
+    
+"""
+Checks if the expected output is the same as the result from the pipeline
+Args:
+    actual_unsorted (str): Unsorted list of the output of the pipeline
+    expected_unsorted (str): Unsorted list of the expected output
+"""
+def check_files_set_equal(actual_unsorted, expected_unsorted):
+    normalized_expected = normalize_list(expected_unsorted)
+    normalized_actual = normalize_list(actual_unsorted)
+    # Compare
+    if normalized_expected == normalized_actual:
+        if Verbose: print("The lists contain the same information.")
+        return True
+    else:
+        if Verbose:
+            print("The lists are different.")
+            print("Differences:")
+            print(json.dumps(normalized_expected, indent=2))
+            print(json.dumps(normalized_actual, indent=2))
+        return False
+
+"""
+Normalizes a list to be able to match it against another list
+Args:
+    data (list) : list of either successful or failed files (expected or actual)
+"""
+def normalize_list(data):
+    normalized_data = []
+    for obj in data:
+        normalized_obj = obj.copy()
+        for key in ['tags', 'taxonomie', 'tags']:
+            if key in obj:
+                normalized_obj[key] = '<br>'.join(sorted(obj[key].split('<br>')))
+        normalized_data.append(normalized_obj)
+    return sorted(normalized_data, key=lambda x: x.get('file', ''))
 
 
 """
 Main entry point of the script.
 """
 def main():
-    global Verbose
+    global Verboses
     global Testing
 
     # Parse command line arguments
@@ -848,7 +921,7 @@ def main():
     populate_rapport2()
 
     if Testing :
-        if check_test_cases(test_dir): sys.exit(0) # 0 means it was successful and pipeline will succeed
+        if run_test_cases(test_dir) and test_link_file(test_dir): sys.exit(0) # 0 means it was successful and pipeline will succeed
         else: sys.exit(1)  # 1 means it was unsuccessful and pipeline will fail
     else :
         # Delete everything in the destination folder
