@@ -321,6 +321,8 @@ def generate_tags(taxonomies, file_path, existing_tags):
                             
                             update_rapport1_data(tc_1, tc_2)
                             update_rapport2_data(get_file_type(file_path), tc_1, tc_2, tc_3)   
+                            taxonomie_tags = list(set(taxonomies))
+
         # If no tags were found, add an error
             if NOT_NECESSARY in tags: 
                 tags.remove(NOT_NECESSARY)
@@ -328,7 +330,6 @@ def generate_tags(taxonomies, file_path, existing_tags):
             if tags == [] and not errors:
                     errors.append(f"Taxonomie not found in dataset: {taxonomie}")
                     if Verbose: print(f"Taxonomie not found in dataset: {taxonomie}")
-        taxonomie_tags = list(set(taxonomies))
 
     else:
         errors.append(ERROR_MISSING_TAXCO)
@@ -768,11 +769,6 @@ def parse_markdown_files(src_dir, dest_dir):
         existing_tags = extract_values(content, 'tags')
         taxonomie = extract_values(content, 'taxonomie')
         new_tags, tags_errors = generate_tags(taxonomie, file_path, existing_tags)
-        # print(f"new_tags: {new_tags}")
-        # print(f"existing: {existing_tags}")
-        # print(f"taxonomie: {taxonomie}")
-        # print(file_path)
-        # print("------------")
         difficulty = extract_values(content, 'difficulty')
 
         # Combine all errors
@@ -887,7 +883,7 @@ def run_test_cases(test_dir):
             if Verbose: print(f"Failed to parse file: {file_path}")
         else:
             Successful_test_files.append(create_test_file_result(file_path, taxonomie, tags, errors))
-    return validate_test();    
+    return validate_test();  
 
 
 """
@@ -895,6 +891,9 @@ Validates the test cases against the expected outcome
 """
 def validate_test():
     from expected_result_taxco_tests import Expected_failed_test_files, Expected_successful_test_files
+    if Verbose: 
+        print(f"Succesful test files: {check_files_set_equal(Successful_test_files, Expected_successful_test_files)}")
+        print(f"Failed test files: {check_files_set_equal(Failed_test_files, Expected_failed_test_files)}")
     return check_files_set_equal(Successful_test_files, Expected_successful_test_files) and check_files_set_equal(Failed_test_files, Expected_failed_test_files)
 
 
@@ -913,11 +912,7 @@ def check_files_set_equal(actual_unsorted, expected_unsorted):
         if Verbose: print("The lists contain the same information.")
         return True
     else:
-        if Verbose:
-            print("The lists are different.")
-            print("Differences:")
-            print(json.dumps(normalized_expected, indent=2))
-            print(json.dumps(normalized_actual, indent=2))
+        if Verbose: print("The lists are different.")
         return False
 
 """
