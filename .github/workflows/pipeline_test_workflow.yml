@@ -7,7 +7,7 @@ on:
       - ".github/**"
 
 jobs:
-  run-parser-and-create-pr:
+  runs-tests-on-pipeline:
     runs-on: ubuntu-latest
     steps:
       - name: Configure Git
