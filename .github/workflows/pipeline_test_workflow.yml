@@ -38,4 +38,4 @@ jobs:
 
       - name: Run wikiversie_parser.py script
         run: |
-          python .github/wikiversie_parser.py --src "./content" --dest "./build" --dataset .github/test_dataset.xlsx --testing --testdir ".github/test_cases" --verbose
+          python .github/wikiversie_parser.py --src "./content" --dest "./build" --dataset .github/test_dataset.xlsx --testing --testdir "./.github/test_cases" --verbose

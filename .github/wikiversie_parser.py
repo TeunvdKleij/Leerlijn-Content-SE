@@ -13,6 +13,7 @@ import pandas as pd
 Dataset = list()  # Dataset list
 Successful_files = [] # Track the status of each file
 Failed_files = [] # Track the status of each file
+Failed_images = [] # Track which images don't start with a 4C/ID component
 Successful_test_files = [] # Track which files where successful in testing
 Failed_test_files = [] # Track which files failed in testing
 Verbose = False # Verbose output flag
@@ -464,6 +465,24 @@ def format_file_report_table(file_report):
     return table
 
 """
+Format the image report table.
+Args:
+    file_report (list): List of image reports.
+Returns:
+    table (str): Markdown table string.
+"""
+def format_image_report_table(image_report):
+    headers = ["Image", "Path", "Error"]
+    rows = [[
+        file['image'], 
+        file['path'],
+        file['error']
+    ] for file in image_report]
+
+    table = generate_markdown_table(headers, rows)
+    return table
+
+"""
 Create a file report based on the status, file path, taxonomie, and tags.
 Args:
     status (str): Status of the file processing.
@@ -492,6 +511,16 @@ def create_test_file_result(file_path, taxonomie, tags, errors):
         "taxonomie": '<br>'.join(taxonomie) if taxonomie else "N/A",
         "tags": '<br>'.join(tags) if tags else "N/A",
         "errors": '<br>'.join(errors) if errors else "N/A"
+    }
+
+"""
+Create a list of a image
+"""
+def create_image_result(file_path, src_dir, error):
+    return {
+        "image": file_path.stem,
+        "path": str(file_path.relative_to(src_dir)),
+        "error": error,
     }
 
 """
@@ -544,6 +573,12 @@ def generate_report():
         f.write('\n')
         f.write(format_file_report_table(Failed_files))
 
+        f.write('\n\n')
+
+        f.write("## Gefaalde images\n")
+        f.write("*Doel: De onderstaande images missen een 4C/ID component.*\n\n")
+        f.write(format_image_report_table(Failed_images))
+
     # Print reports for quick feedback
     if Verbose:
         print("Rapport 1:")
@@ -554,6 +589,8 @@ def generate_report():
         print(format_file_report_table(Successful_files))
         print("Gefaalde bestanden:")
         print(format_file_report_table(Failed_files))
+        print("Gefaalde images:")
+        print(format_image_report_table(Failed_images))
 
         print("Report generated.")
 
@@ -770,8 +807,33 @@ def parse_markdown_files(src_dir, dest_dir):
             print(f"File completed: {file_path}")
             print("-" * 50)
 
-    generate_report()
+def populate_image_report(src_dir, dest_dir):
+    src_folders = [folder for folder in Path(src_dir).rglob("src") if folder.is_dir()]
+    src_images = set()
+    for folder in src_folders:
+        if "schrijfwijze" in str(folder):
+            continue
+        src_images.update(
+            file_path
+            for file_path in folder.rglob("*")  # Search recursively in each 'src' folder
+        ) 
+    dest_folders = [folder for folder in Path(dest_dir).rglob("src") if folder.is_dir()]
+    dest_images = set()
+    for folder in dest_folders:
+        if "schrijfwijze" in str(folder):
+            continue
+        dest_images.update(
+            file_path
+            for file_path in folder.rglob("*")  # Search recursively in each 'src' folder
+        ) 
+    for image in dest_images :
+        if not str(image.stem).startswith(("PI", "OI")):
+            Failed_images.append(create_image_result(image, dest_dir, "Image does not include 4C"))
+    for image in src_images : 
 
+        if str(image.stem) not in {str(img.stem) for img in dest_images}:
+            Failed_images.append(create_image_result(image, src_dir, "Image not used in any file"))
+             
 
 """
 Tests the file with incorrect links. This check makes sure inccorrect links get noticed and "content/" gets filtered out.
@@ -826,30 +888,7 @@ def run_test_cases(test_dir):
 Validates the test cases against the expected outcome
 """
 def validate_test():
-    Expected_successful_test_files =   [{'file': '19. Dezelfde taxonomie code twee keer', 'taxonomie': 'bg-24.2.Alleen-Niveau-Twee.OI<br>bg-24.2.Alleen-Niveau-Twee.OI', 'tags': 'HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Alleen-Niveau-Twee<br>bg-24.2.Alleen-Niveau-Twee.OI', 'errors': 'N/A'}, 
-                                        {'file': '1. Correct taxonomie codes', 'taxonomie': 'bg-24.2.Alleen-Niveau-Twee.OI<br>bg-24.2.Alleen-Niveau-Twee.DT<br>bg-24.2.Niveau-Twee-En-Drie.OI<br>bg-24.3.Niveau-Twee-En-Drie.OI<br>ib-19.2.Ander-Eerste-Onderdeel.PI<br>ib-19.3.Ander-Eerste-Onderdeel.PI', 'tags': 'HBO-i/niveau-2<br>HBO-i/niveau-3<br>Beheerproces<br>Gebruiken beheersysteem<br>Alleen-Niveau-Twee<br>Niveau-Twee-En-Drie<br>Implentatieproces<br>Bouwen softwaresysteem<br>Ander-Eerste-Onderdeel<br>bg-24.2.Alleen-Niveau-Twee.DT<br>ib-19.3.Ander-Eerste-Onderdeel.PI<br>bg-24.3.Niveau-Twee-En-Drie.OI<br>bg-24.2.Alleen-Niveau-Twee.OI<br>bg-24.2.Niveau-Twee-En-Drie.OI<br>ib-19.2.Ander-Eerste-Onderdeel.PI', 'errors': 'N/A'}, 
-                                        {'file': '20. Dezelfde taxonomie code twee keer, maar ander niveau', 'taxonomie': 'bg-24.3.Niveau-Twee-En-Drie.OI<br>bg-24.2.Niveau-Twee-En-Drie.OI', 'tags': 'HBO-i/niveau-3<br>HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Niveau-Twee-En-Drie<br>bg-24.3.Niveau-Twee-En-Drie.OI<br>bg-24.2.Niveau-Twee-En-Drie.OI', 'errors': 'N/A'}]
-
-    Expected_failed_test_files =   [{'file': '13. Taxonomie code met 0 in tc-1', 'taxonomie': 'bg-0.2.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Taxonomie not found in dataset: bg-0.2.Alleen-Niveau-Twee.OI'}, 
-                                    {'file': '21. Fouten in dynamisch link opgelost', 'taxonomie': 'N/A', 'tags': 'N/A', 'errors': 'No taxonomie found in file.'}, 
-                                    {'file': '16. Taxonomie code tussen tc-2 en tc-3', 'taxonomie': 'bg-24.2. Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.2. Alleen-Niveau-Twee.OI'}, 
-                                    {'file': '8. Taxonomie code met een niet bestaand 4CID component', 'taxonomie': 'bg-24.2.Alleen-Niveau-Twee.JH', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.2.Alleen-Niveau-Twee.JH'}, 
-                                    {'file': '2. Taxonomie code op negatief niveau', 'taxonomie': 'bg-24.-2.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.-2.Alleen-Niveau-Twee.OI'}, 
-                                    {'file': '10. Taxonomie code zonder onderwerp (tc-3)', 'taxonomie': 'bg-24.2.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.2.OI'}, 
-                                    {'file': '7. Taxonomie code met niet bestaand onderwerp', 'taxonomie': 'bg-24.2.Dit-Onderwerp-Bestaat-Niet.OI', 'tags': 'N/A', 'errors': 'Taxonomie not found in dataset: bg-24.2.Dit-Onderwerp-Bestaat-Niet.OI'}, 
-                                    {'file': '4. Taxonomie code op niveau 4', 'taxonomie': 'bg-24.4.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.4.Alleen-Niveau-Twee.OI'}, 
-                                    {'file': '9. Taxonomie code zonder 4CID component (tc-4)', 'taxonomie': 'bg-24.2.Alleen-Niveau-Twee', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.2.Alleen-Niveau-Twee'}, 
-                                    {'file': '17. Taxonomie code tussen tc-3 en tc-4', 'taxonomie': 'bg-24.2.Alleen-Niveau-Twee. OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.2.Alleen-Niveau-Twee. OI'}, 
-                                    {'file': '11. Taxonomie code zonder niveau (tc-2)', 'taxonomie': 'bg-24.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.Alleen-Niveau-Twee.OI'}, 
-                                    {'file': '6. Taxonomie code met verkeerd tc-1 nummer', 'taxonomie': 'bg-19.2.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Taxonomie not found in dataset: bg-19.2.Alleen-Niveau-Twee.OI'}, 
-                                    {'file': '14. Taxonomie code met spaties in tc-3', 'taxonomie': 'bg-24.2.Alleen Niveau Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.2.Alleen Niveau Twee.OI'}, 
-                                    {'file': '12. Taxonomie code zonder tc-1', 'taxonomie': '2.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: 2.Alleen-Niveau-Twee.OI'}, 
-                                    {'file': '22. Twee taxonomie codes met fouten', 'taxonomie': 'bg-0.2.Alleen-Niveau-Twee.OI<br>bg-24.2.Alleen-Niveau-Twee.JH', 'tags': 'N/A', 'errors': 'Taxonomie not found in dataset: bg-0.2.Alleen-Niveau-Twee.OI<br>Invalid taxonomie: bg-24.2.Alleen-Niveau-Twee.JH'}, 
-                                    {'file': '5. Taxonomie code met negatieve tc-1', 'taxonomie': 'bg--24.2.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg--24.2.Alleen-Niveau-Twee.OI'}, 
-                                    {'file': '3. Taxonomie code op niveau 0', 'taxonomie': 'bg-24.0.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.0.Alleen-Niveau-Twee.OI'}, 
-                                    {'file': '15. Taxonomie code tussen tc-1 en tc-2', 'taxonomie': 'bg-24. 2.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24. 2.Alleen-Niveau-Twee.OI'}, 
-                                    {'file': '18. Taxonomie code die niet behandeld hoeft te worden', 'taxonomie': 'bg-24.2.Geen-Niveau.OI<br>bg-24.3.Alleen-Niveau-Twee.OI', 'tags': 'HBO-i/niveau-2<br>HBO-i/niveau-3<br>Beheerproces<br>Gebruiken beheersysteem<br>Geen-Niveau<br>Alleen-Niveau-Twee<br>bg-24.3.Alleen-Niveau-Twee.OI<br>bg-24.2.Geen-Niveau.OI', 'errors': 'Taxonomie used where it is not needed: bg-24.2.Geen-Niveau.OI<br>Taxonomie used where it is not needed: bg-24.3.Alleen-Niveau-Twee.OI'}]
-    
+    from expected_result_taxco_tests import Expected_failed_test_files, Expected_successful_test_files
     return check_files_set_equal(Successful_test_files, Expected_successful_test_files) and check_files_set_equal(Failed_test_files, Expected_failed_test_files)
 
 
@@ -895,7 +934,7 @@ def normalize_list(data):
 Main entry point of the script.
 """
 def main():
-    global Verboses
+    global Verbose
     global Testing
 
     # Parse command line arguments
@@ -912,7 +951,9 @@ def main():
     dest_dir = Path(args.dest).resolve()
     Verbose = args.verbose
     Testing = args.testing
-    test_dir = Path(args.testdir).resolve()
+    if args.testdir != None:
+        test_dir = Path(args.testdir).resolve() 
+
     
     # Fill the reports with the dataset information
     parse_dataset_file(args.dataset)
@@ -921,8 +962,19 @@ def main():
     populate_rapport2()
 
     if Testing :
-        if run_test_cases(test_dir) and test_link_file(test_dir): sys.exit(0) # 0 means it was successful and pipeline will succeed
-        else: sys.exit(1)  # 1 means it was unsuccessful and pipeline will fail
+        if run_test_cases(test_dir) :
+            if test_link_file(test_dir): 
+                from evaluate import evaulate_tests
+                markdown_count_check = evaulate_tests(src_dir, dest_dir)
+                if markdown_count_check:
+                    sys.exit(0)
+                else : sys.exit(1)  
+            else : 
+                if Verbose : print("Changing of dynamic links tests: Failed")
+                sys.exit(1)
+        else : 
+            if Verbose : print("Markdown tests: Failed")
+            sys.exit(1)    
     else :
         # Delete everything in the destination folder
         if os.path.exists(dest_dir):
@@ -931,6 +983,9 @@ def main():
 
         # Parse the markdown files in the source directory
         parse_markdown_files(src_dir, dest_dir)
+        populate_image_report(src_dir, dest_dir)
+
+        generate_report()
 
 if __name__ == "__main__":
     start_time = time.time()

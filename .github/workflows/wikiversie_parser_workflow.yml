@@ -4,8 +4,8 @@ on:
     branches:
       - staging
     paths-ignore:
-      - '.github/**'
-      - 'test_cases/**'
+      - ".github/**"
+      - "test_cases/**"
 
 permissions:
   contents: write
@@ -43,7 +43,7 @@ jobs:
 
       - name: Run wikiversie_parser.py script
         run: |
-          python .github/wikiversie_parser.py --src "./content" --dest "./build" --dataset .github/dataset.xlsx --testdir "./test_cases" --verbose
+          python .github/wikiversie_parser.py --src "./content" --dest "./build" --dataset .github/dataset.xlsx --verbose
 
       - name: Get list of files in temp directory
         run: |
