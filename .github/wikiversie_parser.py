@@ -273,7 +273,8 @@ def generate_tags(taxonomies, file_path, existing_tags):
     tags = []
     errors = []
     combined_tags = []
-    if taxonomies is not None:
+    taxonomie_tags = []
+    if taxonomies is not None and taxonomies != ['None']:
         for taxonomie in taxonomies:
             if Verbose : print(f"Generating tags for taxonomie: {taxonomie}")
             # Check if the taxonomie is in the correct format
@@ -327,16 +328,16 @@ def generate_tags(taxonomies, file_path, existing_tags):
             if tags == [] and not errors:
                     errors.append(f"Taxonomie not found in dataset: {taxonomie}")
                     if Verbose: print(f"Taxonomie not found in dataset: {taxonomie}")
-
-        taxonomies = list(set(taxonomies))
-        if existing_tags:
-            combined_tags = existing_tags + tags + taxonomies if taxonomies and tags else existing_tags
-        else:
-            combined_tags = tags + taxonomies if taxonomies and tags else tags   
+        taxonomie_tags = list(set(taxonomies))
 
     else:
         errors.append(ERROR_MISSING_TAXCO)
         if Verbose: print(ERROR_MISSING_TAXCO)
+
+    if existing_tags: combined_tags += existing_tags 
+    if tags : combined_tags += tags 
+    if taxonomie_tags : combined_tags += taxonomie_tags
+
     return combined_tags, errors
 
 """
@@ -767,6 +768,11 @@ def parse_markdown_files(src_dir, dest_dir):
         existing_tags = extract_values(content, 'tags')
         taxonomie = extract_values(content, 'taxonomie')
         new_tags, tags_errors = generate_tags(taxonomie, file_path, existing_tags)
+        # print(f"new_tags: {new_tags}")
+        # print(f"existing: {existing_tags}")
+        # print(f"taxonomie: {taxonomie}")
+        # print(file_path)
+        # print("------------")
         difficulty = extract_values(content, 'difficulty')
 
         # Combine all errors
