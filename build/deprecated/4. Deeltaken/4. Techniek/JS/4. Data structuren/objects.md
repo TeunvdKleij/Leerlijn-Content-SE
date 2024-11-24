@@ -2,8 +2,7 @@
 title: objects
 taxonomie: None
 tags:
-- JS/objecten
-- page
+
 difficulty: 2
 ---
 

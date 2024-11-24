@@ -2,8 +2,7 @@
 title: Errors
 taxonomie: None
 tags:
-- JS/Errors
-- page
+
 difficulty: 2
 ---
 

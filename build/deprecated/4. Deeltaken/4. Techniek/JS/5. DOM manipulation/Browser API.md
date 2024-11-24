@@ -2,8 +2,7 @@
 title: Browser API
 taxonomie: None
 tags:
-- HTML/BOM
-- page
+
 difficulty: 2
 ---
 

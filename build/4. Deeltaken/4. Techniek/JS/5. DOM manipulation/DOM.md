@@ -2,8 +2,7 @@
 title: DOM
 taxonomie: None
 tags:
-- HTML/DOM
-- page
+
 difficulty: 2
 ---
 

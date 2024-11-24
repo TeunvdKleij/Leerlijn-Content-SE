@@ -2,8 +2,7 @@
 title: Debug
 taxonomie: None
 tags:
-- JS/debugging
-- page
+
 difficulty: 2
 ---
 

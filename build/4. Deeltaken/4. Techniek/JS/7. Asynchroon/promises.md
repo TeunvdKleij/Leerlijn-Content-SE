@@ -2,8 +2,7 @@
 title: promises
 taxonomie: None
 tags:
-- JS/Promises
-- page
+
 difficulty: 2
 ---
 

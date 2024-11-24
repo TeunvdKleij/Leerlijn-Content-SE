@@ -2,7 +2,7 @@
 title: instructies
 taxonomie: None
 tags:
-- Project
+
 difficulty: 3
 ---
 

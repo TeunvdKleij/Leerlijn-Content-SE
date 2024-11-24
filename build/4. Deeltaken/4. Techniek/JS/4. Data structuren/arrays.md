@@ -2,8 +2,7 @@
 title: arrays
 taxonomie: None
 tags:
-- JS/Arrays
-- page
+
 difficulty: 2
 ---
 
