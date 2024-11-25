@@ -579,6 +579,7 @@ def generate_report():
 
         f.write("## Gefaalde images\n")
         f.write("*Doel: De onderstaande images missen een 4C/ID component.*\n\n")
+        f.write('Als een image de error heeft over het niet gebruikt worden, betekent dit dat de image niet in build staat, maar nog wel in content.\n\n')
         f.write(format_image_report_table(Failed_images))
 
     # Print reports for quick feedback
