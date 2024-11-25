@@ -7,7 +7,7 @@ import argparse
 import sys
 import json
 from pathlib import Path
-import pandas as pd
+import pandas as pd # type: ignore
 
 # Global variables
 Dataset = list()  # Dataset list
@@ -321,7 +321,7 @@ def generate_tags(taxonomies, file_path, existing_tags):
                             
                             update_rapport1_data(tc_1, tc_2)
                             update_rapport2_data(get_file_type(file_path), tc_1, tc_2, tc_3)   
-                            taxonomie_tags = list(set(taxonomies))
+                            taxonomie_tags = sorted(list(set(taxonomies)))
 
         # If no tags were found, add an error
             if NOT_NECESSARY in tags: 
