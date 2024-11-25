@@ -830,7 +830,7 @@ def populate_image_report(src_dir, dest_dir):
         ) 
     for image in dest_images :
         if not str(image.stem).startswith(("PI", "OI")):
-            Failed_images.append(create_image_result(image, dest_dir, "Image does not include 4C"))
+            Failed_images.append(create_image_result(image, dest_dir, "Image does not include 4C/ID component"))
     for image in src_images : 
 
         if str(image.stem) not in {str(img.stem) for img in dest_images}:
