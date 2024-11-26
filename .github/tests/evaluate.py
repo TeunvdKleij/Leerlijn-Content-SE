@@ -1,17 +1,30 @@
+# Imports
 import time
 import os
 import shutil
 import sys
 from pathlib import Path
 import argparse
-from wikiversie_parser import parse_markdown_files, populate_image_report, generate_report, Verbose
+
+# Variables
+from utils import Verbose
+
+# Functions
+from files.parse import parse_markdown_files
 
 Markdown_Count_Check = False  
 
+
+"""
+returns the amount of markdown files in a folder
+"""
 def check_markdown_files_count(folder_path):
     return len(list(folder_path.glob("*.md")))
 
-def evaulate_tests(src_dir, dest_dir):
+"""
+Evaluate the tests by using check_markdown_files_count and removing the build folder afterwards
+"""
+def evaluate_tests(src_dir, dest_dir):
     start_time = time.time()
     if os.path.exists(dest_dir):
         #
