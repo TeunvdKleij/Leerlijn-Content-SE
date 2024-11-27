@@ -307,34 +307,34 @@ Als een image de error heeft over het niet gebruikt worden, betekent dit dat de 
 
 | Image | Path | Error |
 | --- | --- | --- |
+| ontwikkelstappen_technisch_ontwerp | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/ontwikkelstappen_technisch_ontwerp.png | Image does not include 4C/ID component |
+| ssdlc_risk_assessment | deprecated/2. Ondersteunende-informatie/2. SSDLC/1. Requirements - Risk Assessment/src/ssdlc_risk_assessment.png | Image does not include 4C/ID component |
 | Opdracht3_loglens | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_loglens.png | Image does not include 4C/ID component |
+| ssdlc_threat_model | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/ssdlc_threat_model.png | Image does not include 4C/ID component |
+| Opdracht3_Volumes | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_Volumes.png | Image does not include 4C/ID component |
+| stap6_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_1.png | Image does not include 4C/ID component |
+| rapport_3 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_3.png | Image does not include 4C/ID component |
+| stap5.3 opslaan | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap5.3 opslaan.png | Image does not include 4C/ID component |
+| rapport_2 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_2.png | Image does not include 4C/ID component |
+| zap_proxy2 | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/zap_proxy2.png | Image does not include 4C/ID component |
 | zap_proxy1 | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/zap_proxy1.png | Image does not include 4C/ID component |
 | stap6_2 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_2.png | Image does not include 4C/ID component |
-| rapport_1 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_1.png | Image does not include 4C/ID component |
-| Opdracht2_dockercompose | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht2_dockercompose.png | Image does not include 4C/ID component |
-| stap4 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap4.png | Image does not include 4C/ID component |
 | PentestingSSDLC | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/PentestingSSDLC.png | Image does not include 4C/ID component |
-| stap2 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap2.png | Image does not include 4C/ID component |
-| Tags_Releases_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Tags_Releases_1.png | Image does not include 4C/ID component |
-| voorbeeld_risk_assessment | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/voorbeeld_risk_assessment.png | Image does not include 4C/ID component |
-| stap3 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap3.png | Image does not include 4C/ID component |
-| rapport_3 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_3.png | Image does not include 4C/ID component |
-| threat_modeling_example_correct | deprecated/2. Ondersteunende-informatie/2. SSDLC/1. Requirements - Risk Assessment/src/threat_modeling_example_correct.png | Image does not include 4C/ID component |
-| stap5.3 opslaan | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap5.3 opslaan.png | Image does not include 4C/ID component |
-| Opdracht3_Volumes | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_Volumes.png | Image does not include 4C/ID component |
-| rapport_2 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_2.png | Image does not include 4C/ID component |
-| ssdlc_risk_assessment | deprecated/2. Ondersteunende-informatie/2. SSDLC/1. Requirements - Risk Assessment/src/ssdlc_risk_assessment.png | Image does not include 4C/ID component |
-| Opdracht3_chatterbox | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_chatterbox.png | Image does not include 4C/ID component |
-| Opdracht4_dockerenv | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht4_dockerenv.png | Image does not include 4C/ID component |
-| zap_proxy2 | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/zap_proxy2.png | Image does not include 4C/ID component |
 | Opdracht3_stop_delete | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_stop_delete.png | Image does not include 4C/ID component |
-| stap6_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_1.png | Image does not include 4C/ID component |
-| ssdlc_threat_model | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/ssdlc_threat_model.png | Image does not include 4C/ID component |
-| Pull_Request_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_1.png | Image does not include 4C/ID component |
+| Opdracht2_dockercompose | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht2_dockercompose.png | Image does not include 4C/ID component |
+| stap2 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap2.png | Image does not include 4C/ID component |
+| stap3 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap3.png | Image does not include 4C/ID component |
+| Opdracht3_chatterbox | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_chatterbox.png | Image does not include 4C/ID component |
+| stap4 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap4.png | Image does not include 4C/ID component |
 | ssdlc_setup_skylab | deprecated/2. Ondersteunende-informatie/2. SSDLC/5. Deployment - Deployment op Skylab/src/ssdlc_setup_skylab.png | Image does not include 4C/ID component |
 | Pull_Request_2 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_2.png | Image does not include 4C/ID component |
-| ontwikkelstappen_technisch_ontwerp | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/ontwikkelstappen_technisch_ontwerp.png | Image does not include 4C/ID component |
+| Tags_Releases_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Tags_Releases_1.png | Image does not include 4C/ID component |
+| rapport_1 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_1.png | Image does not include 4C/ID component |
 | Pull_Request_5 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_5.png | Image does not include 4C/ID component |
+| voorbeeld_risk_assessment | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/voorbeeld_risk_assessment.png | Image does not include 4C/ID component |
+| Pull_Request_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_1.png | Image does not include 4C/ID component |
+| Opdracht4_dockerenv | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht4_dockerenv.png | Image does not include 4C/ID component |
+| threat_modeling_example_correct | deprecated/2. Ondersteunende-informatie/2. SSDLC/1. Requirements - Risk Assessment/src/threat_modeling_example_correct.png | Image does not include 4C/ID component |
 | stap6_3 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_3.png | Image does not include 4C/ID component |
 | Pull_Request_4 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_4.png | Image not used in any file |
 | Pull_Request_3 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_3.png | Image not used in any file |
