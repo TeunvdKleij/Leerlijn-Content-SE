@@ -137,7 +137,7 @@ def generate_tags(taxonomies, file_path, existing_tags):
     if tags : combined_tags += tags 
     if taxonomie_tags : combined_tags += taxonomie_tags
 
-    return combined_tags, errors
+    return list(dict.fromkeys(combined_tags)), errors
 
 """
 Returns the folder name after the 'content' directory in the path.

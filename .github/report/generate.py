@@ -22,9 +22,9 @@ def generate_report():
         # Rapport 1 Section
         f.write('## Rapport 1 - Processtappen\n')
         f.write('*Doel: achterhalen welke processtappen nog helemaal niet zijn geïmplementeerd*\n\n')
-        f.write('- ✅ Er bestaat een bestand met deze taxonomiecode op dit niveau \n\n')
-        f.write('- ⛔️ Er is geen enkel bestand met deze taxonomiecode op dit niveau \n\n')
-        f.write('- 🏳️ De taxonomiecode wordt niet aangeboden op dit niveau (X in de Dataset) \n\n')
+        f.write('- ✅ Er bestaat een bestand met deze taxonomiecode op dit niveau \n')
+        f.write('- ⛔️ Er is geen enkel bestand met deze taxonomiecode op dit niveau \n')
+        f.write('- 🏳️ De taxonomiecode wordt niet aangeboden op dit niveau (X in de Dataset) \n')
         f.write('\n')
         f.write(generate_rapport_1())
 
@@ -34,9 +34,9 @@ def generate_report():
         f.write('## Rapport 2 - Onderwerpen Catalogus\n')
         f.write('*Doel: Lijst met onderwerpen + gekoppelde taxonomie code voor inzicht in aangeboden onderwerpen.*\n')
         f.write('Bij kolom *TC2*, *Leertaken*, *Ondersteunende informatie*, *Procedurele informatie* en *Deeltaken* zijn drie tekens aanwezig om de drie HBO-i niveaus weer te geven\n\n')
-        f.write('- ✅ Het onderwerp met taxonomie code wordt aangeboden op het aangegeven niveau \n\n')
-        f.write('- ⛔️ Het onderwerp met taxonomie code wordt **niet** aangeboden op het aangegeven niveau \n\n')
-        f.write('- 🏳️ Het onderwerp hoeft met deze taxonomie code niet aangeboden te worden op het aangegeven niveau \n\n')
+        f.write('- ✅ Het onderwerp met taxonomie code wordt aangeboden op het aangegeven niveau \n')
+        f.write('- ⛔️ Het onderwerp met taxonomie code wordt **niet** aangeboden op het aangegeven niveau \n')
+        f.write('- 🏳️ Het onderwerp hoeft met deze taxonomie code niet aangeboden te worden op het aangegeven niveau \n')
         f.write('\n')
         f.write(generate_rapport_2())
 
@@ -53,9 +53,9 @@ def generate_report():
         # Failed Files Section
         f.write("## Gefaalde bestanden\n")
         f.write("*Doel: De onderstaande bestanden zijn niet succesvol verwerkt.*\n\n")
-        f.write('❌ Dit bestand bevat nog geen taxonomie code\n\n')
-        f.write('⚠️ Dit bestand bevat een foute taxonomie code. Zie de *Errors* kolom om te weten wat er mis is\n\n')
-        f.write('🟠 Dit bestand bevat een taxonomie code die niet toegevoegd hoeft te zijn\n\n')
+        f.write('❌ Dit bestand bevat nog geen taxonomie code\n')
+        f.write('⚠️ Dit bestand bevat een foute taxonomie code. Zie de *Errors* kolom om te weten wat er mis is\n')
+        f.write('🟠 Dit bestand bevat een taxonomie code die niet toegevoegd hoeft te zijn\n')
         f.write('\n')
         f.write(format_file_report_table(Failed_files))
 

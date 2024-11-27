@@ -5,11 +5,8 @@ draft: true
 *Doel: achterhalen welke processtappen nog helemaal niet zijn geïmplementeerd*
 
 - ✅ Er bestaat een bestand met deze taxonomiecode op dit niveau 
-
 - ⛔️ Er is geen enkel bestand met deze taxonomiecode op dit niveau 
-
 - 🏳️ De taxonomiecode wordt niet aangeboden op dit niveau (X in de Dataset) 
-
 
 | TC1 | Proces | Processtap | Niveau 1 | Niveau 2 | Niveau 3 |
 | --- | --- | --- | --- | --- | --- |
@@ -22,11 +19,8 @@ draft: true
 Bij kolom *TC2*, *Leertaken*, *Ondersteunende informatie*, *Procedurele informatie* en *Deeltaken* zijn drie tekens aanwezig om de drie HBO-i niveaus weer te geven
 
 - ✅ Het onderwerp met taxonomie code wordt aangeboden op het aangegeven niveau 
-
 - ⛔️ Het onderwerp met taxonomie code wordt **niet** aangeboden op het aangegeven niveau 
-
 - 🏳️ Het onderwerp hoeft met deze taxonomie code niet aangeboden te worden op het aangegeven niveau 
-
 
 | TC3 | TC1 | TC2 | Leertaken | Ondersteunende-informatie | Procedurele-informatie | Deeltaken |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -92,11 +86,8 @@ De onderstaande bestanden zijn succesvol verwerkt.
 *Doel: De onderstaande bestanden zijn niet succesvol verwerkt.*
 
 ❌ Dit bestand bevat nog geen taxonomie code
-
 ⚠️ Dit bestand bevat een foute taxonomie code. Zie de *Errors* kolom om te weten wat er mis is
-
 🟠 Dit bestand bevat een taxonomie code die niet toegevoegd hoeft te zijn
-
 
 | Status | File | Path | Taxonomie | Tags | Errors |
 | --- | --- | --- | --- | --- | --- |
@@ -316,39 +307,39 @@ Als een image de error heeft over het niet gebruikt worden, betekent dit dat de 
 
 | Image | Path | Error |
 | --- | --- | --- |
-| OI_docker_desktop_single_container | 2. Ondersteunende-informatie/4. Techniek/Docker/src/OI_docker_desktop_single_container.png | Image not used in any file |
-| OI_docker_desktop_docker_compose | 2. Ondersteunende-informatie/4. Techniek/Docker/src/OI_docker_desktop_docker_compose.png | Image not used in any file |
-| Pull_Request_5 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_5.png | Image not used in any file |
-| rapport_1 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_1.png | Image not used in any file |
-| Opdracht3_stop_delete | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_stop_delete.png | Image not used in any file |
-| Pull_Request_3 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_3.png | Image not used in any file |
-| Opdracht3_loglens | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_loglens.png | Image not used in any file |
-| rapport_2 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_2.png | Image not used in any file |
-| stap6_3 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_3.png | Image not used in any file |
-| ssdlc_risk_assessment | deprecated/2. Ondersteunende-informatie/2. SSDLC/1. Requirements - Risk Assessment/src/ssdlc_risk_assessment.png | Image not used in any file |
-| zap_proxy1 | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/zap_proxy1.png | Image not used in any file |
-| OI_docker_desktop_images | 2. Ondersteunende-informatie/4. Techniek/Docker/src/OI_docker_desktop_images.png | Image not used in any file |
-| Pull_Request_2 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_2.png | Image not used in any file |
 | rapport_3 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_3.png | Image not used in any file |
-| ssdlc_threat_model | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/ssdlc_threat_model.png | Image not used in any file |
-| Pull_Request_4 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_4.png | Image not used in any file |
-| Pull_Request_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_1.png | Image not used in any file |
-| Tags_Releases_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Tags_Releases_1.png | Image not used in any file |
-| voorbeeld_risk_assessment | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/voorbeeld_risk_assessment.png | Image not used in any file |
-| Opdracht3_chatterbox | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_chatterbox.png | Image not used in any file |
-| Opdracht2_dockercompose | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht2_dockercompose.png | Image not used in any file |
-| zap_proxy2 | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/zap_proxy2.png | Image not used in any file |
-| OI_docker_desktop_containers | 2. Ondersteunende-informatie/4. Techniek/Docker/src/OI_docker_desktop_containers.png | Image not used in any file |
-| stap4 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap4.png | Image not used in any file |
-| stap5.3 opslaan | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap5.3 opslaan.png | Image not used in any file |
-| Opdracht3_Volumes | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_Volumes.png | Image not used in any file |
-| PentestingSSDLC | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/PentestingSSDLC.png | Image not used in any file |
-| stap6_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_1.png | Image not used in any file |
 | stap2 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap2.png | Image not used in any file |
+| OI_docker_desktop_images | 2. Ondersteunende-informatie/4. Techniek/Docker/src/OI_docker_desktop_images.png | Image not used in any file |
 | Opdracht4_dockerenv | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht4_dockerenv.png | Image not used in any file |
-| ontwikkelstappen_technisch_ontwerp | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/ontwikkelstappen_technisch_ontwerp.png | Image not used in any file |
-| ssdlc_setup_skylab | deprecated/2. Ondersteunende-informatie/2. SSDLC/5. Deployment - Deployment op Skylab/src/ssdlc_setup_skylab.png | Image not used in any file |
-| threat_modeling_example_correct | deprecated/2. Ondersteunende-informatie/2. SSDLC/1. Requirements - Risk Assessment/src/threat_modeling_example_correct.png | Image not used in any file |
-| stap6_2 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_2.png | Image not used in any file |
+| ssdlc_risk_assessment | deprecated/2. Ondersteunende-informatie/2. SSDLC/1. Requirements - Risk Assessment/src/ssdlc_risk_assessment.png | Image not used in any file |
+| OI_docker_desktop_docker_compose | 2. Ondersteunende-informatie/4. Techniek/Docker/src/OI_docker_desktop_docker_compose.png | Image not used in any file |
+| Pull_Request_2 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_2.png | Image not used in any file |
 | stap3 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap3.png | Image not used in any file |
+| voorbeeld_risk_assessment | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/voorbeeld_risk_assessment.png | Image not used in any file |
+| stap4 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap4.png | Image not used in any file |
+| Pull_Request_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_1.png | Image not used in any file |
+| zap_proxy2 | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/zap_proxy2.png | Image not used in any file |
+| Opdracht3_Volumes | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_Volumes.png | Image not used in any file |
+| stap5.3 opslaan | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap5.3 opslaan.png | Image not used in any file |
+| OI_docker_desktop_single_container | 2. Ondersteunende-informatie/4. Techniek/Docker/src/OI_docker_desktop_single_container.png | Image not used in any file |
+| ssdlc_setup_skylab | deprecated/2. Ondersteunende-informatie/2. SSDLC/5. Deployment - Deployment op Skylab/src/ssdlc_setup_skylab.png | Image not used in any file |
+| Pull_Request_3 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_3.png | Image not used in any file |
+| stap6_2 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_2.png | Image not used in any file |
+| stap6_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_1.png | Image not used in any file |
 | PI_Fork_Button_Git | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/PI_Fork_Button_Git.png | Image not used in any file |
+| Pull_Request_4 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_4.png | Image not used in any file |
+| OI_docker_desktop_containers | 2. Ondersteunende-informatie/4. Techniek/Docker/src/OI_docker_desktop_containers.png | Image not used in any file |
+| threat_modeling_example_correct | deprecated/2. Ondersteunende-informatie/2. SSDLC/1. Requirements - Risk Assessment/src/threat_modeling_example_correct.png | Image not used in any file |
+| stap6_3 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_3.png | Image not used in any file |
+| Opdracht3_stop_delete | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_stop_delete.png | Image not used in any file |
+| Opdracht3_chatterbox | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_chatterbox.png | Image not used in any file |
+| Opdracht3_loglens | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_loglens.png | Image not used in any file |
+| ontwikkelstappen_technisch_ontwerp | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/ontwikkelstappen_technisch_ontwerp.png | Image not used in any file |
+| Tags_Releases_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Tags_Releases_1.png | Image not used in any file |
+| Pull_Request_5 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_5.png | Image not used in any file |
+| rapport_2 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_2.png | Image not used in any file |
+| ssdlc_threat_model | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/ssdlc_threat_model.png | Image not used in any file |
+| Opdracht2_dockercompose | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht2_dockercompose.png | Image not used in any file |
+| zap_proxy1 | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/zap_proxy1.png | Image not used in any file |
+| PentestingSSDLC | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/PentestingSSDLC.png | Image not used in any file |
+| rapport_1 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_1.png | Image not used in any file |

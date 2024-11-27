@@ -79,6 +79,7 @@ def parse_markdown_files(src_dir, dest_dir):
         # Combine all errors
         errors = link_errors + image_errors + tags_errors
 
+
         # If any errors occurred, add the file to the failed files list
         if errors:
             if(ERROR_MISSING_TAXCO in errors): 
@@ -89,6 +90,7 @@ def parse_markdown_files(src_dir, dest_dir):
                 Failed_files.append(create_file_report(WRONG_TAXONOMY_CODE, file_path, src_dir, taxonomie, new_tags, errors))
             if Verbose: print(f"Failed to parse file: {file_path}")
         else:
+            print("Success")
             Successful_files.append(create_file_report(SUCCESS, file_path, src_dir, taxonomie, new_tags, errors))
 
         # Create the new content with updated tags
