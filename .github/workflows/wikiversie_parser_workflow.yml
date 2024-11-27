@@ -63,10 +63,6 @@ jobs:
           cp ./staging_files.txt ../temp_build_files/  # Copy staging_files.txt to a temporary directory for backup
           cp -r ./build/* ../temp_build_files/build/  # Copy new files to a temporary directory for backup
 
-      - name: Remove __pycache__ folders
-        run: |
-          `find . -name "__pycache__" -exec rm -rf {} +
-
       - name: Stash untracked changes
         run: |
           git stash --include-untracked
