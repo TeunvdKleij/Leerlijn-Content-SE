@@ -45,7 +45,7 @@ Args:
 """
 def validate_dynamic_link(source_file_path, link):
     # Define the root content directory (assuming it is one level up from the current script)
-    content_path = Path(__file__).resolve().parents[1] / 'content'
+    content_path = Path(__file__).resolve().parents[2] / 'content'
 
     # Verify that content_path exists
     if not content_path.exists():

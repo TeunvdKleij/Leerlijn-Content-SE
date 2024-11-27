@@ -18,8 +18,8 @@ Args:
 """
 def copy_images(content):
     # Define the root content directory and the build directory
-    content_path = Path(__file__).resolve().parents[1] / 'content'
-    build_path = Path(__file__).resolve().parents[1] / 'build'
+    content_path = Path(__file__).resolve().parents[2] / 'content'
+    build_path = Path(__file__).resolve().parents[2] / 'build'
     errors = []
 
     if content is None:
