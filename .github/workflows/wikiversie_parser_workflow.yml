@@ -51,6 +51,12 @@ jobs:
           find build -type f | sed 's|^\./||' | LC_ALL=C sort | iconv -f UTF-8 -t UTF-8//IGNORE > staging_files.txt
           echo "Files in staging:"
           cat staging_files.txt
+          
+      - name: Clean up __pycache__ in .github
+        run: |
+          echo "Removing __pycache__ folders in .github..."
+          find .github -type d -name "__pycache__" -exec rm -rf {} +
+          echo "__pycache__ folders in .github removed."
 
       - name: Create temporary directory for new files
         run: |
