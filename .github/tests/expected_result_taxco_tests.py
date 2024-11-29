@@ -6,6 +6,7 @@ Expected_successful_test_files =   [{'file': '23. Taxonomie code met al bestaand
 
 Expected_failed_test_files =   [{'file': '13. Taxonomie code met 0 in tc-1', 'taxonomie': 'bg-0.2.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Taxonomie not found in dataset: bg-0.2.Alleen-Niveau-Twee.OI'}, 
                                     {'file': '21. Fouten in dynamisch link opgelost', 'taxonomie': 'N/A', 'tags': 'N/A', 'errors': 'No taxonomie found in file.'}, 
+                                    {'file': '25. 2 van de 5 images gebruikt', 'taxonomie': 'N/A', 'tags': 'N/A', 'errors': 'No taxonomie found in file.'}, 
                                     {'file': '16. Taxonomie code tussen tc-2 en tc-3', 'taxonomie': 'bg-24.2. Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.2. Alleen-Niveau-Twee.OI'}, 
                                     {'file': '8. Taxonomie code met een niet bestaand 4CID component', 'taxonomie': 'bg-24.2.Alleen-Niveau-Twee.JH', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.2.Alleen-Niveau-Twee.JH'}, 
                                     {'file': '2. Taxonomie code op negatief niveau', 'taxonomie': 'bg-24.-2.Alleen-Niveau-Twee.OI', 'tags': 'N/A', 'errors': 'Invalid taxonomie: bg-24.-2.Alleen-Niveau-Twee.OI'}, 

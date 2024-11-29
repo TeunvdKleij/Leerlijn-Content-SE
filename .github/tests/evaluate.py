@@ -25,12 +25,13 @@ def check_markdown_files_count(folder_path):
 Evaluate the tests by using check_markdown_files_count and removing the build folder afterwards
 """
 def evaluate_tests(src_dir, dest_dir):
+    dest_dir = Path(dest_dir).resolve().parents[0] / 'temp_build'
+    print(dest_dir)
     start_time = time.time()
     if os.path.exists(dest_dir):
         #
         shutil.rmtree(dest_dir)
         os.mkdir(dest_dir)
-
     # Parse the markdown files in the source directory
     parse_markdown_files(src_dir, dest_dir)
 

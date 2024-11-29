@@ -5,7 +5,7 @@ from pathlib import Path
 from config import Dataset, Failed_images, Rapport_1, Rapport_2
 
 # Constants
-from config import TC1_COL, TC2_COL, TC3_COL, PROCES_COL, PROCESSTAP_COL, NOT_NECESSARY, LT_COL, DT_COL, OI_COL, PI_COL, LT, DT, OI, PI 
+from config import TC1_COL, TC2_COL, TC3_COL, PROCES_COL, PROCESSTAP_COL, NOT_NECESSARY, LT_COL, DT_COL, OI_COL, PI_COL, LT, DT, OI, PI, FAIL_CROSS
 
 # Functions
 from files.images import create_image_result
@@ -128,12 +128,11 @@ def populate_image_report(src_dir, dest_dir):
     src_images = get_images_in_folder(src_dir)
     dest_images = get_images_in_folder(dest_dir)
     for image in dest_images :
-        if not str(image.stem).startswith(("PI", "OI")):
-            Failed_images.append(create_image_result(image, dest_dir, "Image does not include 4C/ID component"))
+        if not str(image.stem).startswith(("PI", "OI", "LT", "DT")):
+            Failed_images.append(create_image_result(FAIL_CROSS, image, dest_dir, "Image does not include 4C/ID component"))
     for image in src_images : 
-
         if str(image.stem) not in {str(img.stem) for img in dest_images}:
-            Failed_images.append(create_image_result(image, src_dir, "Image not used in any file"))            
+            Failed_images.append(create_image_result(NOT_NECESSARY, image, src_dir, "Image not used in any file"))            
 
 def get_images_in_folder(dir):
     folders = [folder for folder in Path(dir).rglob("src") if folder.is_dir()]

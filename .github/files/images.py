@@ -15,11 +15,13 @@ folder to the build/ folder, preserving the folder structure.
 
 Args:
     content (str): Content of the markdown file.
+    src_dir_name (str): Source directory (only the name of the folder itself)
+    dest_dir_name (str): Destination directory (only the name of the folder itself)
 """
-def copy_images(content):
+def copy_images(content, src_dir_name, dest_dir_name):
     # Define the root content directory and the build directory
-    content_path = Path(__file__).resolve().parents[2] / 'content'
-    build_path = Path(__file__).resolve().parents[2] / 'build'
+    content_path = Path(__file__).resolve().parents[2] / src_dir_name
+    build_path = Path(__file__).resolve().parents[2] / dest_dir_name
     errors = []
 
     if content is None:
@@ -75,8 +77,9 @@ def copy_images(content):
 """
 Create a list of a image
 """
-def create_image_result(file_path, src_dir, error):
+def create_image_result(status, file_path, src_dir, error):
     return {
+        "status" : status,
         "image": file_path.stem,
         "path": str(file_path.relative_to(src_dir)),
         "error": error,
@@ -90,8 +93,9 @@ Returns:
     table (str): Markdown table string.
 """
 def format_image_report_table(image_report):
-    headers = ["Image", "Path", "Error"]
+    headers = ["Status", "Image", "Path", "Error"]
     rows = [[
+        file['status'], 
         file['image'], 
         file['path'],
         file['error']

@@ -51,7 +51,7 @@ def format_file_report_table(file_report):
         file['taxonomie'], 
         file['tags'],
         file['errors']
-    ] for file in file_report]
+     ] for file in file_report]
 
     table = generate_markdown_table(headers, rows)
     return table

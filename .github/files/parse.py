@@ -7,7 +7,7 @@ import pandas as pd # type: ignore
 from config import Verbose, Failed_files, Successful_files, WIP_files, Dataset
 
 # Constants
-from config import ERROR_MISSING_TAXCO, FAIL_CROSS, NOT_NEEDED, WRONG_TAXONOMY_CODE, SUCCESS, TODO_ITEMS
+from config import ERROR_MISSING_TAXCO, FAIL_CROSS, NOT_NEEDED, WARNING, SUCCESS, TODO_ITEMS
 
 # Functions
 from files.images import copy_images
@@ -46,13 +46,11 @@ def parse_markdown_files(src_dir, dest_dir):
 
     dest_dir.mkdir(parents=True, exist_ok=True)
 
-    # Loop through all markdown files in the source directory
     for file_path in Path(src_dir).rglob('*.md'):
         relative_path = file_path.relative_to(src_dir)
         dest_path = dest_dir / relative_path
         errors = []
 
-        # Skip the folder schrijfwijze
         if "schrijfwijze" in str(file_path):
             continue
 
@@ -63,13 +61,10 @@ def parse_markdown_files(src_dir, dest_dir):
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
 
-        # Check if there are any dynamic links which need to be updated
         content, link_errors = update_dynamic_links(file_path, content)
 
-        # Copy images from source to build directory
-        image_errors = copy_images(content)
+        image_errors = copy_images(content, 'content', 'build')
 
-        # Extract existing tags and taxonomie
         existing_tags = extract_values(content, 'tags')
         taxonomie = extract_values(content, 'taxonomie')
         new_tags, tags_errors = generate_tags(taxonomie, file_path, existing_tags)
@@ -77,13 +72,10 @@ def parse_markdown_files(src_dir, dest_dir):
         toDoItems = find_ToDo_items(content)
 
         if(toDoItems):
-            # Add the To-Do items to the errors list
             errors.append("To-Do item(s) found in the file:<br>" + '<br>'.join([f"{item}" for item in toDoItems]))
 
-        # Combine all errors
         errors = link_errors + image_errors + tags_errors + errors
 
-        # If any errors occurred, add the file to the failed files list
         if errors:
             if(toDoItems):
                 WIP_files.append(create_file_report(TODO_ITEMS, file_path, src_dir, taxonomie, new_tags, errors))
@@ -92,13 +84,12 @@ def parse_markdown_files(src_dir, dest_dir):
             elif any("Taxonomie use where it is not need" in error for error in errors):
                 Failed_files.append(create_file_report(NOT_NEEDED, file_path, src_dir, taxonomie, new_tags, errors))
             else: 
-                Failed_files.append(create_file_report(WRONG_TAXONOMY_CODE, file_path, src_dir, taxonomie, new_tags, errors))
+                Failed_files.append(create_file_report(WARNING, file_path, src_dir, taxonomie, new_tags, errors))
             if Verbose: print(f"Failed to parse file: {file_path}")
         else:
             Successful_files.append(create_file_report(SUCCESS, file_path, src_dir, taxonomie, new_tags, errors))
 
 
-        # Create the new content with updated tags
         new_content = (
             f"---\ntitle: {file_path.stem}\ntaxonomie: {taxonomie}\ntags:\n" +
             '\n'.join([f"- {tag}" for tag in new_tags]) +
@@ -110,10 +101,8 @@ def parse_markdown_files(src_dir, dest_dir):
 
         new_content += "---" + content.split('---', 2)[-1]
 
-        # Create the destination directory if it doesn't exist
         dest_path.parent.mkdir(parents=True, exist_ok=True)
 
-        # Write the new content to the destination file
         with open(dest_path, 'w', encoding='utf-8') as f:
             f.write(new_content)
 
