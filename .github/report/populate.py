@@ -2,10 +2,10 @@
 from pathlib import Path
 
 # Variables
-from utils import Dataset, Failed_images, Rapport_1, Rapport_2
+from config import Dataset, Failed_images, Rapport_1, Rapport_2
 
 # Constants
-from utils import TC1_COL, TC2_COL, TC3_COL, PROCES_COL, PROCESSTAP_COL, NOT_NECESSARY, LT_COL, DT_COL, OI_COL, PI_COL, LT, DT, OI, PI 
+from config import TC1_COL, TC2_COL, TC3_COL, PROCES_COL, PROCESSTAP_COL, NOT_NECESSARY, LT_COL, DT_COL, OI_COL, PI_COL, LT, DT, OI, PI 
 
 # Functions
 from files.images import create_image_result

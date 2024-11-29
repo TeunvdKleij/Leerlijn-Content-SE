@@ -3,7 +3,7 @@ import os, re, shutil
 from pathlib import Path
 
 # Variables
-from utils import Verbose
+from config import Verbose
 
 # Functions
 from report.table import generate_markdown_table

@@ -1,11 +1,11 @@
 # Variables
-from utils import Verbose, Rapport_1, Rapport_2, Successful_files, Failed_files, Failed_images
+from config import Verbose, Rapport_1, Rapport_2, Successful_files, Failed_files, Failed_images, WIP_files
 
 # Constants
-from utils import LT, DT, OI, PI, FAIL_CIRCLE, SUCCESS, NOT_NECESSARY
+from config import LT, DT, OI, PI, FAIL_CIRCLE, SUCCESS, NOT_NECESSARY
 
 # Functions
-from files.item import format_file_report_table
+from files.markdown_utils import format_file_report_table
 from files.images import format_image_report_table
 from report.table import generate_markdown_table
 
@@ -42,11 +42,12 @@ def generate_report():
 
         f.write('\n\n')
 
-        # Passed Files Section
-        f.write("## Geslaagde bestanden\n")
-        f.write("De onderstaande bestanden zijn succesvol verwerkt.\n")
+        # ToDo Files Section
+        f.write("## Work-in-progress bestanden\n")
+        f.write('Doel: De onderstaande bestanden hebben nog todo items in de markdown staan.\n')
+        f.write('Deze todo items moeten nog worden afgehandeld.\n')
         f.write('\n')
-        f.write(format_file_report_table(Successful_files))
+        f.write(format_file_report_table(WIP_files))
 
         f.write('\n\n')
 
@@ -59,12 +60,18 @@ def generate_report():
         f.write('\n')
         f.write(format_file_report_table(Failed_files))
 
-        f.write('\n\n')
-
         f.write("## Gefaalde images\n")
         f.write("*Doel: De onderstaande images missen een 4C/ID component.*\n\n")
         f.write('Als een image de error heeft over het niet gebruikt worden, betekent dit dat de image niet in build staat, maar nog wel in content.\n\n')
         f.write(format_image_report_table(Failed_images))
+
+        # Passed Files Section
+        f.write("## Geslaagde bestanden\n")
+        f.write("De onderstaande bestanden zijn succesvol verwerkt.\n")
+        f.write('\n')
+        f.write(format_file_report_table(Successful_files))
+
+        f.write('\n\n')
 
     # Print reports for quick feedback
     if Verbose:

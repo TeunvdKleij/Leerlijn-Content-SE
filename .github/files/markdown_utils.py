@@ -3,18 +3,14 @@ import re
 from pathlib import Path
 
 # Variables
-from utils import Failed_files, Verbose, Dataset, Rapport_2
+from config import Failed_files, Verbose, Dataset, Rapport_2, WIP_files
 
 # Constants
-from utils import PROCES_COL, PROCESSTAP_COL, TC3_COL, TC2_COL, NOT_NECESSARY, ERROR_MISSING_TAXCO
+from config import PROCES_COL, PROCESSTAP_COL, TC3_COL, TC2_COL, NOT_NECESSARY, ERROR_MISSING_TAXCO, Taxonomie_pattern, ToDo_pattern
 
 # Functions
 from report.table import generate_markdown_table
 from report.update import update_rapport1_data, update_rapport2_data
-
-
-# Variables used only in this file
-Taxonomie_pattern = r'^[a-z]{2}-\d{1,3}\.[123]\.[^\s\.]+(\.[^\s\.]+)*\.(?:OI|DT|PI|LT)$' # Taxonomie pattern
 
 
 """
@@ -47,7 +43,7 @@ Returns:
 def format_file_report_table(file_report):
     headers = ["Status", "File", "Path", "Taxonomie", "Tags"]
 
-    if file_report == Failed_files: headers.append("Errors")
+    if file_report == Failed_files or file_report == WIP_files : headers.append("Errors")
     rows = [[
         file['status'], 
         file['file'], 
@@ -173,7 +169,6 @@ Returns:
 def split_taxonomie(taxonomie):
     return taxonomie.split('.')
 
-
 """
 Helper function to extract values from the content of a markdown file.
 Args:
@@ -202,3 +197,13 @@ def extract_values(content, field_name):
             break
 
     return values if values else None
+
+
+"""
+Helper function to find all the To-Do items in the content of a markdown file.
+"""	
+def find_ToDo_items(content):
+    # Find all the todo items in the content
+    todo_items = re.findall(ToDo_pattern, content)
+    return todo_items
+

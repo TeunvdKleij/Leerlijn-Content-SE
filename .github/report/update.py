@@ -1,8 +1,8 @@
 # Variables
-from utils import Rapport_1, Rapport_2
+from config import Rapport_1, Rapport_2
 
 # Constants
-from utils import NOT_NECESSARY, LT, DT, OI, PI
+from config import NOT_NECESSARY, LT, DT, OI, PI
 
 """
 Update the Rapport 1 data with the new values.

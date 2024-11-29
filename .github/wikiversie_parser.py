@@ -13,6 +13,8 @@ from report.generate import generate_report
 from tests.test import run_test_cases, test_link_file
 from tests.evaluate import evaluate_tests
 
+from config import test_dir
+
 """
 Main entry point of the script.
 """
@@ -27,16 +29,12 @@ def main():
     parser.add_argument("--dataset", required=True, help="Path to the dataset file (XLSX file).")
     parser.add_argument("--verbose", action="store_true", help="Print verbose output.")
     parser.add_argument("--testing", action="store_true", help="Determines if it should only check testcases")
-    parser.add_argument("--testdir", required=False, help="The directory where the tests are located")
 
     args = parser.parse_args()
     src_dir = Path(args.src).resolve()
     dest_dir = Path(args.dest).resolve()
     Verbose = args.verbose
     Testing = args.testing
-    if args.testdir != None:
-        test_dir = Path(args.testdir).resolve() 
-
     
     # Fill the reports with the dataset information
     parse_dataset_file(args.dataset)

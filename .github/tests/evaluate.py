@@ -7,7 +7,7 @@ from pathlib import Path
 import argparse
 
 # Variables
-from utils import Verbose
+from config import Verbose
 
 # Functions
 from files.parse import parse_markdown_files

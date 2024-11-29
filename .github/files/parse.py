@@ -4,16 +4,15 @@ from pathlib import Path
 import pandas as pd # type: ignore
 
 #Variables
-from utils import Verbose, Failed_files, Successful_files, Dataset
+from config import Verbose, Failed_files, Successful_files, WIP_files, Dataset
 
 # Constants
-from utils import ERROR_MISSING_TAXCO, FAIL_CROSS, NOT_NEEDED, WRONG_TAXONOMY_CODE, SUCCESS
+from config import ERROR_MISSING_TAXCO, FAIL_CROSS, NOT_NEEDED, WRONG_TAXONOMY_CODE, SUCCESS, TODO_ITEMS
 
 # Functions
 from files.images import copy_images
 from files.links import update_dynamic_links
-from files.item import extract_values, generate_tags, create_file_report
-
+from files.markdown_utils import extract_values, generate_tags, create_file_report, find_ToDo_items
 
 
 """
@@ -75,14 +74,20 @@ def parse_markdown_files(src_dir, dest_dir):
         taxonomie = extract_values(content, 'taxonomie')
         new_tags, tags_errors = generate_tags(taxonomie, file_path, existing_tags)
         difficulty = extract_values(content, 'difficulty')
+        toDoItems = find_ToDo_items(content)
+
+        if(toDoItems):
+            # Add the To-Do items to the errors list
+            errors.append("To-Do item(s) found in the file:<br>" + '<br>'.join([f"{item}" for item in toDoItems]))
 
         # Combine all errors
-        errors = link_errors + image_errors + tags_errors
-
+        errors = link_errors + image_errors + tags_errors + errors
 
         # If any errors occurred, add the file to the failed files list
         if errors:
-            if(ERROR_MISSING_TAXCO in errors): 
+            if(toDoItems):
+                WIP_files.append(create_file_report(TODO_ITEMS, file_path, src_dir, taxonomie, new_tags, errors))
+            elif(ERROR_MISSING_TAXCO in errors): 
                 Failed_files.append(create_file_report(FAIL_CROSS, file_path, src_dir, taxonomie, new_tags, errors))
             elif any("Taxonomie use where it is not need" in error for error in errors):
                 Failed_files.append(create_file_report(NOT_NEEDED, file_path, src_dir, taxonomie, new_tags, errors))
@@ -91,6 +96,7 @@ def parse_markdown_files(src_dir, dest_dir):
             if Verbose: print(f"Failed to parse file: {file_path}")
         else:
             Successful_files.append(create_file_report(SUCCESS, file_path, src_dir, taxonomie, new_tags, errors))
+
 
         # Create the new content with updated tags
         new_content = (
@@ -114,4 +120,3 @@ def parse_markdown_files(src_dir, dest_dir):
         if Verbose:
             print(f"File completed: {file_path}")
             print("-" * 50)
-

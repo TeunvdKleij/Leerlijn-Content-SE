@@ -3,13 +3,13 @@ import re
 from pathlib import Path
 
 # Variables
-from utils import Verbose
+from config import Verbose
 
 # Constants
-from utils import ERROR_MISSING_TAXCO
+from config import ERROR_MISSING_TAXCO
 
 # Functions
-from files.item import extract_values, generate_tags
+from files.markdown_utils import extract_values, generate_tags
 from files.links import update_dynamic_links
 
 # Variables only in this file
