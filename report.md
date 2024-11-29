@@ -5,11 +5,8 @@ draft: true
 *Doel: achterhalen welke processtappen nog helemaal niet zijn geïmplementeerd*
 
 - ✅ Er bestaat een bestand met deze taxonomiecode op dit niveau 
-
 - ⛔️ Er is geen enkel bestand met deze taxonomiecode op dit niveau 
-
 - 🏳️ De taxonomiecode wordt niet aangeboden op dit niveau (X in de Dataset) 
-
 
 | TC1 | Proces | Processtap | Niveau 1 | Niveau 2 | Niveau 3 |
 | --- | --- | --- | --- | --- | --- |
@@ -22,11 +19,8 @@ draft: true
 Bij kolom *TC2*, *Leertaken*, *Ondersteunende informatie*, *Procedurele informatie* en *Deeltaken* zijn drie tekens aanwezig om de drie HBO-i niveaus weer te geven
 
 - ✅ Het onderwerp met taxonomie code wordt aangeboden op het aangegeven niveau 
-
 - ⛔️ Het onderwerp met taxonomie code wordt **niet** aangeboden op het aangegeven niveau 
-
 - 🏳️ Het onderwerp hoeft met deze taxonomie code niet aangeboden te worden op het aangegeven niveau 
-
 
 | TC3 | TC1 | TC2 | Leertaken | Ondersteunende-informatie | Procedurele-informatie | Deeltaken |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -81,29 +75,21 @@ Bij kolom *TC2*, *Leertaken*, *Ondersteunende informatie*, *Procedurele informat
 | Datatype-Speciaal-Null | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
 
 
-## Geslaagde bestanden
-De onderstaande bestanden zijn succesvol verwerkt.
+## Work-in-progress bestanden
+Doel: De onderstaande bestanden hebben nog todo items in de markdown staan.
+Deze todo items moeten nog worden afgehandeld.
 
-| Status | File | Path | Taxonomie | Tags |
-| --- | --- | --- | --- | --- |
-| ✅ | 1. If-Else | 3. Procedurele-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/If-Else/1. If-Else.md | ib-19.2.Controlestructuur-Beslissingen-If-Else.PI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.PI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Beslissingen-If-Else<br>ib-19.2.Controlestructuur-Beslissingen-If-Else.PI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.PI | N/A |
-| ✅ | 1. Boolean | 4. Deeltaken/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/Boolean/1. Boolean.md | ib-19.2.Datatype-Primitief-Boolean.DT<br>ib-19.3.Datatype-Primitief-Boolean.DT | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Datatype-Primitief-Boolean<br>ib-19.2.Datatype-Primitief-Boolean.DT<br>ib-19.3.Datatype-Primitief-Boolean.DT | N/A |
-| ✅ | 1. If-Else | 4. Deeltaken/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/If-Else/1. If-Else.md | ib-19.2.Controlestructuur-Beslissingen-If-Else.DT<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.DT | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Beslissingen-If-Else<br>ib-19.2.Controlestructuur-Beslissingen-If-Else.DT<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.DT | N/A |
-| ✅ | 1. Boolean | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/Boolean/1. Boolean.md | ib-19.2.Datatype-Primitief-Boolean.OI<br>ib-19.3.Datatype-Primitief-Boolean.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Datatype-Primitief-Boolean<br>ib-19.2.Datatype-Primitief-Boolean.OI<br>ib-19.3.Datatype-Primitief-Boolean.OI | N/A |
-| ✅ | 1. If-Else | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/If-else/1. If-Else.md | ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Beslissingen-If-Else<br>ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | N/A |
-| ✅ | 2. If-Else-If | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/If-else/2. If-Else-If.md | ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Beslissingen-If-Else<br>ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | N/A |
-| ✅ | 3. If-Else-Logical-Operators | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/If-else/3. If-Else-Logical-Operators.md | ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Beslissingen-If-Else<br>ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | N/A |
+| Status | File | Path | Taxonomie | Tags | Errors |
+| --- | --- | --- | --- | --- | --- |
+| 🔨 | 1. Boolean | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/Boolean/1. Boolean.md | ib-19.2.Datatype-Primitief-Boolean.OI<br>ib-19.3.Datatype-Primitief-Boolean.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Datatype-Primitief-Boolean<br>ib-19.2.Datatype-Primitief-Boolean.OI<br>ib-19.3.Datatype-Primitief-Boolean.OI | To-Do item(s) found in the file:<br>-=ENUM=- |
 
 
 ## Gefaalde bestanden
 *Doel: De onderstaande bestanden zijn niet succesvol verwerkt.*
 
 ❌ Dit bestand bevat nog geen taxonomie code
-
 ⚠️ Dit bestand bevat een foute taxonomie code. Zie de *Errors* kolom om te weten wat er mis is
-
 🟠 Dit bestand bevat een taxonomie code die niet toegevoegd hoeft te zijn
-
 
 | Status | File | Path | Taxonomie | Tags | Errors |
 | --- | --- | --- | --- | --- | --- |
@@ -307,41 +293,54 @@ De onderstaande bestanden zijn succesvol verwerkt.
 | ❌ | keep | 2. Ondersteunende-informatie/2. SSDLC/5. Deployment - Deployment op Skylab/keep.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | keep | 2. Ondersteunende-informatie/2. SSDLC/1. Requirements - Risk Assessment/keep.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | keep | 2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/keep.md | N/A | N/A | No taxonomie found in file. |
-
-
 ## Gefaalde images
 *Doel: De onderstaande images missen een 4C/ID component.*
 
+Als een image de error heeft over het niet gebruikt worden, betekent dit dat de image niet in build staat, maar nog wel in content.
+
 | Image | Path | Error |
 | --- | --- | --- |
-| stap4 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap4.png | Image does not include 4C/ID component |
-| ssdlc_risk_assessment | deprecated/2. Ondersteunende-informatie/2. SSDLC/1. Requirements - Risk Assessment/src/ssdlc_risk_assessment.png | Image does not include 4C/ID component |
-| zap_proxy1 | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/zap_proxy1.png | Image does not include 4C/ID component |
-| rapport_3 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_3.png | Image does not include 4C/ID component |
-| Opdracht3_stop_delete | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_stop_delete.png | Image does not include 4C/ID component |
-| Opdracht4_dockerenv | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht4_dockerenv.png | Image does not include 4C/ID component |
-| stap6_2 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_2.png | Image does not include 4C/ID component |
-| Pull_Request_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_1.png | Image does not include 4C/ID component |
-| Opdracht3_chatterbox | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_chatterbox.png | Image does not include 4C/ID component |
-| stap3 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap3.png | Image does not include 4C/ID component |
-| zap_proxy2 | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/zap_proxy2.png | Image does not include 4C/ID component |
-| rapport_2 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_2.png | Image does not include 4C/ID component |
-| ontwikkelstappen_technisch_ontwerp | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/ontwikkelstappen_technisch_ontwerp.png | Image does not include 4C/ID component |
-| voorbeeld_risk_assessment | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/voorbeeld_risk_assessment.png | Image does not include 4C/ID component |
-| stap2 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap2.png | Image does not include 4C/ID component |
-| Pull_Request_2 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_2.png | Image does not include 4C/ID component |
-| PentestingSSDLC | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/PentestingSSDLC.png | Image does not include 4C/ID component |
-| Opdracht3_loglens | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_loglens.png | Image does not include 4C/ID component |
-| ssdlc_setup_skylab | deprecated/2. Ondersteunende-informatie/2. SSDLC/5. Deployment - Deployment op Skylab/src/ssdlc_setup_skylab.png | Image does not include 4C/ID component |
-| rapport_1 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_1.png | Image does not include 4C/ID component |
-| Opdracht2_dockercompose | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht2_dockercompose.png | Image does not include 4C/ID component |
-| Pull_Request_5 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_5.png | Image does not include 4C/ID component |
-| threat_modeling_example_correct | deprecated/2. Ondersteunende-informatie/2. SSDLC/1. Requirements - Risk Assessment/src/threat_modeling_example_correct.png | Image does not include 4C/ID component |
-| stap5.3 opslaan | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap5.3 opslaan.png | Image does not include 4C/ID component |
-| stap6_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_1.png | Image does not include 4C/ID component |
-| Opdracht3_Volumes | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_Volumes.png | Image does not include 4C/ID component |
-| Tags_Releases_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Tags_Releases_1.png | Image does not include 4C/ID component |
-| stap6_3 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_3.png | Image does not include 4C/ID component |
 | ssdlc_threat_model | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/ssdlc_threat_model.png | Image does not include 4C/ID component |
+| zap_proxy1 | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/zap_proxy1.png | Image does not include 4C/ID component |
+| LT_Opdracht4_dockerenv | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/LT_Opdracht4_dockerenv.png | Image does not include 4C/ID component |
+| stap6_3 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_3.png | Image does not include 4C/ID component |
+| ssdlc_risk_assessment | deprecated/2. Ondersteunende-informatie/2. SSDLC/1. Requirements - Risk Assessment/src/ssdlc_risk_assessment.png | Image does not include 4C/ID component |
+| Pull_Request_2 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_2.png | Image does not include 4C/ID component |
+| rapport_2 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_2.png | Image does not include 4C/ID component |
+| ssdlc_setup_skylab | deprecated/2. Ondersteunende-informatie/2. SSDLC/5. Deployment - Deployment op Skylab/src/ssdlc_setup_skylab.png | Image does not include 4C/ID component |
+| threat_modeling_example_correct | deprecated/2. Ondersteunende-informatie/2. SSDLC/1. Requirements - Risk Assessment/src/threat_modeling_example_correct.png | Image does not include 4C/ID component |
+| voorbeeld_risk_assessment | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/voorbeeld_risk_assessment.png | Image does not include 4C/ID component |
+| Opdracht3_chatterbox | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_chatterbox.png | Image does not include 4C/ID component |
+| stap5.3 opslaan | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap5.3 opslaan.png | Image does not include 4C/ID component |
+| Pull_Request_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_1.png | Image does not include 4C/ID component |
+| stap6_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_1.png | Image does not include 4C/ID component |
+| stap2 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap2.png | Image does not include 4C/ID component |
+| rapport_1 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_1.png | Image does not include 4C/ID component |
+| stap4 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap4.png | Image does not include 4C/ID component |
+| ontwikkelstappen_technisch_ontwerp | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/ontwikkelstappen_technisch_ontwerp.png | Image does not include 4C/ID component |
+| Tags_Releases_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Tags_Releases_1.png | Image does not include 4C/ID component |
+| Pull_Request_5 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_5.png | Image does not include 4C/ID component |
+| Opdracht3_stop_delete | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_stop_delete.png | Image does not include 4C/ID component |
+| LT_Opdracht2_dockercompose | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/LT_Opdracht2_dockercompose.png | Image does not include 4C/ID component |
+| rapport_3 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_3.png | Image does not include 4C/ID component |
+| Opdracht3_Volumes | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_Volumes.png | Image does not include 4C/ID component |
+| stap3 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap3.png | Image does not include 4C/ID component |
+| stap6_2 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_2.png | Image does not include 4C/ID component |
+| Opdracht3_loglens | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_loglens.png | Image does not include 4C/ID component |
+| zap_proxy2 | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/zap_proxy2.png | Image does not include 4C/ID component |
+| PentestingSSDLC | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/PentestingSSDLC.png | Image does not include 4C/ID component |
 | Pull_Request_4 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_4.png | Image not used in any file |
 | Pull_Request_3 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_3.png | Image not used in any file |
+## Geslaagde bestanden
+De onderstaande bestanden zijn succesvol verwerkt.
+
+| Status | File | Path | Taxonomie | Tags |
+| --- | --- | --- | --- | --- |
+| ✅ | 1. If-Else | 3. Procedurele-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/If-Else/1. If-Else.md | ib-19.2.Controlestructuur-Beslissingen-If-Else.PI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.PI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Beslissingen-If-Else<br>ib-19.2.Controlestructuur-Beslissingen-If-Else.PI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.PI | N/A |
+| ✅ | 1. Boolean | 4. Deeltaken/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/Boolean/1. Boolean.md | ib-19.2.Datatype-Primitief-Boolean.DT<br>ib-19.3.Datatype-Primitief-Boolean.DT | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Datatype-Primitief-Boolean<br>ib-19.2.Datatype-Primitief-Boolean.DT<br>ib-19.3.Datatype-Primitief-Boolean.DT | N/A |
+| ✅ | 1. If-Else | 4. Deeltaken/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/If-Else/1. If-Else.md | ib-19.2.Controlestructuur-Beslissingen-If-Else.DT<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.DT | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Beslissingen-If-Else<br>ib-19.2.Controlestructuur-Beslissingen-If-Else.DT<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.DT | N/A |
+| ✅ | 1. If-Else | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/If-else/1. If-Else.md | ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Beslissingen-If-Else<br>ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | N/A |
+| ✅ | 2. If-Else-If | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/If-else/2. If-Else-If.md | ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Beslissingen-If-Else<br>ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | N/A |
+| ✅ | 3. If-Else-Logical-Operators | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/If-else/3. If-Else-Logical-Operators.md | ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Beslissingen-If-Else<br>ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | N/A |
+
+
