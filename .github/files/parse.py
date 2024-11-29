@@ -114,6 +114,8 @@ def parse_markdown_files(src_dir, dest_dir):
         if difficulty:
             new_content += "difficulty: " + ''.join([f"{level}" for level in difficulty]) + "\n"
 
+        # Add draft tag if the file has a specific error
+        # Some errors are not critical and the file can still be published
         if isDraft:
             new_content += "draft: true \n"
 
