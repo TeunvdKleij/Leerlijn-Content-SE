@@ -50,6 +50,7 @@ def parse_markdown_files(src_dir, dest_dir):
         relative_path = file_path.relative_to(src_dir)
         dest_path = dest_dir / relative_path
         errors = []
+        isDraft = False
 
         if "schrijfwijze" in str(file_path):
             continue
@@ -78,13 +79,18 @@ def parse_markdown_files(src_dir, dest_dir):
 
         if errors:
             if(toDoItems):
+                # isDraft = True
                 WIP_files.append(create_file_report(TODO_ITEMS, file_path, src_dir, taxonomie, new_tags, errors))
             elif(ERROR_MISSING_TAXCO in errors): 
+                # isDraft = True
                 Failed_files.append(create_file_report(FAIL_CROSS, file_path, src_dir, taxonomie, new_tags, errors))
             elif any("Taxonomie use where it is not need" in error for error in errors):
+                # isDraft = True
                 Failed_files.append(create_file_report(NOT_NEEDED, file_path, src_dir, taxonomie, new_tags, errors))
             else: 
+                # isDraft = True
                 Failed_files.append(create_file_report(WARNING, file_path, src_dir, taxonomie, new_tags, errors))
+
             if Verbose: print(f"Failed to parse file: {file_path}")
         else:
             Successful_files.append(create_file_report(SUCCESS, file_path, src_dir, taxonomie, new_tags, errors))
@@ -98,6 +104,11 @@ def parse_markdown_files(src_dir, dest_dir):
 
         if difficulty:
             new_content += "difficulty: " + ''.join([f"{level}" for level in difficulty]) + "\n"
+
+        # Add draft tag if the file has a specific error
+        # Some errors are not critical and the file can still be published
+        if isDraft:
+            new_content += "draft: true \n"
 
         new_content += "---" + content.split('---', 2)[-1]
 
