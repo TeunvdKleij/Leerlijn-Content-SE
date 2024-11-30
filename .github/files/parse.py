@@ -4,7 +4,7 @@ from pathlib import Path
 import pandas as pd # type: ignore
 
 #Variables
-from config import Verbose, Failed_files, Successful_files, WIP_files, Dataset
+from config import Verbose, Failed_files, Successful_files, WIP_files, Dataset, Testing
 
 # Constants
 from config import ERROR_MISSING_TAXCO, FAIL_CROSS, NOT_NEEDED, WARNING, SUCCESS, TODO_ITEMS
@@ -57,14 +57,14 @@ def parse_markdown_files(src_dir, dest_dir):
 
         if Verbose: 
             print("*" * 50) 
-            print(f"Parsing file: {file_path}")
+            if Testing: print(f"Testing parsing file: {file_path}")
+            else : print(f"Parsing file: {file_path}")
 
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
 
         content, link_errors = update_dynamic_links(file_path, content)
-
-        image_errors = copy_images(content, 'content', 'build')
+        image_errors = copy_images(content, src_dir, dest_dir)
 
         existing_tags = extract_values(content, 'tags')
         taxonomie = extract_values(content, 'taxonomie')
@@ -77,46 +77,49 @@ def parse_markdown_files(src_dir, dest_dir):
 
         errors = link_errors + image_errors + tags_errors + errors
 
-        if errors:
-            if(toDoItems):
-                # isDraft = True
-                WIP_files.append(create_file_report(TODO_ITEMS, file_path, src_dir, taxonomie, new_tags, errors))
-            elif(ERROR_MISSING_TAXCO in errors): 
-                # isDraft = True
-                Failed_files.append(create_file_report(FAIL_CROSS, file_path, src_dir, taxonomie, new_tags, errors))
-            elif any("Taxonomie use where it is not need" in error for error in errors):
-                # isDraft = True
-                Failed_files.append(create_file_report(NOT_NEEDED, file_path, src_dir, taxonomie, new_tags, errors))
-            else: 
-                # isDraft = True
-                Failed_files.append(create_file_report(WARNING, file_path, src_dir, taxonomie, new_tags, errors))
-
-            if Verbose: print(f"Failed to parse file: {file_path}")
-        else:
-            Successful_files.append(create_file_report(SUCCESS, file_path, src_dir, taxonomie, new_tags, errors))
+        fill_lists(errors, toDoItems, file_path, src_dir, taxonomie, new_tags)
+        create_new_file(file_path, taxonomie, new_tags, difficulty, isDraft, content, dest_path)
 
 
-        new_content = (
-            f"---\ntitle: {file_path.stem}\ntaxonomie: {taxonomie}\ntags:\n" +
-            '\n'.join([f"- {tag}" for tag in new_tags]) +
-            "\n"
-        )
+def fill_lists(errors, toDoItems, file_path, src_dir, taxonomie, tags):
+    if errors:
+        if(toDoItems):
+            # isDraft = True
+            WIP_files.append(create_file_report(TODO_ITEMS, file_path, src_dir, taxonomie, tags, errors))
+        elif(ERROR_MISSING_TAXCO in errors): 
+            # isDraft = True
+            Failed_files.append(create_file_report(FAIL_CROSS, file_path, src_dir, taxonomie, tags, errors))
+        elif any("Taxonomie used where it is not needed:" in error for error in errors):
+            # isDraft = True
+            Failed_files.append(create_file_report(NOT_NEEDED, file_path, src_dir, taxonomie, tags, errors))
+        else: 
+            # isDraft = True
+            Failed_files.append(create_file_report(WARNING, file_path, src_dir, taxonomie, tags, errors))
 
-        if difficulty:
-            new_content += "difficulty: " + ''.join([f"{level}" for level in difficulty]) + "\n"
+        if Verbose: print(f"Failed to parse file: {file_path}")
+    else:
+        Successful_files.append(create_file_report(SUCCESS, file_path, src_dir, taxonomie, tags, errors))
 
-        # Add draft tag if the file has a specific error
-        # Some errors are not critical and the file can still be published
-        if isDraft:
-            new_content += "draft: true \n"
+def create_new_file(file_path, taxonomie, tags, difficulty, isDraft, content, dest_path):
+    new_content = (
+        f"---\ntitle: {file_path.stem}\ntaxonomie: {taxonomie}\ntags:\n" +
+        '\n'.join([f"- {tag}" for tag in tags]) +
+        "\n"
+    )
 
-        new_content += "---" + content.split('---', 2)[-1]
+    if difficulty:
+        new_content += "difficulty: " + ''.join([f"{level}" for level in difficulty]) + "\n"
+        
+    if isDraft:
+        new_content += "draft: true \n"
 
-        dest_path.parent.mkdir(parents=True, exist_ok=True)
+    new_content += "---" + content.split('---', 2)[-1]
 
-        with open(dest_path, 'w', encoding='utf-8') as f:
-            f.write(new_content)
+    dest_path.parent.mkdir(parents=True, exist_ok=True)
 
-        if Verbose:
-            print(f"File completed: {file_path}")
-            print("-" * 50)
+    with open(dest_path, 'w', encoding='utf-8') as f:
+        f.write(new_content)
+
+    if Verbose:
+        print(f"File completed: {file_path}")
+        print("-" * 50)                

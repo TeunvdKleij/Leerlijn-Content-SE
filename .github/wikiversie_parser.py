@@ -5,15 +5,13 @@ import argparse
 import sys
 from pathlib import Path
 
+
+from config import Testing
+
 from files.parse import parse_dataset_file, parse_markdown_files
-
-from report.populate import populate_rapport1, populate_rapport2, populate_image_report
+from files.images import fill_failed_images
+from report.populate import populate_rapport1, populate_rapport2
 from report.generate import generate_report
-
-from tests.test import run_test_cases, test_link_file
-from tests.evaluate import evaluate_tests
-
-from config import test_dir
 
 """
 Main entry point of the script.
@@ -22,7 +20,6 @@ def main():
     global Verbose
     global Testing
 
-    # Parse command line arguments
     parser = argparse.ArgumentParser(description="Update markdown files with taxonomie tags and generate reports.")
     parser.add_argument("--src", required=True, help="Source directory containing markdown files.")
     parser.add_argument("--dest", required=True, help="Destination directory to save updated markdown files and reports.")
@@ -36,38 +33,26 @@ def main():
     Verbose = args.verbose
     Testing = args.testing
     
-    # Fill the reports with the dataset information
     parse_dataset_file(args.dataset)
 
     populate_rapport1() 
     populate_rapport2() 
 
     if Testing :
-        if run_test_cases(test_dir) :
-            if Verbose : print("Test cases successful")
-            if test_link_file(test_dir): 
-                if Verbose : print("Test links successful")
-                if evaluate_tests(src_dir, dest_dir):
-                    if Verbose : print("Test evaluation successful")
-                    sys.exit(0)
-                else : sys.exit(1)  
-            else : 
-                if Verbose : print("Changing of dynamic links tests: Failed")
-                sys.exit(1)
-        else : 
-            if Verbose : print("Markdown tests: Failed")
-            sys.exit(1)    
-    else :
-        # Delete everything in the destination folder
+        from tests.test import test
+        test()
+
+    else: 
         if os.path.exists(dest_dir):
             shutil.rmtree(dest_dir)
             os.mkdir(dest_dir)
 
-        # Parse the markdown files in the source directory
         parse_markdown_files(src_dir, dest_dir) 
-        populate_image_report(src_dir, dest_dir) 
+        fill_failed_images(src_dir, dest_dir) 
+        generate_report("report.md") 
 
-        generate_report() ##report/generate
+
+
 
 if __name__ == "__main__":
     start_time = time.time()

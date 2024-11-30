@@ -2,10 +2,10 @@
 from pathlib import Path
 
 # Variables
-from config import Dataset, Failed_images, Rapport_1, Rapport_2
+from config import Dataset, Rapport_1, Rapport_2
 
 # Constants
-from config import TC1_COL, TC2_COL, TC3_COL, PROCES_COL, PROCESSTAP_COL, NOT_NECESSARY, LT_COL, DT_COL, OI_COL, PI_COL, LT, DT, OI, PI, FAIL_CROSS
+from config import TC1_COL, TC2_COL, TC3_COL, PROCES_COL, PROCESSTAP_COL, NOT_NECESSARY, LT_COL, DT_COL, OI_COL, PI_COL, LT, DT, OI, PI
 
 # Functions
 from files.images import create_image_result
@@ -76,6 +76,13 @@ def populate_rapport1():
         proces = row[PROCES_COL]
         processtap = row[PROCESSTAP_COL]
 
+        if tc_1 in Rapport_1:
+            if Rapport_1[tc_1]['TC2'][1] == '🏳️' or Rapport_1[tc_1]['TC2'][2] == '🏳️':
+                splitted_tc2 = tc_2.split(',')
+                for index in range(1, 3):
+                    if Rapport_1[tc_1]['TC2'][index] == '🏳️' and splitted_tc2[index] != '🏳️':
+                        Rapport_1[tc_1]['TC2'][index] = splitted_tc2[index]
+
         if tc_1 not in Rapport_1: 
             splitted_tc2 = tc_2.split(',')
 
@@ -117,31 +124,5 @@ def populate_rapport2():
                 OI: [NOT_NECESSARY if splitted_oi[0] == 'X' else 'x', NOT_NECESSARY if splitted_oi[1] == 'X' else 'x', NOT_NECESSARY if splitted_oi[2] == 'X' else 'x'],
                 PI: [NOT_NECESSARY if splitted_pi[0] == 'X' else 'x', NOT_NECESSARY if splitted_pi[1] == 'X' else 'x', NOT_NECESSARY if splitted_pi[2] == 'X' else 'x'],
                 DT: [NOT_NECESSARY if splitted_dt[0] == 'X' else 'x', NOT_NECESSARY if splitted_dt[1] == 'X' else 'x', NOT_NECESSARY if splitted_dt[2] == 'X' else 'x'],
-            }
-
-
-"""
-Fills the image Rapport with data from the images in the folders
-Every unique TC3 and TC1 combination will be added to the Rapport 2 data.
-"""
-def populate_image_report(src_dir, dest_dir):
-    src_images = get_images_in_folder(src_dir)
-    dest_images = get_images_in_folder(dest_dir)
-    for image in dest_images :
-        if not str(image.stem).startswith(("PI", "OI", "LT", "DT")):
-            Failed_images.append(create_image_result(FAIL_CROSS, image, dest_dir, "Image does not include 4C/ID component"))
-    for image in src_images : 
-        if str(image.stem) not in {str(img.stem) for img in dest_images}:
-            Failed_images.append(create_image_result(NOT_NECESSARY, image, src_dir, "Image not used in any file"))            
-
-def get_images_in_folder(dir):
-    folders = [folder for folder in Path(dir).rglob("src") if folder.is_dir()]
-    images = set()
-    for folder in folders:
-        if "schrijfwijze" in str(folder):
-            continue
-        images.update(
-            file_path
-            for file_path in folder.rglob("*")  # Search recursively in each 'src' folder
-        ) 
-    return images    
+            }  
+ 

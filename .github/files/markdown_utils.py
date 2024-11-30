@@ -3,7 +3,7 @@ import re
 from pathlib import Path
 
 # Variables
-from config import Failed_files, Verbose, Dataset, Rapport_2, WIP_files
+from config import Failed_files, Verbose, Dataset, Rapport_2, WIP_files, Testing
 
 # Constants
 from config import PROCES_COL, PROCESSTAP_COL, TC3_COL, TC2_COL, NOT_NECESSARY, ERROR_MISSING_TAXCO, Taxonomie_pattern, ToDo_pattern
@@ -148,15 +148,14 @@ def get_file_type(file_path):
     
     # Find the 'content' directory in the path
     parts = file_path.parts
-    if 'content' in parts:
-        content_index = parts.index('content')
-        # Return the first folder after 'content' without leading number and space
-        if content_index + 1 < len(parts):
-            folder_name = parts[content_index + 1]
-            # Remove leading number and space
-            cleaned_folder_name = re.sub(r'^\d+\.\s*', '', folder_name)
-            return cleaned_folder_name
-    
+    folder_path = file_path
+    child_folder = ''
+
+    while folder_path.parent.name != 'content' and folder_path.parent.name != 'test_cases':
+        folder_path = folder_path.parent
+    if not folder_path.name.endswith('.md') :
+        cleaned_folder_name = re.sub(r'^\d+\.\s*', '', folder_path.name)
+        return cleaned_folder_name
     return None
 
 """

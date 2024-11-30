@@ -14,18 +14,17 @@ Args:
 """
 def update_dynamic_links(file_path, content):
     # Find all dynamic links in the content
-    dynamic_links = re.findall(r'\[\[[^"\[][^]]*?\]\]', content)
-    errors = []
+    dynamic_links = re.findall(r'(?<!!)\[\[[^"\[][^]]*?\]\]', content)
 
+    errors = []
+    
     for link in dynamic_links:
         # Skip links that start with any of the valid prefixes
         cleaned_link = link.strip('[[]]')
         if any(cleaned_link.startswith(prefix) for prefix in ValidDynamicLinkPrefixes):
             return content, errors
-            
         # Strip 'content/' prefix if present
         new_link = link.replace('content/', '')
-
         # Replace the old link with the new link in the content
         content = content.replace(link, new_link)
 

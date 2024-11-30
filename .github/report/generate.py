@@ -1,5 +1,5 @@
 # Variables
-from config import Verbose, Rapport_1, Rapport_2, Successful_files, Failed_files, Failed_images, WIP_files
+from config import Verbose, Rapport_1, Rapport_2, WIP_files, Failed_files, Failed_images, Successful_files
 
 # Constants
 from config import LT, DT, OI, PI, FAIL_CIRCLE, SUCCESS, NOT_NECESSARY
@@ -12,10 +12,8 @@ from report.table import generate_markdown_table
 """
 Generate the report based on the taxonomie report, success, and failed reports.
 """
-def generate_report():
+def generate_report(report_path):
     if Verbose: print("Generating report...")
-
-    report_path = "report.md"
     with open(report_path, "w", encoding="utf-8") as f:
         f.write('---\ndraft: true\n---\n')
         
