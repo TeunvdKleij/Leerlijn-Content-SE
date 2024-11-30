@@ -3,7 +3,7 @@ import re, os
 from pathlib import Path
 
 # Variables
-from config import ValidDynamicLinkPrefixes, Verbose
+from config import ValidDynamicLinkPrefixes, Verbose, Testing
 
 """
 Update dynamic links in the content of a markdown file.
@@ -14,7 +14,7 @@ Args:
 """
 def update_dynamic_links(file_path, content):
     # Find all dynamic links in the content
-    dynamic_links = re.findall(r'(?<!!)\[\[[^"\[][^]]*?\]\]', content)
+    dynamic_links = re.findall(r'\[\[[^"\[][^]]*?\]\]', content)
 
     errors = []
     
@@ -44,8 +44,10 @@ Args:
 """
 def validate_dynamic_link(source_file_path, link):
     # Define the root content directory (assuming it is one level up from the current script)
-    content_path = Path(__file__).resolve().parents[2] / 'content'
-
+    content_path = source_file_path
+    while Path(content_path).name != 'content' and Path(content_path).name != 'test_cases':
+        content_path = content_path.parent
+    # content_path = Path(__file__).resolve().parents[2] / 'content'
     # Verify that content_path exists
     if not content_path.exists():
         if Verbose: print(f"Error: Content path '{content_path}' does not exist.")
