@@ -3,7 +3,7 @@ import re, os
 from pathlib import Path
 
 # Variables
-from config import ValidDynamicLinkPrefixes, Verbose, Testing
+from config import ValidDynamicLinkPrefixes, Verbose
 
 """
 Update dynamic links in the content of a markdown file.

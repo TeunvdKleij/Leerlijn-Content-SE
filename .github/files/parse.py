@@ -15,12 +15,7 @@ from files.links import update_dynamic_links
 from files.markdown_utils import extract_values, generate_tags, create_file_report, find_ToDo_items
 
 
-"""
-Parse the dataset file from a XLSX file to a list.
-
-Args:
-    dataset_file (str): Path to the dataset XLSX file.
-"""
+# Parse the dataset file from a XLSX file to a list.
 def parse_dataset_file(dataset_file):
     global Dataset
     try:
@@ -35,17 +30,13 @@ def parse_dataset_file(dataset_file):
         print(f"An error occurred while reading the dataset file: {e}")
         exit()
 
-"""
-Update markdown files in the source directory with taxonomie tags and generate reports.
-Args:
-    src_dir (str): Source directory containing markdown files.
-    dest_dir (str): Destination directory to save updated markdown files and reports.
-"""
+# Update markdown files in the source directory with taxonomie tags and generate reports.
 def parse_markdown_files(src_dir, dest_dir):
     if Verbose: print("Parsing markdown files...")
 
     dest_dir.mkdir(parents=True, exist_ok=True)
 
+    # Loop through all markdown files in the source directory
     for file_path in Path(src_dir).rglob('*.md'):
         relative_path = file_path.relative_to(src_dir)
         dest_path = dest_dir / relative_path
@@ -75,31 +66,36 @@ def parse_markdown_files(src_dir, dest_dir):
         if(toDoItems):
             errors.append("To-Do item(s) found in the file:<br>" + '<br>'.join([f"{item}" for item in toDoItems]))
 
+        # Combine all errors
         errors = link_errors + image_errors + tags_errors + errors
 
-        fill_lists(errors, toDoItems, file_path, src_dir, taxonomie, new_tags)
+        # If there are any errors, the file is considered a draft
+        if(errors):
+            isDraft = True
+
+        # Don't include deprecated files in the report
+        if("deprecated" not in str(file_path)):
+            fill_lists(errors, toDoItems, file_path, src_dir, taxonomie, new_tags)
+        
         create_new_file(file_path, taxonomie, new_tags, difficulty, isDraft, content, dest_path)
 
-
+# Fill the lists used for the report
 def fill_lists(errors, toDoItems, file_path, src_dir, taxonomie, tags):
     if errors:
         if(toDoItems):
-            # isDraft = True
             WIP_files.append(create_file_report(TODO_ITEMS, file_path, src_dir, taxonomie, tags, errors))
         elif(ERROR_MISSING_TAXCO in errors): 
-            # isDraft = True
             Failed_files.append(create_file_report(FAIL_CROSS, file_path, src_dir, taxonomie, tags, errors))
         elif any("Taxonomie used where it is not needed:" in error for error in errors):
-            # isDraft = True
             Failed_files.append(create_file_report(NOT_NEEDED, file_path, src_dir, taxonomie, tags, errors))
         else: 
-            # isDraft = True
             Failed_files.append(create_file_report(WARNING, file_path, src_dir, taxonomie, tags, errors))
 
         if Verbose: print(f"Failed to parse file: {file_path}")
     else:
         Successful_files.append(create_file_report(SUCCESS, file_path, src_dir, taxonomie, tags, errors))
 
+# Combines everything into a new file
 def create_new_file(file_path, taxonomie, tags, difficulty, isDraft, content, dest_path):
     new_content = (
         f"---\ntitle: {file_path.stem}\ntaxonomie: {taxonomie}\ntags:\n" +

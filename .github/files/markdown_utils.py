@@ -13,16 +13,7 @@ from report.table import generate_markdown_table
 from report.update import update_rapport1_data, update_rapport2_data
 
 
-"""
-Create a file report based on the status, file path, taxonomie, and tags.
-Args:
-    status (str): Status of the file processing.
-    file_path (str): Path to the file.
-    taxonomie (list): List of taxonomie values.
-    tags (list): List of tags.
-Returns:
-    file_report (dict): File report dictionary.
-"""
+# Create a file report based on the status, file path, taxonomie, and tags.
 def create_file_report(status, file_path, src_dir, taxonomie, tags, errors):
     return {
         "status": status,
@@ -33,13 +24,7 @@ def create_file_report(status, file_path, src_dir, taxonomie, tags, errors):
         "errors": '<br>'.join(errors) if errors else "N/A"
     }
 
-"""
-Format the success or failed report table.
-Args:
-    file_report (list): List of file reports.
-Returns:
-    table (str): Markdown table string.
-"""
+# Format the success or failed report table based on a list.
 def format_file_report_table(file_report):
     headers = ["Status", "File", "Path", "Taxonomie", "Tags"]
 
@@ -61,14 +46,13 @@ Generate tags based on the taxonomie values
 Args:
     taxonomies (list): List of taxonomie values.
     file_path (str): Path to the file.
-Returns:
-    tags (list): List of tags generated from the taxonomie values.
 """
 def generate_tags(taxonomies, file_path, existing_tags):
     tags = []
     errors = []
     combined_tags = []
     taxonomie_tags = []
+
     if taxonomies is not None and taxonomies != ['None']:
         for taxonomie in taxonomies:
             if Verbose : print(f"Generating tags for taxonomie: {taxonomie}")
@@ -124,32 +108,23 @@ def generate_tags(taxonomies, file_path, existing_tags):
             if tags == [] and not errors:
                     errors.append(f"Taxonomie not found in dataset: {taxonomie}")
                     if Verbose: print(f"Taxonomie not found in dataset: {taxonomie}")
-
     else:
         errors.append(ERROR_MISSING_TAXCO)
         if Verbose: print(ERROR_MISSING_TAXCO)
 
+    # Combine the existing tags with the new tags
     if existing_tags: combined_tags += existing_tags 
     if tags : combined_tags += tags 
     if taxonomie_tags : combined_tags += taxonomie_tags
 
     return list(dict.fromkeys(combined_tags)), errors
 
-"""
-Returns the folder name after the 'content' directory in the path.
-Args:
-    file_path (str): Path to the file.
-Returns:
-    folder_name (str): Folder name after the 'content' directory.
-"""
+# Returns the folder name after the 'content' directory in the path.
 def get_file_type(file_path):
     # Convert to Path object if not already
     file_path = Path(file_path)
-    
     # Find the 'content' directory in the path
-    parts = file_path.parts
     folder_path = file_path
-    child_folder = ''
 
     while folder_path.parent.name != 'content' and folder_path.parent.name != 'test_cases':
         folder_path = folder_path.parent
@@ -158,24 +133,10 @@ def get_file_type(file_path):
         return cleaned_folder_name
     return None
 
-"""
-Split the taxonomie value into a list of individual taxonomie parts.
-Args:
-    taxonomie (str): Taxonomie value to split.
-Returns:
-    parts (list): List of taxonomie parts.
-"""
 def split_taxonomie(taxonomie):
     return taxonomie.split('.')
 
-"""
-Helper function to extract values from the content of a markdown file.
-Args:
-    content (str): Content of the markdown file.
-    field_name (str): Field name to extract values for.
-Returns:
-    values (list): List of values extracted from the content.
-"""
+# Helper function to extract specific values from the content of a markdown file.
 def extract_values(content, field_name):
     lines = content.splitlines()
     values = []
@@ -205,4 +166,3 @@ def find_ToDo_items(content):
     # Find all the todo items in the content
     todo_items = re.findall(ToDo_pattern, content)
     return todo_items
-

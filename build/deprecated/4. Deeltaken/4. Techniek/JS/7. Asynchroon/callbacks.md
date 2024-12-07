@@ -5,6 +5,7 @@ tags:
 - JS/Callbacks
 - page
 difficulty: 2
+draft: true 
 ---
 
 # 1 JavaScript Callbacks

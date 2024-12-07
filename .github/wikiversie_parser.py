@@ -51,9 +51,6 @@ def main():
         fill_failed_images(src_dir, dest_dir) 
         generate_report("report.md") 
 
-
-
-
 if __name__ == "__main__":
     start_time = time.time()
 
