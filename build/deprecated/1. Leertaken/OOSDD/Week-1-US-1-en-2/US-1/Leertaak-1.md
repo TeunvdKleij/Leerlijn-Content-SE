@@ -7,6 +7,7 @@ tags:
 - C#/classes/basics
 - UML/basics
 - Algoritmiek/basics
+draft: true 
 ---
 
 Beoordeel de implementatie van US 1 op:

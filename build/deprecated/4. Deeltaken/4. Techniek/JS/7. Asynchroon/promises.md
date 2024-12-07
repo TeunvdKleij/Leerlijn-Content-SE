@@ -3,8 +3,8 @@ title: promises
 taxonomie: None
 tags:
 - JS/Promises
-- page
 difficulty: 2
+draft: true 
 ---
 
 # 1 JavaScript Promises

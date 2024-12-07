@@ -5,6 +5,7 @@ tags:
 - JS/Errors
 - page
 difficulty: 2
+draft: true 
 ---
 
 # 1. JavaScript Errors

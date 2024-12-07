@@ -3,8 +3,8 @@ title: scope en closures
 taxonomie: None
 tags:
 - JS/scope-closures
-- page
 difficulty: 2
+draft: true 
 ---
 
 # 1 JavaScript scope en closures
