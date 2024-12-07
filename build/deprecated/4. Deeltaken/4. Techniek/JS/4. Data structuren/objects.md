@@ -3,8 +3,8 @@ title: objects
 taxonomie: None
 tags:
 - JS/objecten
-- page
 difficulty: 2
+draft: true 
 ---
 
 # 1 JavaScript objecten

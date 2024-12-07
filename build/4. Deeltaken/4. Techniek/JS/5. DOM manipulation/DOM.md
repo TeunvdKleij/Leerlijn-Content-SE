@@ -5,6 +5,7 @@ tags:
 - HTML/DOM
 - page
 difficulty: 2
+draft: true 
 ---
 
 # 1. Het Document Object Model (DOM)

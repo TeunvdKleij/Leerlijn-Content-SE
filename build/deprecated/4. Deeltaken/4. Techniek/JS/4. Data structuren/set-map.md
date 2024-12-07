@@ -3,8 +3,8 @@ title: set-map
 taxonomie: None
 tags:
 - JS/set-map
-- page
 difficulty: 2
+draft: true 
 ---
 
 # 1 JavaScript `Set` en `Map`
