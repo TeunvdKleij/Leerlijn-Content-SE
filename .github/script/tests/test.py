@@ -34,8 +34,8 @@ def test():
 
     SRC_DIR = Path(__file__).resolve().parents[0] / 'test_cases'
     DEST_DIR = Path(__file__).resolve().parents[0] / 'test_cases_build'
-    REPORT_PATH = Path(__file__).resolve().parents[0] 
-    
+    REPORT_PATH = "./github/script/report/actual_test_report.md"
+
     if os.path.exists(DEST_DIR):
         shutil.rmtree(DEST_DIR)
         os.mkdir(DEST_DIR)
@@ -56,3 +56,4 @@ def test():
     else : 
         if VERBOSE: print("Test report validation failed")
         sys.exit(1)
+    
