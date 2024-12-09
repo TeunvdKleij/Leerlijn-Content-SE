@@ -12,6 +12,10 @@ draft: true
 | --- | --- | --- | --- | --- | --- |
 | bg-24 | Beheerproces | Gebruiken beheersysteem | 🏳️ | ✅ | ✅ |
 | ib-19 | Implementatieproces | Bouwen softwaresysteem | 🏳️ | ✅ | ✅ |
+| oo-15 | Ontwerpproces | Opstellen ontwerp | 🏳️ | ⛔️ | ⛔️ |
+| io-28 | Implementatieproces | Oplossen fouten | 🏳️ | ⛔️ | ⛔️ |
+| bb-25 | Beheerproces | Beschikbaarstellen software | 🏳️ | ⛔️ | ⛔️ |
+| ii-18 | Implementatieproces | Inrichten ontwikkelomgeving | 🏳️ | ⛔️ | ⛔️ |
 
 
 ## Rapport 2 - Onderwerpen Catalogus
@@ -25,11 +29,11 @@ Bij kolom *TC2*, *Leertaken*, *Ondersteunende informatie*, *Procedurele informat
 | TC3 | TC1 | TC2 | Leertaken | Ondersteunende-informatie | Procedurele-informatie | Deeltaken |
 | --- | --- | --- | --- | --- | --- | --- |
 | Git-Repositories | bg-24 | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ | 🏳️ ✅ ✅ | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ |
-| Git-Branches | bg-24 | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ | 🏳️ ✅ ✅ | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ |
+| Git-Branches | bg-24 | 🏳️ ✅ ✅ | 🏳️ ⛔️ ⛔️ | 🏳️ ✅ ✅ | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ |
 | Git-Commits | bg-24 | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ | 🏳️ ✅ ✅ | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ |
 | Git-Pull-requests | bg-24 | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ | 🏳️ ✅ ✅ | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ |
 | Git-Mergen | bg-24 | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ | 🏳️ ✅ ✅ | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ |
-| Git-Github | bg-24 | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ |
+| Git-GitHub | bg-24 | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ | 🏳️ ✅ ✅ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ |
 | Git-Files | bg-24 | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ | 🏳️ ✅ ✅ | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ |
 | Git-Actions | bg-24 | 🏳️ ⛔️ ✅ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ✅ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ |
 | Git-Tools | bg-24 | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ | 🏳️ ✅ ✅ | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ |
@@ -45,34 +49,35 @@ Bij kolom *TC2*, *Leertaken*, *Ondersteunende informatie*, *Procedurele informat
 | Controlestructuur-Asynchroon-Async | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
 | Controlestructuur-Asynchroon-Await | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
 | Controlestructuur-Pattern-Matching-Object-is-type | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Declaratie | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Initialisatie | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Primitief-Integer | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Primitief-Float | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Primitief-Double | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Primitief-Boolean | ib-19 | 🏳️ ✅ ✅ | 🏳️ ⛔️ ⛔️ | 🏳️ ✅ ✅ | 🏳️ ⛔️ ⛔️ | 🏳️ ✅ ✅ |
-| Datatype-Primitief-Char | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Primitief-Byte | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Primitief-Long | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Primitief-Uint | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Primitief-Ulong | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Composite-String | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Composite-Array | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Composite-Tupel | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Composite-List | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Composite-Set | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Composite-Dictionary | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Composite-Queue | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Composite-Hashset | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Composite-Stack | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Composite-Delegate | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Composite-Linkedlist | ib-19 | 🏳️ 🏳️ ⛔️ | 🏳️ 🏳️ ⛔️ | 🏳️ 🏳️ ⛔️ | 🏳️ 🏳️ ⛔️ | 🏳️ 🏳️ ⛔️ |
-| Datatype-Composite-PriorityQueue | ib-19 | 🏳️ 🏳️ ⛔️ | 🏳️ 🏳️ ⛔️ | 🏳️ 🏳️ ⛔️ | 🏳️ 🏳️ ⛔️ | 🏳️ 🏳️ ⛔️ |
-| Datatype-Codeur-Classes | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Codeur-Objecten | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Codeur-Struct | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Speciaal-Enum | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Speciaal-Null | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
+| Datatype-Declaratie-en-Initialisatie | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
+| Datatype-Primitief-Integer | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
+| Datatype-Primitief-Float | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
+| Datatype-Primitief-Double | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
+| Datatype-Primitief-Boolean | ib-19 | 🏳️ ✅ ✅ | 🏳️ ⛔️ ⛔️ | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ | 🏳️ ✅ ✅ |
+| Datatype-Primitief-Char | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
+| Datatype-Primitief-Byte | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
+| Datatype-Primitief-Long | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
+| Datatype-Primitief-Uint | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
+| Datatype-Primitief-Ulong | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
+| Datatype-String | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
+| Datastructuur-Array | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
+| Datastructuur-Tupel | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
+| Datastructuur-List | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
+| Datastructuur-Set | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
+| Datastructuur-Dictionary | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
+| Datastructuur-Queue | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
+| Datastructuur-Hashset | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
+| Datastructuur-Stack | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
+| Event-Delegate | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
+| Datastructuur-Linkedlist | ib-19 | 🏳️ 🏳️ ⛔️ | 🏳️ 🏳️ ⛔️ | 🏳️ 🏳️ ⛔️ | 🏳️ 🏳️ ⛔️ | 🏳️ 🏳️ ⛔️ |
+| Datastructuur-PriorityQueue | ib-19 | 🏳️ 🏳️ ⛔️ | 🏳️ 🏳️ ⛔️ | 🏳️ 🏳️ ⛔️ | 🏳️ 🏳️ ⛔️ | 🏳️ 🏳️ ⛔️ |
+| Datatype-Struct | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
+| Datatype-Null | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
+| Klassendiagram | oo-15 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
+| Debugging | io-28 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ 🏳️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ 🏳️ |
+| Use-Cases | oo-15 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ 🏳️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ |
+| OTAP | bb-25 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ 🏳️ 🏳️ |
+| IDE-setup-en-build | ii-18 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ 🏳️ | 🏳️ ⛔️ 🏳️ | 🏳️ 🏳️ 🏳️ | 🏳️ 🏳️ 🏳️ |
 
 
 ## Work-in-progress bestanden
@@ -99,7 +104,6 @@ Deze todo items moeten nog worden afgehandeld.
 | ❌ | 1. Introductie tot Docker | 2. Ondersteunende-informatie/4. Techniek/Docker/1. Introductie tot Docker.md | N/A | Docker | No taxonomie found in file. |
 | ❌ | 1. Vaardigheden-hiërarchie SSDLC Requirements | 5. Vaardigheden-hiërarchieën/1. Vaardigheden-hiërarchie SSDLC Requirements.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | 1. Variablen | 4. Deeltaken/4. Techniek/JS/2. Basis/1. Variablen.md | N/A | JS/Variablen<br>page | No taxonomie found in file. |
-| ⚠️ | 10. GitHub website | 2. Ondersteunende-informatie/4. Techniek/Git/10. GitHub website.md | bg-24.2.Git-GitHub.OI<br>bg-24.3.Git-GitHub.OI<br>bg-24.2.Git-Tags-en-releases.OI<br>bg-24.3.Git-Tags-en-releases.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-Tags-en-releases<br>bg-24.2.Git-GitHub.OI<br>bg-24.2.Git-Tags-en-releases.OI<br>bg-24.3.Git-GitHub.OI<br>bg-24.3.Git-Tags-en-releases.OI | Taxonomie not found in dataset: bg-24.2.Git-GitHub.OI |
 | ❌ | 2. Destructuring | 4. Deeltaken/4. Techniek/JS/9. ES6/2. Destructuring.md | N/A | JS/Destructuring<br>page | No taxonomie found in file. |
 | ❌ | 2. Docker Desktop | 2. Ondersteunende-informatie/4. Techniek/Docker/2. Docker Desktop.md | N/A | Docker | No taxonomie found in file. |
 | ⚠️ | 2. Git Repositories | 3. Procedurele-informatie/4. Techniek/Workshop Git/2. Git Repositories.md | bg-24.2.Git-Repositories.PI<br>bg-24.3.Git-Repositories.PI<br>bg-24.2.Git-Commits.PI<br>bg-24.3.Git-Commits.PI<br>bg-24.2.Git-Files.PI<br>bg-24.3.Git-Files.PI<br>bg-24.2.Git-Tools.PI<br>bg-24.3.Git-Tools.PI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-Repositories<br>Git-Commits<br>Git-Files<br>Git-Tools<br>bg-24.2.Git-Commits.PI<br>bg-24.2.Git-Files.PI<br>bg-24.2.Git-Repositories.PI<br>bg-24.2.Git-Tools.PI<br>bg-24.3.Git-Commits.PI<br>bg-24.3.Git-Files.PI<br>bg-24.3.Git-Repositories.PI<br>bg-24.3.Git-Tools.PI | Invalid dynamic link: `[[8. Git Files]]` |
@@ -187,50 +191,15 @@ Als een image de error heeft over het niet gebruikt worden, betekent dit dat de 
 
 | Status | Image | Path | Error |
 | --- | --- | --- | --- |
-| ❌ | Fork_Button_Git | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Fork_Button_Git.png | Image does not include 4C/ID component |
-| 🏳️ | LT_Opdracht2_dockercompose | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/LT_Opdracht2_dockercompose.png | Image not used in any file |
-| 🏳️ | LT_Opdracht4_dockerenv | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/LT_Opdracht4_dockerenv.png | Image not used in any file |
 | 🏳️ | OI_docker_desktop_containers | 2. Ondersteunende-informatie/4. Techniek/Docker/src/OI_docker_desktop_containers.png | Image not used in any file |
 | 🏳️ | OI_docker_desktop_docker_compose | 2. Ondersteunende-informatie/4. Techniek/Docker/src/OI_docker_desktop_docker_compose.png | Image not used in any file |
 | 🏳️ | OI_docker_desktop_images | 2. Ondersteunende-informatie/4. Techniek/Docker/src/OI_docker_desktop_images.png | Image not used in any file |
 | 🏳️ | OI_docker_desktop_single_container | 2. Ondersteunende-informatie/4. Techniek/Docker/src/OI_docker_desktop_single_container.png | Image not used in any file |
-| ❌ | Opdracht2_dockercompose | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht2_dockercompose.png | Image does not include 4C/ID component |
-| ❌ | Opdracht3_Volumes | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_Volumes.png | Image does not include 4C/ID component |
-| ❌ | Opdracht3_chatterbox | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_chatterbox.png | Image does not include 4C/ID component |
-| ❌ | Opdracht3_loglens | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_loglens.png | Image does not include 4C/ID component |
-| ❌ | Opdracht3_stop_delete | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht3_stop_delete.png | Image does not include 4C/ID component |
-| ❌ | Opdracht4_dockerenv | deprecated/1. Leertaken/WEBDEV/Security/Workshops/4. Workshop Docker/src/Opdracht4_dockerenv.png | Image does not include 4C/ID component |
-| 🏳️ | PI_Fork_Button_Git | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/PI_Fork_Button_Git.png | Image not used in any file |
 | 🏳️ | PI_GIt_Pull_Request_3 | 3. Procedurele-informatie/4. Techniek/Workshop Git/src/PI_GIt_Pull_Request_3.png | Image not used in any file |
-| ❌ | PentestingSSDLC | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/PentestingSSDLC.png | Image does not include 4C/ID component |
-| ❌ | Pull_Request_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_1.png | Image does not include 4C/ID component |
-| ❌ | Pull_Request_2 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_2.png | Image does not include 4C/ID component |
-| 🏳️ | Pull_Request_3 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_3.png | Image not used in any file |
-| 🏳️ | Pull_Request_4 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_4.png | Image not used in any file |
-| ❌ | Pull_Request_5 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Pull_Request_5.png | Image does not include 4C/ID component |
-| ❌ | Tags_Releases_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/10. Workshop Git/src/Tags_Releases_1.png | Image does not include 4C/ID component |
 | ❌ | docker_desktop_containers | 2. Ondersteunende-informatie/4. Techniek/Docker/src/docker_desktop_containers.png | Image does not include 4C/ID component |
 | ❌ | docker_desktop_docker_compose | 2. Ondersteunende-informatie/4. Techniek/Docker/src/docker_desktop_docker_compose.png | Image does not include 4C/ID component |
 | ❌ | docker_desktop_images | 2. Ondersteunende-informatie/4. Techniek/Docker/src/docker_desktop_images.png | Image does not include 4C/ID component |
 | ❌ | docker_desktop_single_container | 2. Ondersteunende-informatie/4. Techniek/Docker/src/docker_desktop_single_container.png | Image does not include 4C/ID component |
-| ❌ | ontwikkelstappen_technisch_ontwerp | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/ontwikkelstappen_technisch_ontwerp.png | Image does not include 4C/ID component |
-| ❌ | rapport_1 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_1.png | Image does not include 4C/ID component |
-| ❌ | rapport_2 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_2.png | Image does not include 4C/ID component |
-| ❌ | rapport_3 | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/rapport_3.png | Image does not include 4C/ID component |
-| ❌ | ssdlc_risk_assessment | deprecated/2. Ondersteunende-informatie/2. SSDLC/1. Requirements - Risk Assessment/src/ssdlc_risk_assessment.png | Image does not include 4C/ID component |
-| ❌ | ssdlc_setup_skylab | deprecated/2. Ondersteunende-informatie/2. SSDLC/5. Deployment - Deployment op Skylab/src/ssdlc_setup_skylab.png | Image does not include 4C/ID component |
-| ❌ | ssdlc_threat_model | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/ssdlc_threat_model.png | Image does not include 4C/ID component |
-| ❌ | stap2 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap2.png | Image does not include 4C/ID component |
-| ❌ | stap3 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap3.png | Image does not include 4C/ID component |
-| ❌ | stap4 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap4.png | Image does not include 4C/ID component |
-| ❌ | stap5.3 opslaan | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap5.3 opslaan.png | Image does not include 4C/ID component |
-| ❌ | stap6_1 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_1.png | Image does not include 4C/ID component |
-| ❌ | stap6_2 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_2.png | Image does not include 4C/ID component |
-| ❌ | stap6_3 | deprecated/1. Leertaken/WEBDEV/Security/Workshops/2. Workshop Threat modeling/src/stap6_3.png | Image does not include 4C/ID component |
-| ❌ | threat_modeling_example_correct | deprecated/2. Ondersteunende-informatie/2. SSDLC/1. Requirements - Risk Assessment/src/threat_modeling_example_correct.png | Image does not include 4C/ID component |
-| ❌ | voorbeeld_risk_assessment | deprecated/2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/src/voorbeeld_risk_assessment.png | Image does not include 4C/ID component |
-| ❌ | zap_proxy1 | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/zap_proxy1.png | Image does not include 4C/ID component |
-| ❌ | zap_proxy2 | deprecated/2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/src/zap_proxy2.png | Image does not include 4C/ID component |
 
 
 ## Geslaagde bestanden
@@ -246,6 +215,7 @@ De onderstaande bestanden zijn succesvol verwerkt.
 | ✅ | 1. While | 3. Procedurele-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/While/1. While.md | ib-19.2.Controlestructuur-Herhaling-While.PI<br>ib-19.3.Controlestructuur-Herhaling-While.PI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Herhaling-While<br>ib-19.2.Controlestructuur-Herhaling-While.PI<br>ib-19.3.Controlestructuur-Herhaling-While.PI | N/A |
 | ✅ | 1. While | 4. Deeltaken/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/While/1. While.md | ib-19.2.Controlestructuur-Herhaling-While.DT<br>ib-19.3.Controlestructuur-Herhaling-While.DT | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Herhaling-While<br>ib-19.2.Controlestructuur-Herhaling-While.DT<br>ib-19.3.Controlestructuur-Herhaling-While.DT | N/A |
 | ✅ | 1. While | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/While/1. While.md | ib-19.2.Controlestructuur-Herhaling-While.OI<br>ib-19.3.Controlestructuur-Herhaling-While.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Herhaling-While<br>ib-19.2.Controlestructuur-Herhaling-While.OI<br>ib-19.3.Controlestructuur-Herhaling-While.OI | N/A |
+| ✅ | 10. GitHub website | 2. Ondersteunende-informatie/4. Techniek/Git/10. GitHub website.md | bg-24.2.Git-GitHub.OI<br>bg-24.3.Git-GitHub.OI<br>bg-24.2.Git-Tags-en-releases.OI<br>bg-24.3.Git-Tags-en-releases.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-GitHub<br>Git-Tags-en-releases<br>bg-24.2.Git-GitHub.OI<br>bg-24.2.Git-Tags-en-releases.OI<br>bg-24.3.Git-GitHub.OI<br>bg-24.3.Git-Tags-en-releases.OI | N/A |
 | ✅ | 2. Git Repositories | 2. Ondersteunende-informatie/4. Techniek/Git/2. Git Repositories.md | bg-24.2.Git-Repositories.OI<br>bg-24.3.Git-Repositories.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-Repositories<br>bg-24.2.Git-Repositories.OI<br>bg-24.3.Git-Repositories.OI | N/A |
 | ✅ | 2. If-Else-If | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/If-else/2. If-Else-If.md | ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Beslissingen-If-Else<br>ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | N/A |
 | ✅ | 3. Git Branches | 2. Ondersteunende-informatie/4. Techniek/Git/3. Git Branches.md | bg-24.2.Git-Branches.OI<br>bg-24.3.Git-Branches.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-Branches<br>bg-24.2.Git-Branches.OI<br>bg-24.3.Git-Branches.OI | N/A |
