@@ -57,10 +57,8 @@ def copy_images(content, src_dir, dest_dir):
 
     return errors
 
-"""
-Create a list of a image
-"""
-def create_image_result(status, file_path, src_dir, error):
+# Create a row for the image report table
+def create_image_table_row(status, file_path, src_dir, error):
     return {
         "status" : status,
         "image": file_path.stem,
@@ -68,13 +66,7 @@ def create_image_result(status, file_path, src_dir, error):
         "error": error,
     }
 
-"""
-Format the image report table.
-Args:
-    file_report (list): List of image reports.
-Returns:
-    table (str): Markdown table string.
-"""
+# Format the image report table with specific headers and rows
 def format_image_report_table(image_report):
     headers = ["Status", "Image", "Path", "Error"]
     rows = [[
@@ -86,7 +78,6 @@ def format_image_report_table(image_report):
 
     table = generate_markdown_table(headers, rows)
     return table
-
 
 """
 Fills the image Rapport with data from the images in the folders
@@ -101,26 +92,27 @@ def fill_failed_images():
     
     for image in dest_images:
         if not str(image.stem).startswith(("PI", "OI", "LT", "DT")):
-            failedImages.append(create_image_result(FAIL_CROSS, image, dest_dir, "Image does not include 4C/ID component"))
+            failedImages.append(create_image_table_row(FAIL_CROSS, image, dest_dir, "Image does not include 4C/ID component"))
 
     for image in src_images: 
         if str(image.stem) not in {str(img.stem) for img in dest_images}:
-            failedImages.append(create_image_result(NOT_NECESSARY, image, src_dir, "Image not used in any file"))    
+            failedImages.append(create_image_table_row(NOT_NECESSARY, image, src_dir, "Image not used in any file"))    
 
 """
 Helper method to populate the image report
 """
 def get_images_in_folder(dir):
     folders = [folder for folder in Path(dir).rglob("src") if folder.is_dir()]
-        
+
     images = set()
     
     for folder in folders:
         # Skip curtain folders
-        if any(folder in str(folder) for folder in IGNORE_FOLDERS):
+        if any(ignore_folder in str(folder) for ignore_folder in IGNORE_FOLDERS):
             continue
         
-        ^werkt niet
+        if "deprecated" in str(folder):
+            continue
         
         images.update(file_path for file_path in folder.rglob("*")) 
-    return images   
+    return images
