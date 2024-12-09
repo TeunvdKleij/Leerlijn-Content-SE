@@ -3,7 +3,6 @@ title: Events
 taxonomie: None
 tags:
 - JS/Events
-- page
 difficulty: 2
 draft: true 
 ---

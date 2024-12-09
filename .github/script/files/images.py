@@ -3,10 +3,10 @@ import os, re, shutil
 from pathlib import Path
 
 # Variables
-from config import Verbose, Failed_images
+from config import VERBOSE, failedImages, IGNORE_FOLDERS
 
 # Constants
-from config import FAIL_CROSS, NOT_NECESSARY
+from config import FAIL_CROSS, NOT_NECESSARY, DEST_DIR, SRC_DIR
 
 # Functions
 from report.table import generate_markdown_table
@@ -52,7 +52,7 @@ def copy_images(content, src_dir, dest_dir):
             new_image_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy(found_image_path, new_image_path)
         else:
-            if Verbose: print(f"Image not found: {image_path}")
+            if VERBOSE: print(f"Image not found: {image_path}")
             errors.append(f"Image not found: {image_path}")
 
     return errors
@@ -92,25 +92,35 @@ def format_image_report_table(image_report):
 Fills the image Rapport with data from the images in the folders
 Every unique TC3 and TC1 combination will be added to the Rapport 2 data.
 """
-def fill_failed_images(src_dir, dest_dir):
+def fill_failed_images():
+    src_dir = Path(SRC_DIR).resolve()
+    dest_dir = Path(DEST_DIR).resolve()
+    
     src_images = get_images_in_folder(src_dir)
     dest_images = get_images_in_folder(dest_dir)
-    for image in dest_images :
+    
+    for image in dest_images:
         if not str(image.stem).startswith(("PI", "OI", "LT", "DT")):
-            Failed_images.append(create_image_result(FAIL_CROSS, image, dest_dir, "Image does not include 4C/ID component"))
+            failedImages.append(create_image_result(FAIL_CROSS, image, dest_dir, "Image does not include 4C/ID component"))
 
-    for image in src_images : 
+    for image in src_images: 
         if str(image.stem) not in {str(img.stem) for img in dest_images}:
-            Failed_images.append(create_image_result(NOT_NECESSARY, image, src_dir, "Image not used in any file"))    
+            failedImages.append(create_image_result(NOT_NECESSARY, image, src_dir, "Image not used in any file"))    
 
 """
 Helper method to populate the image report
 """
 def get_images_in_folder(dir):
     folders = [folder for folder in Path(dir).rglob("src") if folder.is_dir()]
+        
     images = set()
+    
     for folder in folders:
-        if "schrijfwijze" in str(folder):
+        # Skip curtain folders
+        if any(folder in str(folder) for folder in IGNORE_FOLDERS):
             continue
+        
+        ^werkt niet
+        
         images.update(file_path for file_path in folder.rglob("*")) 
     return images   

@@ -1,6 +1,6 @@
 ---
 title: Code Review
-taxonomie: ['ib-21.2.object-oriëntatie-applicatielagen.OI']
+taxonomie: None
 tags:
 
 draft: true 

@@ -1,5 +1,5 @@
 # Variables
-from config import Verbose, Rapport_1, Rapport_2, WIP_files, Failed_files, Failed_images, Successful_files
+from config import VERBOSE, Rapport_1, Rapport_2, WIPFiles, failedFiles, failedImages, parsedFiles, REPORT_PATH
 
 # Constants
 from config import LT, DT, OI, PI, FAIL_CIRCLE, SUCCESS, NOT_NECESSARY
@@ -12,9 +12,9 @@ from report.table import generate_markdown_table
 """
 Generate the report based on the taxonomie report, success, and failed reports.
 """
-def generate_report(report_path):
-    if Verbose: print("Generating report...")
-    with open(report_path, "w", encoding="utf-8") as f:
+def generate_report():
+    if VERBOSE: print("Generating report...")
+    with open(REPORT_PATH, "w", encoding="utf-8") as f:
         f.write('---\ndraft: true\n---\n')
         
         f.write('## Rapport 1 - Processtappen\n')
@@ -42,7 +42,7 @@ def generate_report(report_path):
         f.write('Doel: De onderstaande bestanden hebben nog todo items in de markdown staan.\n')
         f.write('Deze todo items moeten nog worden afgehandeld.\n')
         f.write('\n')
-        f.write(format_file_report_table(sorted(WIP_files, key=lambda x: x['file'])))
+        f.write(format_file_report_table(sorted(WIPFiles, key=lambda x: x['file'])))
 
         f.write('\n\n')
 
@@ -52,35 +52,35 @@ def generate_report(report_path):
         f.write('⚠️ Dit bestand bevat een foute taxonomie code. Zie de *Errors* kolom om te weten wat er mis is\n')
         f.write('🟠 Dit bestand bevat een taxonomie code die niet toegevoegd hoeft te zijn\n')
         f.write('\n')
-        f.write(format_file_report_table(sorted(Failed_files, key=lambda x: x['file'])))
+        f.write(format_file_report_table(sorted(failedFiles, key=lambda x: x['file'])))
 
         f.write('\n\n')
 
         f.write("## Gefaalde images\n")
         f.write("*Doel: De onderstaande images missen een 4C/ID component.*\n\n")
         f.write('Als een image de error heeft over het niet gebruikt worden, betekent dit dat de image niet in build staat, maar nog wel in content.\n\n')
-        f.write(format_image_report_table(sorted(Failed_images, key=lambda x: x['image'])))
+        f.write(format_image_report_table(sorted(failedImages, key=lambda x: x['image'])))
 
         f.write('\n\n')
 
         f.write("## Geslaagde bestanden\n")
         f.write("De onderstaande bestanden zijn succesvol verwerkt.\n")
         f.write('\n')
-        f.write(format_file_report_table(sorted(Successful_files, key=lambda x: x['file'])))
+        f.write(format_file_report_table(sorted(parsedFiles, key=lambda x: x['file'])))
 
         f.write('\n\n')
 
-    if Verbose:
+    if VERBOSE:
         print("Rapport 1:")
         print(generate_rapport_1())
         print("Rapport 2:")
         print(generate_rapport_2())
         print("Geslaagde bestanden:")
-        print(format_file_report_table(sorted(Successful_files, key=lambda x: x['file'])))
+        print(format_file_report_table(sorted(parsedFiles, key=lambda x: x['file'])))
         print("Gefaalde bestanden:")
-        print(format_file_report_table(sorted(Failed_files, key=lambda x: x['file'])))
+        print(format_file_report_table(sorted(failedFiles, key=lambda x: x['file'])))
         print("Gefaalde images:")
-        print(format_image_report_table(sorted(Failed_images, key=lambda x: x['image'])))
+        print(format_image_report_table(sorted(failedImages, key=lambda x: x['image'])))
         print("Report generated.")
 
 
@@ -90,7 +90,7 @@ Returns:
     table (str): Markdown table string.
 """
 def generate_rapport_1():
-    if Verbose: print("Generating Rapport 1 table...")
+    if VERBOSE: print("Generating Rapport 1 table...")
 
     headers = ["TC1", "Proces", "Processtap", "Niveau 1", "Niveau 2", "Niveau 3"]
     rows = []
@@ -104,7 +104,7 @@ def generate_rapport_1():
         rows.append([tc, proces, processtap, niveau_1, niveau_2, niveau_3])
 
     table = generate_markdown_table(headers, rows)
-    if Verbose: print("Rapport 1 table generated.")
+    if VERBOSE: print("Rapport 1 table generated.")
     return table
 
 """
@@ -113,7 +113,7 @@ Returns:
     table (str): Markdown table string.
 """
 def generate_rapport_2():
-    if Verbose: print("Generating Rapport 2 table...")
+    if VERBOSE: print("Generating Rapport 2 table...")
 
     headers = ["TC3", "TC1", "TC2", LT, OI, PI, DT]
     rows = []
@@ -146,5 +146,5 @@ def generate_rapport_2():
             rows.append([tc3, tc1, tc2, leertaak, ondersteunende_informatie, procedurele_informatie, deeltaak])
 
     table = generate_markdown_table(headers, rows)
-    if Verbose: print("Rapport 2 table generated.")
+    if VERBOSE: print("Rapport 2 table generated.")
     return table

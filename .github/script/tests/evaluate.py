@@ -7,7 +7,7 @@ from pathlib import Path
 import argparse
 
 # Variables
-from config import Verbose, Failed_images
+from config import VERBOSE, failedImages
 
 # Functions
 from files.parse import parse_markdown_files
@@ -38,7 +38,7 @@ def evaluate_tests():
 
     shutil.rmtree(dest_dir) 
     end_time = time.time()
-    if Verbose: 
+    if VERBOSE: 
         print(f"Execution time: {end_time - start_time:.2f} seconds")
         print("-----------")
 

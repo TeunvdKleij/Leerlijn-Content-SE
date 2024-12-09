@@ -2,13 +2,11 @@
 from pathlib import Path
 
 # Variables
-from config import Dataset, Rapport_1, Rapport_2
+from config import dataset, Rapport_1, Rapport_2
 
 # Constants
 from config import TC1_COL, TC2_COL, TC3_COL, PROCES_COL, PROCESSTAP_COL, NOT_NECESSARY, LT_COL, DT_COL, OI_COL, PI_COL, LT, DT, OI, PI
 
-# Functions
-from files.images import create_image_result
 
 ## Structure of Rapport_1
 #
@@ -70,7 +68,7 @@ Every TC1 code is the unique identifier
 def populate_rapport1():
     global Rapport_1
 
-    for row in Dataset[1:]:
+    for row in dataset[1:]:
         tc_1 = row[TC1_COL]
         tc_2 = row[TC2_COL]
         proces = row[PROCES_COL]
@@ -99,7 +97,7 @@ Every unique TC3 and TC1 combination will be added to the Rapport 2 data.
 def populate_rapport2():
     global Rapport_2
 
-    for row in Dataset[1:]:
+    for row in dataset[1:]:
         tc_1 = row[TC1_COL]
         tc_2 = row[TC2_COL]
         tc_3 = row[TC3_COL]

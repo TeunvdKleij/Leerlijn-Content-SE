@@ -1,6 +1,6 @@
 ---
 title: Introductie
-taxonomie: ['pu-13.1.rekenen.OI', 'pu-13.2.rekenen.OI']
+taxonomie: None
 tags:
 
 draft: true 

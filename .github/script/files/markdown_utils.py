@@ -3,10 +3,10 @@ import re
 from pathlib import Path
 
 # Variables
-from config import Failed_files, Verbose, Dataset, Rapport_2, WIP_files, Testing
+from config import failedFiles, VERBOSE, dataset, Rapport_2, WIPFiles
 
 # Constants
-from config import PROCES_COL, PROCESSTAP_COL, TC3_COL, TC2_COL, NOT_NECESSARY, ERROR_MISSING_TAXCO, Taxonomie_pattern, ToDo_pattern
+from config import PROCES_COL, PROCESSTAP_COL, TC3_COL, TC2_COL, NOT_NECESSARY, ERROR_MISSING_TAXCO, TAXONOMIE_PATTERN, TODO_PATTERN
 
 # Functions
 from report.table import generate_markdown_table
@@ -28,7 +28,7 @@ def create_file_report(status, file_path, src_dir, taxonomie, tags, errors):
 def format_file_report_table(file_report):
     headers = ["Status", "File", "Path", "Taxonomie", "Tags"]
 
-    if file_report == Failed_files or file_report == WIP_files : headers.append("Errors")
+    if file_report == failedFiles or file_report == WIPFiles : headers.append("Errors")
     rows = [[
         file['status'], 
         file['file'], 
@@ -55,11 +55,11 @@ def generate_tags(taxonomies, file_path, existing_tags):
 
     if taxonomies is not None and taxonomies != ['None']:
         for taxonomie in taxonomies:
-            if Verbose : print(f"Generating tags for taxonomie: {taxonomie}")
+            if VERBOSE : print(f"Generating tags for taxonomie: {taxonomie}")
             # Check if the taxonomie is in the correct format
-            if not re.match(Taxonomie_pattern, taxonomie):
+            if not re.match(TAXONOMIE_PATTERN, taxonomie):
                 errors.append(f"Invalid taxonomie: {taxonomie}")
-                if Verbose: print(f"Invalid taxonomie: {taxonomie}")
+                if VERBOSE: print(f"Invalid taxonomie: {taxonomie}")
                 continue
 
             # split the taxonomie in it's different parts
@@ -67,7 +67,7 @@ def generate_tags(taxonomies, file_path, existing_tags):
             # if the parts are all valid
             if tc_1 and tc_2 and tc_3 and tc_4:
                 # Loop trough every row in the dataset
-                for row in Dataset[1:]:
+                for row in dataset[1:]:
                     # Check if the first part of the taxonomie is equal to the second column (TC1) in the dataset
                     if row[1] == tc_1:
                         # Check if the second part of the taxonomie is equal to the third column (TC2) in the dataset
@@ -107,10 +107,10 @@ def generate_tags(taxonomies, file_path, existing_tags):
                 errors.append(f"Taxonomie used where it is not needed: {taxonomie}")
             if tags == [] and not errors:
                     errors.append(f"Taxonomie not found in dataset: {taxonomie}")
-                    if Verbose: print(f"Taxonomie not found in dataset: {taxonomie}")
+                    if VERBOSE: print(f"Taxonomie not found in dataset: {taxonomie}")
     else:
         errors.append(ERROR_MISSING_TAXCO)
-        if Verbose: print(ERROR_MISSING_TAXCO)
+        if VERBOSE: print(ERROR_MISSING_TAXCO)
 
     # Combine the existing tags with the new tags
     if existing_tags: combined_tags += existing_tags 
@@ -164,5 +164,5 @@ Helper function to find all the To-Do items in the content of a markdown file.
 """	
 def find_ToDo_items(content):
     # Find all the todo items in the content
-    todo_items = re.findall(ToDo_pattern, content)
+    todo_items = re.findall(TODO_PATTERN, content)
     return todo_items

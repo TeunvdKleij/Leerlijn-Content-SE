@@ -6,7 +6,7 @@ import os
 import sys
 
 # Variables
-from config import Verbose
+from config import VERBOSE
 
 # Functions
 from files.images import fill_failed_images
@@ -45,14 +45,14 @@ def test():
 
     
     if validate_test_report():
-        if Verbose: print("Test report validation successful")
+        if VERBOSE: print("Test report validation successful")
         if evaluate_tests():
-            if Verbose: print("Test evaluation successful")
+            if VERBOSE: print("Test evaluation successful")
             sys.exit(0)
         else : 
-            if Verbose: print("Test evaluation failed")
+            if VERBOSE: print("Test evaluation failed")
             sys.exit(1)  
     else : 
-        if Verbose: print("Test report validation failed")
+        if VERBOSE: print("Test report validation failed")
         sys.exit(1)  
     

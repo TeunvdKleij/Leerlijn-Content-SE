@@ -3,7 +3,7 @@ import re, os
 from pathlib import Path
 
 # Variables
-from config import ValidDynamicLinkPrefixes, Verbose
+from config import VALID_DYNAMIC_LINK_PREFIXES, VERBOSE
 
 """
 Update dynamic links in the content of a markdown file.
@@ -21,7 +21,7 @@ def update_dynamic_links(file_path, content):
     for link in dynamic_links:
         # Skip links that start with any of the valid prefixes
         cleaned_link = link.strip('[[]]')
-        if any(cleaned_link.startswith(prefix) for prefix in ValidDynamicLinkPrefixes):
+        if any(cleaned_link.startswith(prefix) for prefix in VALID_DYNAMIC_LINK_PREFIXES):
             return content, errors
         # Strip 'content/' prefix if present
         new_link = link.replace('content/', '')
@@ -30,7 +30,7 @@ def update_dynamic_links(file_path, content):
 
         # Check if the dynamic link is valid
         if not validate_dynamic_link(file_path, new_link):
-            if Verbose: print(f"Error: Invalid dynamic link: {new_link}")
+            if VERBOSE: print(f"Error: Invalid dynamic link: {new_link}")
             errors.append(f"Invalid dynamic link: `{new_link}`")
 
     return content, errors
@@ -50,7 +50,7 @@ def validate_dynamic_link(source_file_path, link):
     # content_path = Path(__file__).resolve().parents[2] / 'content'
     # Verify that content_path exists
     if not content_path.exists():
-        if Verbose: print(f"Error: Content path '{content_path}' does not exist.")
+        if VERBOSE: print(f"Error: Content path '{content_path}' does not exist.")
         return False
 
     # Clean up the link by removing the surrounding [[ and ]]
@@ -74,6 +74,6 @@ def validate_dynamic_link(source_file_path, link):
 
     # If no valid file is found, report error with details
     if not found_file:
-        if Verbose: print(f"Error: source file: {source_file_path}, target file '{file_name}' not found in content.")
+        if VERBOSE: print(f"Error: source file: {source_file_path}, target file '{file_name}' not found in content.")
 
     return False

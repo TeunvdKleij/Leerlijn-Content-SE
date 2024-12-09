@@ -36,6 +36,6 @@ jobs:
         run: |
           git checkout staging
 
-      - name: Run wikiversie_parser.py script
+      - name: Run validate_content.py script
         run: |
-          python .github/wikiversie_parser.py --src "./content" --dest "./build" --dataset .github/datasets/test_dataset.xlsx --testing --verbose
+          python .github/script/validate_content.py --dataset .github/datasets/test_dataset.xlsx --testing

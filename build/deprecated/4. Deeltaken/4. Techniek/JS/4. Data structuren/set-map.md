@@ -3,7 +3,6 @@ title: set-map
 taxonomie: None
 tags:
 - JS/set-map
-- page
 difficulty: 2
 draft: true 
 ---

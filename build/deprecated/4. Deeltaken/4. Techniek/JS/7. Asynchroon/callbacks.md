@@ -3,7 +3,6 @@ title: callbacks
 taxonomie: None
 tags:
 - JS/Callbacks
-- page
 difficulty: 2
 draft: true 
 ---
