@@ -12,7 +12,7 @@ from report.table import generate_markdown_table
 """
 Generate the report based on the taxonomie report, success, and failed reports.
 """
-def generate_report():
+def generate_report(REPORT_PATH):
     if VERBOSE: print("Generating report...")
     with open(REPORT_PATH, "w", encoding="utf-8") as f:
         f.write('---\ndraft: true\n---\n')

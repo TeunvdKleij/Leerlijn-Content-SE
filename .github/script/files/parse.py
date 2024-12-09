@@ -31,7 +31,7 @@ def parse_dataset_file(dataset_file):
         exit()
 
 # Update markdown files in the source directory with taxonomie tags and generate reports.
-def parse_markdown_files(testing):
+def parse_markdown_files(SRC_DIR, DEST_DIR, testing):
     if VERBOSE: print("Parsing markdown files...")
 
     destDir = Path(DEST_DIR).resolve()

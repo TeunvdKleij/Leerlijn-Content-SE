@@ -30,20 +30,21 @@ def validate_test_report():
 Runs the tests for the pipeline
 """
 def test():
-    src_dir = Path(__file__).resolve().parents[0] / 'test_cases'
-    dest_dir = Path(__file__).resolve().parents[0] / 'test_cases_build'
-    report_file = ".github/report/actual_test_report.md"
+    global SRC_DIR, DEST_DIR, REPORT_PATH
 
-    if os.path.exists(dest_dir):
-        shutil.rmtree(dest_dir)
-        os.mkdir(dest_dir)
-
-    parse_markdown_files(src_dir, dest_dir) 
+    SRC_DIR = Path(__file__).resolve().parents[0] / 'test_cases'
+    DEST_DIR = Path(__file__).resolve().parents[0] / 'test_cases_build'
+    REPORT_PATH = Path(__file__).resolve().parents[0] 
     
-    fill_failed_images(src_dir, dest_dir) 
-    generate_report(report_file) 
+    if os.path.exists(DEST_DIR):
+        shutil.rmtree(DEST_DIR)
+        os.mkdir(DEST_DIR)
 
+    parse_markdown_files(SRC_DIR, DEST_DIR, True) 
     
+    fill_failed_images(SRC_DIR, DEST_DIR) 
+    generate_report(REPORT_PATH) 
+
     if validate_test_report():
         if VERBOSE: print("Test report validation successful")
         if evaluate_tests():
@@ -54,5 +55,4 @@ def test():
             sys.exit(1)  
     else : 
         if VERBOSE: print("Test report validation failed")
-        sys.exit(1)  
-    
+        sys.exit(1)

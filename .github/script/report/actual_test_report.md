@@ -46,8 +46,8 @@ Deze todo items moeten nog worden afgehandeld.
 ⚠️ Dit bestand bevat een foute taxonomie code. Zie de *Errors* kolom om te weten wat er mis is
 🟠 Dit bestand bevat een taxonomie code die niet toegevoegd hoeft te zijn
 
-| Status | File | Path | Taxonomie | Tags |
-| --- | --- | --- | --- | --- |
+| Status | File | Path | Taxonomie | Tags | Errors |
+| --- | --- | --- | --- | --- | --- |
 | ⚠️ | 10. Taxonomie code zonder onderwerp (tc-3) | 10. Taxonomie code zonder onderwerp (tc-3).md | bg-24.2.OI | N/A | Invalid taxonomie: bg-24.2.OI |
 | ⚠️ | 11. Taxonomie code zonder niveau (tc-2) | 11. Taxonomie code zonder niveau (tc-2).md | bg-24.Alleen-Niveau-Twee.OI | N/A | Invalid taxonomie: bg-24.Alleen-Niveau-Twee.OI |
 | ⚠️ | 12. Taxonomie code zonder tc-1 | 12. Taxonomie code zonder tc-1.md | 2.Alleen-Niveau-Twee.OI | N/A | Invalid taxonomie: 2.Alleen-Niveau-Twee.OI |
@@ -77,10 +77,10 @@ Als een image de error heeft over het niet gebruikt worden, betekent dit dat de 
 
 | Status | Image | Path | Error |
 | --- | --- | --- | --- |
-| 🏳️ | OI_test_image_2 | src/OI_test_image_2.png | Image not used in any file |
-| 🏳️ | PI_test_image_4 | src/PI_test_image_4.png | Image not used in any file |
-| 🏳️ | test_image_1 | src/test_image_1.png | Image not used in any file |
-| ❌ | test_image_3 | src/test_image_3.png | Image does not include 4C/ID component |
+| 🏳️ | OI_test_image_2 | src\OI_test_image_2.png | Image not used in any file |
+| 🏳️ | PI_test_image_4 | src\PI_test_image_4.png | Image not used in any file |
+| 🏳️ | test_image_1 | src\test_image_1.png | Image not used in any file |
+| ❌ | test_image_3 | src\test_image_3.png | Image does not include 4C/ID component |
 
 
 ## Geslaagde bestanden
@@ -89,9 +89,9 @@ De onderstaande bestanden zijn succesvol verwerkt.
 | Status | File | Path | Taxonomie | Tags |
 | --- | --- | --- | --- | --- |
 | ✅ | 1. Correct taxonomie codes | 1. Correct taxonomie codes.md | bg-24.2.Alleen-Niveau-Twee.OI<br>bg-24.2.Alleen-Niveau-Twee.DT<br>bg-24.2.Niveau-Twee-En-Drie.OI<br>bg-24.3.Niveau-Twee-En-Drie.OI<br>ib-19.2.Ander-Eerste-Onderdeel.PI<br>ib-19.3.Ander-Eerste-Onderdeel.PI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Beheerproces<br>Gebruiken beheersysteem<br>Alleen-Niveau-Twee<br>Niveau-Twee-En-Drie<br>Implentatieproces<br>Bouwen softwaresysteem<br>Ander-Eerste-Onderdeel<br>bg-24.2.Alleen-Niveau-Twee.DT<br>bg-24.2.Alleen-Niveau-Twee.OI<br>bg-24.2.Niveau-Twee-En-Drie.OI<br>bg-24.3.Niveau-Twee-En-Drie.OI<br>ib-19.2.Ander-Eerste-Onderdeel.PI<br>ib-19.3.Ander-Eerste-Onderdeel.PI | N/A |
-| ✅ | 19. Dezelfde taxonomie code twee keer | 4. Deeltaken/19. Dezelfde taxonomie code twee keer.md | bg-24.2.Alleen-Niveau-Twee.DT<br>bg-24.2.Alleen-Niveau-Twee.DT | HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Alleen-Niveau-Twee<br>bg-24.2.Alleen-Niveau-Twee.DT | N/A |
-| ✅ | 20. Dezelfde taxonomie code twee keer, maar ander niveau | 1. Leertaken/20. Dezelfde taxonomie code twee keer, maar ander niveau.md | bg-24.3.Niveau-Twee-En-Drie.LT<br>bg-24.2.Niveau-Twee-En-Drie.LT | HBO-i/niveau-3<br>HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Niveau-Twee-En-Drie<br>bg-24.2.Niveau-Twee-En-Drie.LT<br>bg-24.3.Niveau-Twee-En-Drie.LT | N/A |
-| ✅ | 23. Taxonomie code met al bestaande tag | 3. Procedurele-informatie/23. Taxonomie code met al bestaande tag.md | bg-24.2.Alleen-Niveau-Twee.PI | DezeTagMoetBlijvenBestaan<br>HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Alleen-Niveau-Twee<br>bg-24.2.Alleen-Niveau-Twee.PI | N/A |
-| ✅ | 24. Taxonomie code met al bestaande tag gelijk aan het onderwerp | 2. Ondersteunende-informatie/24. Taxonomie code met al bestaande tag gelijk aan het onderwerp.md | bg-24.2.Alleen-Niveau-Twee.OI | Alleen-Niveau-Twee<br>HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>bg-24.2.Alleen-Niveau-Twee.OI | N/A |
+| ✅ | 19. Dezelfde taxonomie code twee keer | 4. Deeltaken\19. Dezelfde taxonomie code twee keer.md | bg-24.2.Alleen-Niveau-Twee.DT<br>bg-24.2.Alleen-Niveau-Twee.DT | HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Alleen-Niveau-Twee<br>bg-24.2.Alleen-Niveau-Twee.DT | N/A |
+| ✅ | 20. Dezelfde taxonomie code twee keer, maar ander niveau | 1. Leertaken\20. Dezelfde taxonomie code twee keer, maar ander niveau.md | bg-24.3.Niveau-Twee-En-Drie.LT<br>bg-24.2.Niveau-Twee-En-Drie.LT | HBO-i/niveau-3<br>HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Niveau-Twee-En-Drie<br>bg-24.2.Niveau-Twee-En-Drie.LT<br>bg-24.3.Niveau-Twee-En-Drie.LT | N/A |
+| ✅ | 23. Taxonomie code met al bestaande tag | 3. Procedurele-informatie\23. Taxonomie code met al bestaande tag.md | bg-24.2.Alleen-Niveau-Twee.PI | DezeTagMoetBlijvenBestaan<br>HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Alleen-Niveau-Twee<br>bg-24.2.Alleen-Niveau-Twee.PI | N/A |
+| ✅ | 24. Taxonomie code met al bestaande tag gelijk aan het onderwerp | 2. Ondersteunende-informatie\24. Taxonomie code met al bestaande tag gelijk aan het onderwerp.md | bg-24.2.Alleen-Niveau-Twee.OI | Alleen-Niveau-Twee<br>HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>bg-24.2.Alleen-Niveau-Twee.OI | N/A |
 
 

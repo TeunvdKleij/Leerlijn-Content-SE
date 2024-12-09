@@ -83,7 +83,7 @@ def format_image_report_table(image_report):
 Fills the image Rapport with data from the images in the folders
 Every unique TC3 and TC1 combination will be added to the Rapport 2 data.
 """
-def fill_failed_images():
+def fill_failed_images(SRC_DIR, DEST_DIR):
     src_dir = Path(SRC_DIR).resolve()
     dest_dir = Path(DEST_DIR).resolve()
     

@@ -5,7 +5,7 @@ import argparse
 from pathlib import Path
 
 
-from config import DEST_DIR, SRC_DIR
+from config import DEST_DIR, SRC_DIR, REPORT_PATH
 
 from files.parse import parse_dataset_file, parse_markdown_files
 from files.images import fill_failed_images
@@ -43,9 +43,9 @@ def main():
             shutil.rmtree(DEST_DIR)
             os.mkdir(DEST_DIR)
 
-        parse_markdown_files(args.testing) 
-        fill_failed_images() 
-        generate_report() 
+        parse_markdown_files(SRC_DIR, DEST_DIR, args.testing) 
+        fill_failed_images(SRC_DIR, DEST_DIR) 
+        generate_report(REPORT_PATH) 
 
 if __name__ == "__main__":
     start_time = time.time()
