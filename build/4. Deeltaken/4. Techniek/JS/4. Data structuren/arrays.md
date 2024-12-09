@@ -5,6 +5,7 @@ tags:
 - JS/Arrays
 - page
 difficulty: 2
+draft: true 
 ---
 
 # 1 JavaScript Arrays

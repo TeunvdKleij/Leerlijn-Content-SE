@@ -5,6 +5,7 @@ tags:
 - HTML/BOM
 - page
 difficulty: 2
+draft: true 
 ---
 
 # 1. Browser Object Model (BOM)

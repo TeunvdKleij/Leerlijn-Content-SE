@@ -3,6 +3,7 @@ title: Handleiding Microsoft Threat Modeling Tool
 taxonomie: None
 tags:
 
+draft: true 
 ---
 ## Stap 1. Downloaden
 ---
