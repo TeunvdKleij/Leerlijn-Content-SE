@@ -1,4 +1,4 @@
-name: Run the wikiversie parser and create PR
+name: Validate content for main
 on:
   push:
     branches:
