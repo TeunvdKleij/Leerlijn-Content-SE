@@ -6,3 +6,4 @@ content/
 .github/datasets/
 .github/script/
 .github/README.md
+.github/workflows/
