@@ -12,7 +12,7 @@ SRC_DIR = "./content" # Source directory where the markdown files are located
 DEST_DIR = "./build" # Destination directory where the updated markdown files will be saved
 TEST_DIR = "./.github/tests/test_cases" # Directory of the test cases
 REPORT_PATH = "./report.md" # Report path where the report will be saved
-VERBOSE = True # VERBOSE output flag
+VERBOSE = False # VERBOSE output flag
 TODO_PATTERN = r'-=[A-Z]+=-' # To-Do pattern
 TAXONOMIE_PATTERN = r'^[a-z]{2}-\d{1,3}\.[123]\.[^\s\.]+(\.[^\s\.]+)*\.(?:OI|DT|PI|LT)$' # Taxonomie pattern
 VALID_DYNAMIC_LINK_PREFIXES = ['https://', 'http://', 'tags/'] # List of valid dynamic links

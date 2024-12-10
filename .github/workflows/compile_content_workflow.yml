@@ -43,17 +43,17 @@ jobs:
         run: |
           cp report.md ../
 
+      # Step 6: Move build folder to root
+      - name: Move build folder to root
+        run: |
+          mkdir -p ../build && cp -r build/* ../build/ && rm -rf build
+
       # Step 7: Commit report.md to content branch
       - name: Commit report.md to content branch
         run: |
           git add report.md
           git commit -m "Update report.md"
           git push origin content
-
-      # Step 6: Move build folder to root
-      - name: Move build folder to root
-        run: |
-          mkdir -p ../build && cp -r build/* ../build/ && rm -rf build
 
       # Step 7: Switch to staging branch
       - name: Switch to staging branch
