@@ -50,14 +50,14 @@ Bij kolom *TC2*, *Leertaken*, *Ondersteunende informatie*, *Procedurele informat
 | Controlestructuur-Asynchroon-Await | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
 | Controlestructuur-Pattern-Matching-Object-is-type | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
 | Datatype-Declaratie-en-Initialisatie | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Primitief-Integer | ib-19 | 🏳️ ✅ ✅ | 🏳️ ⛔️ ⛔️ | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
+| Datatype-Primitief-Integer | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
 | Datatype-Primitief-Float | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
 | Datatype-Primitief-Double | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
 | Datatype-Primitief-Boolean | ib-19 | 🏳️ ✅ ✅ | 🏳️ ⛔️ ⛔️ | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ | 🏳️ ✅ ✅ |
 | Datatype-Primitief-Char | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
 | Datatype-Primitief-Byte | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
 | Datatype-Primitief-Long | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
-| Datatype-Primitief-Uint | ib-19 | 🏳️ ✅ ✅ | 🏳️ ⛔️ ⛔️ | 🏳️ ✅ ✅ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
+| Datatype-Primitief-Uint | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
 | Datatype-Primitief-Ulong | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
 | Datatype-String | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ 🏳️ 🏳️ | 🏳️ ⛔️ ⛔️ |
 | Datastructuur-Array | ib-19 | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ | 🏳️ ⛔️ ⛔️ |
@@ -86,7 +86,6 @@ Deze todo items moeten nog worden afgehandeld.
 
 | Status | File | Path | Taxonomie | Tags | Errors |
 | --- | --- | --- | --- | --- | --- |
-| 🔨 | 1. Integer | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/Integer/1. Integer.md | ib-19.2.Datatype-Primitief-Integer.OI<br>ib-19.3.Datatype-Primitief-Integer.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Datatype-Primitief-Integer<br>ib-19.2.Datatype-Primitief-Integer.OI<br>ib-19.3.Datatype-Primitief-Integer.OI | Invalid dynamic link: `[[1. Rekenkundige-Operatoren|operatoren]]`<br>Invalid dynamic link: `[[1. Integer & Uint|Deeltaken]]`<br>To-Do item(s) found in the file:<br>-=DOUBLE=-<br>-=FLOAT=-<br>-=LONG=- |
 
 
 ## Gefaalde bestanden
@@ -103,6 +102,7 @@ Deze todo items moeten nog worden afgehandeld.
 | ❌ | 1. Introductie Git | 3. Procedurele-informatie/4. Techniek/Workshop Git/1. Introductie Git.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | 1. Introductie Git | 2. Ondersteunende-informatie/4. Techniek/Git/1. Introductie Git.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | 1. Introductie tot Docker | 2. Ondersteunende-informatie/4. Techniek/Docker/1. Introductie tot Docker.md | N/A | Docker | No taxonomie found in file. |
+| ⚠️ | 1. Recursie | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/Recursie/1. Recursie.md | ib-19.3.Controlestructuur-Herhaling-Recursie.oi | N/A | Invalid taxonomie: ib-19.3.Controlestructuur-Herhaling-Recursie.oi |
 | ❌ | 1. Vaardigheden-hiërarchie SSDLC Requirements | 5. Vaardigheden-hiërarchieën/1. Vaardigheden-hiërarchie SSDLC Requirements.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | 1. Variablen | 4. Deeltaken/4. Techniek/JS/2. Basis/1. Variablen.md | N/A | JS/Variablen<br>page | No taxonomie found in file. |
 | ❌ | 2. Destructuring | 4. Deeltaken/4. Techniek/JS/9. ES6/2. Destructuring.md | N/A | JS/Destructuring<br>page | No taxonomie found in file. |
@@ -220,7 +220,6 @@ De onderstaande bestanden zijn succesvol verwerkt.
 | ✅ | 10. GitHub website | 2. Ondersteunende-informatie/4. Techniek/Git/10. GitHub website.md | bg-24.2.Git-GitHub.OI<br>bg-24.3.Git-GitHub.OI<br>bg-24.2.Git-Tags-en-releases.OI<br>bg-24.3.Git-Tags-en-releases.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-GitHub<br>Git-Tags-en-releases<br>bg-24.2.Git-GitHub.OI<br>bg-24.2.Git-Tags-en-releases.OI<br>bg-24.3.Git-GitHub.OI<br>bg-24.3.Git-Tags-en-releases.OI | N/A |
 | ✅ | 2. Git Repositories | 2. Ondersteunende-informatie/4. Techniek/Git/2. Git Repositories.md | bg-24.2.Git-Repositories.OI<br>bg-24.3.Git-Repositories.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-Repositories<br>bg-24.2.Git-Repositories.OI<br>bg-24.3.Git-Repositories.OI | N/A |
 | ✅ | 2. If-Else-If | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/If-else/2. If-Else-If.md | ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Beslissingen-If-Else<br>ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | N/A |
-| ✅ | 2. Uint | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/Integer/2. Uint.md | ib-19.2.Datatype-Primitief-Uint.OI<br>ib-19.3.Datatype-Primitief-Uint.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Datatype-Primitief-Uint<br>ib-19.2.Datatype-Primitief-Uint.OI<br>ib-19.3.Datatype-Primitief-Uint.OI | N/A |
 | ✅ | 3. Git Branches | 2. Ondersteunende-informatie/4. Techniek/Git/3. Git Branches.md | bg-24.2.Git-Branches.OI<br>bg-24.3.Git-Branches.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-Branches<br>bg-24.2.Git-Branches.OI<br>bg-24.3.Git-Branches.OI | N/A |
 | ✅ | 3. Git Forks & Branches | 3. Procedurele-informatie/4. Techniek/Workshop Git/3. Git Forks & Branches.md | bg-24.2.Git-Repositories.PI<br>bg-24.3.Git-Repositories.PI<br>bg-24.2.Git-Branches.PI<br>bg-24.3.Git-Branches.PI<br>bg-24.2.Git-GitHub.PI<br>bg-24.3.Git-GitHub.PI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-Repositories<br>Git-Branches<br>Git-GitHub<br>bg-24.2.Git-Branches.PI<br>bg-24.2.Git-GitHub.PI<br>bg-24.2.Git-Repositories.PI<br>bg-24.3.Git-Branches.PI<br>bg-24.3.Git-GitHub.PI<br>bg-24.3.Git-Repositories.PI | N/A |
 | ✅ | 3. If-Else-Logical-Operators | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/If-else/3. If-Else-Logical-Operators.md | ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | HBO-i/niveau-2<br>HBO-i/niveau-3<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Beslissingen-If-Else<br>ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | N/A |
