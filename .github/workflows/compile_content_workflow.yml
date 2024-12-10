@@ -52,8 +52,12 @@ jobs:
       - name: Commit report.md to content branch
         run: |
           git add report.md
-          git commit -m "Update report.md"
-          git push origin content
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "Update report.md"
+            git push origin content
+          else
+            echo "No changes to commit"
+          fi
 
       # Step 7: Switch to staging branch
       - name: Switch to staging branch
