@@ -3,6 +3,6 @@
 .idea/
 .DS_Store
 content/
-files_to_delete.txt
-staging_files.txt
-main_files.txt
+.github/datasets/
+.github/script/
+.github/README.md
