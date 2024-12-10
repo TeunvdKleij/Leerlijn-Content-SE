@@ -1,4 +1,5 @@
-name: Compile the source content
+name: Compile and Sync Content
+
 on:
   push:
     branches:
@@ -9,49 +10,60 @@ permissions:
   pull-requests: write
 
 jobs:
-  run-parser-and-create-pr:
+  process-and-sync:
     runs-on: ubuntu-latest
     steps:
+      # Step 1: Configure Git
       - name: Configure Git
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
+      # Step 2: Checkout code
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
+      # Step 3: Set up Python
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: "3.x"
 
+      # Step 4: Install dependencies
       - name: Install dependencies
         run: |
-          pip install pandas
-          pip install openpyxl
+          pip install pandas openpyxl
 
-      - name: Run compile_content.py script
+      # Step 5: Run the Python script
+      - name: Run compile_content.py
         run: |
           python .github/script/compile_content.py --dataset .github/datasets/dataset.xlsx
 
-      - name: Create or checkout staging branch
-        run: |
-          git fetch origin
-          git checkout staging
-          git pull origin staging
-
-      - name: Commit compiled files to staging
-        run: |
-          git add build/
-          git commit -m "Add compiled markdown files"
-          git push origin staging
-
-      - name: Commit report.md to staging
+      # Step 6: Commit report.md to content branch
+      - name: Commit report.md to content branch
         run: |
           git add report.md
           git commit -m "Update report.md"
+          git push origin content
+
+      # Step 7: Switch to staging branch
+      - name: Switch to staging branch
+        run: |
+          git fetch origin
+          git checkout -B staging origin/staging
+
+      # Step 8: Sync compiled files and report.md to staging
+      - name: Commit compiled files and report.md to staging
+        run: |
+          mkdir -p ../build && cp -r build/* ../build/ # Move build folder out of repo
+          git rm -rf build/ || true                    # Remove existing build folder from repo
+          cp -r ../build/ build/                       # Bring only the new compiled files back
+          git add build/
+          git add report.md
+          git commit -m "Sync compiled files and report.md to staging"
           git push origin staging
 
+      # Step 9: Create Pull Request to main
       - name: Create Pull Request to main
         uses: peter-evans/create-pull-request@v6
         with:
@@ -64,10 +76,3 @@ jobs:
           labels: |
             automated-pr
             content-update
-
-      - name: Commit report.md to content
-        run: |
-          git checkout content
-          git add report.md
-          git commit -m "Update report.md"
-          git push origin content
