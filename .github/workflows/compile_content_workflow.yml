@@ -84,7 +84,6 @@ jobs:
           commit-message: "Update compiled markdown files and report"
           title: "Update main with changes from staging"
           body: "This PR includes updates from the staging branch."
-          branch: "staging-content-update"
           base: "main"
           labels: |
             automated-pr
