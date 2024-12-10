@@ -95,9 +95,6 @@ jobs:
       - name: Debug branch creation
         run: git branch -a
 
-      # - name: Check changes in branch
-      #   run: git diff origin/main..update-from-staging
-
       # - name: Create Pull Request to main
       #   uses: peter-evans/create-pull-request@v7.0.5
       #   with:
@@ -110,3 +107,9 @@ jobs:
       #     labels: |
       #       automated-pr
       #       content-update
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: update-from-staging
