@@ -76,11 +76,27 @@ jobs:
           git commit -m "Sync compiled files and report.md to staging"
           git push origin staging
 
+      # Verify if there are changes to push
+      - name: Verify changes between staging and main
+        run: |
+          git fetch origin main
+          if [ "$(git rev-list --count origin/staging..origin/main)" -eq "0" ]; then
+            echo "No changes to create PR for."
+            exit 0
+          fi
+
+      # Step 7: Switch to staging branch
+      - name: Switch to staging branch
+        run: |
+          git fetch origin
+          git checkout staging
+
       # Step 9: Create Pull Request to main
       - name: Create Pull Request to main
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          branch: "update-from-staging"
           commit-message: "Update compiled markdown files and report"
           title: "Update main with changes from staging"
           body: "This PR includes updates from the staging branch."
