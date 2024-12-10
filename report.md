@@ -102,7 +102,6 @@ Deze todo items moeten nog worden afgehandeld.
 | ❌ | 1. Introductie Git | 3. Procedurele-informatie/4. Techniek/Workshop Git/1. Introductie Git.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | 1. Introductie Git | 2. Ondersteunende-informatie/4. Techniek/Git/1. Introductie Git.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | 1. Introductie tot Docker | 2. Ondersteunende-informatie/4. Techniek/Docker/1. Introductie tot Docker.md | N/A | Docker | No taxonomie found in file. |
-| ⚠️ | 1. Recursie | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/Recursie/1. Recursie.md | ib-19.3.Controlestructuur-Herhaling-Recursie.oi | N/A | Invalid taxonomie: ib-19.3.Controlestructuur-Herhaling-Recursie.oi |
 | ❌ | 1. Vaardigheden-hiërarchie SSDLC Requirements | 5. Vaardigheden-hiërarchieën/1. Vaardigheden-hiërarchie SSDLC Requirements.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | 1. Variablen | 4. Deeltaken/4. Techniek/JS/2. Basis/1. Variablen.md | N/A | JS/Variablen<br>page | No taxonomie found in file. |
 | ❌ | 2. Destructuring | 4. Deeltaken/4. Techniek/JS/9. ES6/2. Destructuring.md | N/A | JS/Destructuring<br>page | No taxonomie found in file. |
