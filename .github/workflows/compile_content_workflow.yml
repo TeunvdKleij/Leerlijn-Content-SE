@@ -39,11 +39,6 @@ jobs:
         run: |
           python .github/script/compile_content.py --dataset .github/datasets/dataset.xlsx
 
-      # Step 6: Move build folder to root
-      - name: Move build folder to root
-        run: |
-          mkdir -p ../build && cp -r build/* ../build/
-
       - name: Copy report.md to root
         run: |
           cp report.md ../
@@ -55,6 +50,11 @@ jobs:
           git commit -m "Update report.md"
           git push origin content
 
+      # Step 6: Move build folder to root
+      - name: Move build folder to root
+        run: |
+          mkdir -p ../build && cp -r build/* ../build/ && rm -rf build
+
       # Step 7: Switch to staging branch
       - name: Switch to staging branch
         run: |
@@ -64,8 +64,8 @@ jobs:
       # Step 8: Sync compiled files and report.md to staging
       - name: Commit compiled files and report.md to staging
         run: |
-          git rm -rf build/ || true                    # Remove existing build folder from repo
-          cp -r ../build/ build/                       # Bring only the new compiled files back
+          git rm -rf build/ || true
+          cp -r ../build/ build
           git add build/
           cp ../report.md report.md
           git add report.md
