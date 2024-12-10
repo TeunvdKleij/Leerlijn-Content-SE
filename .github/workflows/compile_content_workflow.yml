@@ -46,24 +46,29 @@ jobs:
           git commit -m "Update report.md"
           git push origin content
 
-      # Step 7: Switch to staging branch
+      # Step 7: Handle build directory before switching branches
+      - name: Move untracked build files temporarily
+        run: |
+          mkdir -p ../temp_build
+          cp -r build/* ../temp_build/
+          git clean -fd # Removes untracked files
+
+      # Step 8: Switch to staging branch
       - name: Switch to staging branch
         run: |
           git fetch origin
           git checkout -B staging origin/staging
 
-      # Step 8: Sync compiled files and report.md to staging
-      - name: Commit compiled files and report.md to staging
+      # Step 9: Restore build files to staging branch
+      - name: Restore build files to staging branch
         run: |
-          mkdir -p ../build && cp -r build/* ../build/ # Move build folder out of repo
-          git rm -rf build/ || true                    # Remove existing build folder from repo
-          cp -r ../build/ build/                       # Bring only the new compiled files back
+          cp -r ../temp_build/* build/
+          rm -rf ../temp_build # Clean up the temporary folder
           git add build/
-          git add report.md
-          git commit -m "Sync compiled files and report.md to staging"
+          git commit -m "Sync compiled files to staging"
           git push origin staging
 
-      # Step 9: Create Pull Request to main
+      # Step 10: Create Pull Request to main
       - name: Create Pull Request to main
         uses: peter-evans/create-pull-request@v6
         with:
