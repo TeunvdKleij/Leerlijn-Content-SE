@@ -34,9 +34,14 @@ jobs:
         run: |
           python .github/script/compile_content.py --dataset .github/datasets/dataset.xlsx
 
+      - name: Create or checkout staging branch
+        run: |
+          git fetch origin
+          git checkout -b staging || git checkout staging
+          git pull origin staging
+
       - name: Commit compiled files to staging
         run: |
-          git checkout -b staging
           git add build/
           git commit -m "Add compiled markdown files"
           git push origin staging
