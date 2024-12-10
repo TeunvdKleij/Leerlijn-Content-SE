@@ -37,7 +37,7 @@ jobs:
       - name: Create or checkout staging branch
         run: |
           git fetch origin
-          git checkout -b staging || git checkout staging
+          git checkout staging
           git pull origin staging
 
       - name: Commit compiled files to staging
