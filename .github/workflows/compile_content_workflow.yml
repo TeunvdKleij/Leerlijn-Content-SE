@@ -83,6 +83,9 @@ jobs:
             exit 0
           fi
 
+      - name: Go to staging branch
+        run: git checkout staging
+
       # Step 9: Create Pull Request to main
       - name: Create PR branch
         run: |
@@ -92,18 +95,18 @@ jobs:
       - name: Debug branch creation
         run: git branch -a
 
-      - name: Check changes in branch
-        run: git diff origin/main..update-from-staging
+      # - name: Check changes in branch
+      #   run: git diff origin/main..update-from-staging
 
-      - name: Create Pull Request to main
-        uses: peter-evans/create-pull-request@v7.0.5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: "update-from-staging"
-          commit-message: "Update compiled markdown files and report"
-          title: "Update main with changes from staging"
-          body: "This PR includes updates from the staging branch."
-          base: "main"
-          labels: |
-            automated-pr
-            content-update
+      # - name: Create Pull Request to main
+      #   uses: peter-evans/create-pull-request@v7.0.5
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     branch: "update-from-staging"
+      #     commit-message: "Update compiled markdown files and report"
+      #     title: "Update main with changes from staging"
+      #     body: "This PR includes updates from the staging branch."
+      #     base: "main"
+      #     labels: |
+      #       automated-pr
+      #       content-update
