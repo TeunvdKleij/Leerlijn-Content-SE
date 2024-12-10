@@ -1,0 +1,64 @@
+name: Compile the source content
+on:
+  push:
+    branches:
+      - content
+    paths-ignore:
+      - ".github/**"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  run-parser-and-create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          pip install pandas
+          pip install openpyxl
+
+      - name: Run compile_content.py script
+        run: |
+          python .github/script/compile_content.py --dataset .github/datasets/dataset.xlsx
+
+      - name: Commit and push changes to staging
+        run: |
+          git checkout staging
+          git add build/ report.md
+          git commit -m "Update compiled markdown files and report"
+          git push origin staging
+
+      - name: Create Pull Request to main
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update compiled markdown files and report
+          title: "Update main with changes from staging"
+          body: "This PR includes updates from the staging branch."
+          branch: "main-content-update"
+          base: "main"
+          labels: |
+            automated-pr
+            content-update
+            
+      - name: Commit report.md to content
+        run: |
+          git checkout content
+          git add report.md
+          git commit -m "Update report.md"
+          git push origin content
