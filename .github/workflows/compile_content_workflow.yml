@@ -84,6 +84,11 @@ jobs:
           fi
 
       # Step 9: Create Pull Request to main
+      - name: Create PR branch
+        run: |
+          git checkout -b update-from-staging
+          git push origin update-from-staging
+
       - name: Debug branch creation
         run: git branch -a
 
