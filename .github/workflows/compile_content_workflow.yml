@@ -83,7 +83,13 @@ jobs:
             exit 0
           fi
 
-      # Step 10: Create Pull Request to main
+      # Step 9: Create Pull Request to main
+      - name: Debug branch creation
+        run: git branch -a
+
+      - name: Check changes in branch
+        run: git diff origin/main..update-from-staging
+
       - name: Create Pull Request to main
         uses: peter-evans/create-pull-request@v7.0.5
         with:
