@@ -3,8 +3,6 @@ on:
   push:
     branches:
       - content
-    paths-ignore:
-      - ".github/**"
 
 permissions:
   contents: write
@@ -36,26 +34,32 @@ jobs:
         run: |
           python .github/script/compile_content.py --dataset .github/datasets/dataset.xlsx
 
-      - name: Commit and push changes to staging
+      - name: Commit compiled files to staging
         run: |
-          git checkout staging
-          git add build/ report.md
-          git commit -m "Update compiled markdown files and report"
+          git checkout -b staging
+          git add build/
+          git commit -m "Add compiled markdown files"
+          git push origin staging
+
+      - name: Commit report.md to staging
+        run: |
+          git add report.md
+          git commit -m "Update report.md"
           git push origin staging
 
       - name: Create Pull Request to main
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: Update compiled markdown files and report
+          commit-message: "Update compiled markdown files and report"
           title: "Update main with changes from staging"
           body: "This PR includes updates from the staging branch."
-          branch: "main-content-update"
+          branch: "staging-content-update"
           base: "main"
           labels: |
             automated-pr
             content-update
-            
+
       - name: Commit report.md to content
         run: |
           git checkout content
