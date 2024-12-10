@@ -1,6 +1,6 @@
 ---
 title: Keepme
-taxonomie: None
+taxonomie: ['test']
 tags:
 
 draft: true 
