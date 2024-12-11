@@ -2,7 +2,7 @@ name: Test for pipeline
 on:
   push:
     branches:
-      - staging
+      - content
     paths:
       - ".github/**"
 
@@ -32,10 +32,10 @@ jobs:
         run: |
           git fetch --all
 
-      - name: Checkout staging branch
+      - name: Checkout content branch
         run: |
-          git checkout staging
+          git checkout content
 
-      - name: Run compile_content.py script
+      - name: Run test.py script
         run: |
-          python .github/script/compile_content.py --dataset .github/datasets/test_dataset.xlsx --testing
+          python .github/script/tests/test.py

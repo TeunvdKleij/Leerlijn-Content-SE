@@ -1,12 +1,14 @@
 # Imports
 import re
+import os
 from pathlib import Path
 
 # Variables
-from config import failedFiles, VERBOSE, dataset, Rapport_2, WIPFiles
+from config import failedFiles, dataset, Rapport_2, WIPFiles
 
 # Constants
-from config import PROCES_COL, PROCESSTAP_COL, TC3_COL, TC2_COL, NOT_NECESSARY, ERROR_MISSING_TAXCO, TAXONOMIE_PATTERN, TODO_PATTERN
+from config import PROCES_COL, PROCESSTAP_COL, TC3_COL, TC2_COL, TAXONOMIE_PATTERN, TODO_PATTERN, FOLDERS_FOR_4CID, VERBOSE
+from config import ERROR_MISSING_TAXCO, NOT_NECESSARY, ERROR_TAXCO_NOT_NEEDED, ERROR_TAXCO_NOT_FOUND, ERROR_TAXCO_IN_WRONG_4CID_COMPONENT
 
 # Functions
 from report.table import generate_markdown_table
@@ -93,24 +95,28 @@ def generate_tags(taxonomies, file_path, existing_tags):
                             splitted_row2 =  row[TC2_COL].split(',')
                             if splitted_row2[int(tc_2)-1] == "X": 
                                tags.append(NOT_NECESSARY)    
-
-                            # Sort the tags so that the HBO-i tags are first
-                            tags.sort(key=lambda x: x.startswith('HBO-i'), reverse=True)
                             
-                            update_rapport1_data(tc_1, tc_2)
-                            update_rapport2_data(get_file_type(file_path), tc_1, tc_2, tc_3)   
+                            # Checks if the fourth path has the matching 4C/ID component (looking at the folder and taxonomie code)
+                            containsCorrectTaxcos = check_if_file_contains_wrong_4cid(taxonomies, file_path)
+                            if containsCorrectTaxcos:
+                                update_rapport1_data(tc_1, tc_2)
+                                update_rapport2_data(get_file_type(file_path), tc_1, tc_2, tc_3)   
+                            else:   
+                                errors.append(ERROR_TAXCO_IN_WRONG_4CID_COMPONENT + taxonomie)
+                        
+
                             taxonomie_tags = sorted(list(set(taxonomies)))
 
         # If no tags were found, add an error
             if NOT_NECESSARY in tags: 
                 tags.remove(NOT_NECESSARY)
-                errors.append(f"Taxonomie used where it is not needed: {taxonomie}")
+                errors.append(ERROR_TAXCO_NOT_NEEDED + taxonomie)
             if tags == [] and not errors:
-                    errors.append(f"Taxonomie not found in dataset: {taxonomie}")
-                    if VERBOSE: print(f"Taxonomie not found in dataset: {taxonomie}")
+                    errors.append(ERROR_TAXCO_NOT_FOUND + taxonomie)
+                    if VERBOSE: print(ERROR_TAXCO_NOT_FOUND + taxonomie)
     else:
         errors.append(ERROR_MISSING_TAXCO)
-        if VERBOSE: print(ERROR_MISSING_TAXCO)
+        if VERBOSE: print(ERROR_MISSING_TAXCO)  
 
     # Combine the existing tags with the new tags
     if existing_tags: combined_tags += existing_tags 
@@ -166,3 +172,20 @@ def find_ToDo_items(content):
     # Find all the todo items in the content
     todo_items = re.findall(TODO_PATTERN, content)
     return todo_items
+
+
+# Checks if a file contains at least one wrong taxonomie code (based on incorrect placement of 4C/ID)
+def check_if_file_contains_wrong_4cid(taxonomies, file_path):
+    containsOnlyCorrectTaxonomie = True
+    for taxonomie in taxonomies:
+        if not re.match(TAXONOMIE_PATTERN, taxonomie):
+            continue
+        tc_1, tc_2, tc_3, tc_4 = split_taxonomie(taxonomie)  
+        if tc_1 and tc_2 and tc_3:
+            if tc_4 in FOLDERS_FOR_4CID:
+                expected_folder = FOLDERS_FOR_4CID[tc_4]
+                if expected_folder not in str(file_path):
+                    containsOnlyCorrectTaxonomie = False
+    return containsOnlyCorrectTaxonomie            
+
+

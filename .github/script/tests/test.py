@@ -5,14 +5,16 @@ import shutil
 import os
 import sys
 
-# Variables
-from config import VERBOSE
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+#variables
+from config import failedFiles
 
 # Functions
 from files.images import fill_failed_images
 from report.generate import generate_report
-from files.parse import parse_markdown_files
+from files.parse import parse_markdown_files, parse_dataset_file
 from tests.evaluate import evaluate_tests
+from report.populate import populate_rapport1, populate_rapport2
 
 def validate_test_report():
     expected_test_report_path =  Path(__file__).resolve().parents[1] / 'report/expected_test_report.md'
@@ -25,35 +27,66 @@ def validate_test_report():
         return True
     else:
         return False
+    
+def validate_draft():
+    expectedAmountOfDraftFiles = len(failedFiles)
+    actualAmountOfDraftFiles = 0
+    for file in failedFiles:
+        fullPath = "./.github/script/tests/test_cases_build/" + file['path']
+        try:
+            with open(fullPath, 'r', encoding='utf-8') as file:
+                for line in file:
+                    if line.strip().startswith('draft:'):
+                        draft_value = line.strip().split(':', 1)[1].strip().lower()
+                        if draft_value == 'true':
+                            actualAmountOfDraftFiles += 1
+        except FileNotFoundError:
+            print(f"Error: The file at '{fullPath}' does not exist.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+    return expectedAmountOfDraftFiles == actualAmountOfDraftFiles
 
 """
 Runs the tests for the pipeline
 """
 def test():
-    global SRC_DIR, DEST_DIR, REPORT_PATH
+    global SRC_DIR, DEST_DIR, REPORT_PATH, DATASET
 
     SRC_DIR = Path(__file__).resolve().parents[0] / 'test_cases'
     DEST_DIR = Path(__file__).resolve().parents[0] / 'test_cases_build'
-    REPORT_PATH = "./github/script/report/actual_test_report.md"
+    DATASET = Path(__file__).resolve().parents[2] / 'datasets/test_dataset.xlsx'
+    REPORT_PATH = "./.github/script/report/actual_test_report.md"
 
     if os.path.exists(DEST_DIR):
         shutil.rmtree(DEST_DIR)
         os.mkdir(DEST_DIR)
 
-    parse_markdown_files(SRC_DIR, DEST_DIR, True) 
+    parse_dataset_file(DATASET)
+    populate_rapport1()
+    populate_rapport2()
+
+    parse_markdown_files(SRC_DIR, DEST_DIR) 
     
     fill_failed_images(SRC_DIR, DEST_DIR) 
     generate_report(REPORT_PATH) 
 
     if validate_test_report():
-        if VERBOSE: print("Test report validation successful")
+        print("Test report validation successful")
         if evaluate_tests():
-            if VERBOSE: print("Test evaluation successful")
-            sys.exit(0)
+            print("Test evaluation successful")
+            if(validate_draft()):
+                print("Draft test succesful")
+                sys.exit(0)
+            else:
+                print("Draft test failed")
+                sys.exit(1)
         else : 
-            if VERBOSE: print("Test evaluation failed")
+            print("Test evaluation failed")
             sys.exit(1)  
     else : 
-        if VERBOSE: print("Test report validation failed")
+        print("Test report validation failed")
         sys.exit(1)
+
+if __name__ == "__main__":
+    test()
     

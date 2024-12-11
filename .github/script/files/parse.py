@@ -7,7 +7,7 @@ import pandas as pd
 from config import failedFiles, parsedFiles, WIPFiles, dataset
 
 # Constants
-from config import ERROR_MISSING_TAXCO, FAIL_CROSS, NOT_NEEDED, WARNING, SUCCESS, TODO_ITEMS, DEST_DIR, SRC_DIR, IGNORE_FOLDERS, VERBOSE
+from config import ERROR_MISSING_TAXCO, FAIL_CROSS, NOT_NEEDED, WARNING, SUCCESS, TODO_ITEMS, IGNORE_FOLDERS, VERBOSE, ERROR_TAXCO_NOT_NEEDED
 
 # Functions
 from files.images import copy_images
@@ -31,7 +31,7 @@ def parse_dataset_file(dataset_file):
         exit()
 
 # Update markdown files in the source directory with taxonomie tags and generate reports.
-def parse_markdown_files(SRC_DIR, DEST_DIR, testing):
+def parse_markdown_files(SRC_DIR, DEST_DIR):
     if VERBOSE: print("Parsing markdown files...")
 
     destDir = Path(DEST_DIR).resolve()
@@ -52,15 +52,13 @@ def parse_markdown_files(SRC_DIR, DEST_DIR, testing):
 
         if VERBOSE: 
             print("*" * 50) 
-            if testing: print(f"Testing parsing file: {file_path}")
-            else : print(f"Parsing file: {file_path}")
+            print(f"Parsing file: {file_path}")
 
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
 
         content, link_errors = update_dynamic_links(file_path, content)
         image_errors = copy_images(content, srcDir, destDir)
-
         existing_tags = extract_values(content, 'tags')
         taxonomie = extract_values(content, 'taxonomie')
         new_tags, tags_errors = generate_tags(taxonomie, file_path, existing_tags)
@@ -90,7 +88,7 @@ def fill_lists(errors, toDoItems, file_path, srcDir, taxonomie, tags):
             WIPFiles.append(create_file_report(TODO_ITEMS, file_path, srcDir, taxonomie, tags, errors))
         elif(ERROR_MISSING_TAXCO in errors): 
             failedFiles.append(create_file_report(FAIL_CROSS, file_path, srcDir, taxonomie, tags, errors))
-        elif any("Taxonomie used where it is not needed:" in error for error in errors):
+        elif any(ERROR_TAXCO_NOT_NEEDED in error for error in errors):
             failedFiles.append(create_file_report(NOT_NEEDED, file_path, srcDir, taxonomie, tags, errors))
         else: 
             failedFiles.append(create_file_report(WARNING, file_path, srcDir, taxonomie, tags, errors))
