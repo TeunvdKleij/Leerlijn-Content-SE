@@ -117,6 +117,7 @@ Deze todo items moeten nog worden afgehandeld.
 | ❌ | 3. Vaardigheden-hiërarchie SSDLC Development | 5. Vaardigheden-hiërarchieën/3. Vaardigheden-hiërarchie SSDLC Development.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | 4. Control structures | 4. Deeltaken/4. Techniek/JS/2. Basis/4. Control structures.md | N/A | JS/Data-types<br>page | No taxonomie found in file. |
 | ❌ | 4. Docker Images | 2. Ondersteunende-informatie/4. Techniek/Docker/4. Docker Images.md | N/A | Docker | No taxonomie found in file. |
+| ⚠️ | 4. Git Pull Requests | 3. Procedurele-informatie/4. Techniek/Workshop Git/4. Git Pull Requests.md | bg-24.2.Git-Pull-requests.PI<br>bg-24.3.Git-Pull-requests.PI<br>bg-24.2.Git-Mergen.PI<br>bg-24.3.Git-Mergen.PI | HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-Pull-requests<br>HBO-i/niveau-3<br>Git-Mergen<br>bg-24.2.Git-Mergen.PI<br>bg-24.2.Git-Pull-requests.PI<br>bg-24.3.Git-Mergen.PI<br>bg-24.3.Git-Pull-requests.PI | Invalid dynamic link: `[[PI_Git_Pull_Request_3.png]]`<br>Invalid dynamic link: `[[PI_Git_Pull_Request_4.png]]`<br>Image not found: PI_Git_Pull_Request_3.png<br>Image not found: PI_Git_Pull_Request_4.png |
 | ❌ | 4. Vaardigheden-hiërarchie SSDLC Testing | 5. Vaardigheden-hiërarchieën/4. Vaardigheden-hiërarchie SSDLC Testing.md | N/A | Vaardigheden-hiërarchieën/Testing | No taxonomie found in file. |
 | ❌ | 5. Docker Containers | 2. Ondersteunende-informatie/4. Techniek/Docker/5. Docker Containers.md | N/A | Docker | No taxonomie found in file. |
 | ❌ | 5. Vaardigheden-hiërarchie SSDLC Deployment | 5. Vaardigheden-hiërarchieën/5. Vaardigheden-hiërarchie SSDLC Deployment.md | N/A | N/A | No taxonomie found in file. |
@@ -131,34 +132,34 @@ Deze todo items moeten nog worden afgehandeld.
 | ❌ | Events | 4. Deeltaken/4. Techniek/JS/5. DOM manipulation/Events.md | N/A | JS/Events<br>page | No taxonomie found in file. |
 | ❌ | Fetch API | 4. Deeltaken/4. Techniek/JS/10. Browser APIs/Fetch API.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | Geolocation API | 4. Deeltaken/4. Techniek/JS/10. Browser APIs/Geolocation API.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | Keepme | 2. Ondersteunende-informatie/1. Projectmanagement/Keepme.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | Keepme | 2. Ondersteunende-informatie/5. Professional-skills/Keepme.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/2. Pakketselectieproces/1. Uitvoeren analyse/Keepme.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/2. Pakketselectieproces/2. Adviseren onderdeelselectie/Keepme.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/5. Oplossen fouten/Keepme.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/3. Refactoren applicatie/Keepme.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/4. Beredeneren bouwkeuzes/Keepme.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/1. Inrichten ontwikkelomgeving/Keepme.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/6. Beheerproces/3. Gebruiken beheersysteem/Keepme.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/6. Beheerproces/2. Beheren ontwikkelstraat/Keepme.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/6. Beheerproces/1. Managen ontwikkelproces/Keepme.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/6. Beheerproces/4. Beschikbaarstellen software/Keepme.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/6. Beheerproces/6. Uitvoeren configuratie-, change- en releasemangement/Keepme.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/6. Beheerproces/5. Evalueren ontwikkelstraat/Keepme.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/5. Testproces/5. Evalueren test/Keepme.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | Keepme | 2. Ondersteunende-informatie/1. Projectmanagement/Keepme.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/5. Testproces/4. Uitvoeren test/Keepme.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/5. Testproces/6. Adviseren testproces/Keepme.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/5. Testproces/3. Opstellen test/Keepme.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/5. Testproces/1. Opstellen teststrategie/Keepme.md | N/A | N/A | No taxonomie found in file. |
-| ⚠️ | Keepme | 2. Ondersteunende-informatie/3. Processen/3. Ontwerpproces/3. Adviseren architectuur/Keepme.md | test | N/A | Invalid taxonomie: test |
-| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/3. Ontwerpproces/2. Vaststellen kwaliteit/Keepme.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/3. Ontwerpproces/1. Opstellen ontwerp/Keepme.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/5. Testproces/3. Opstellen test/Keepme.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/5. Testproces/5. Evalueren test/Keepme.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/1. Requirementsanalyseproces/1. Definiëren probleemdomein/Keepme.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/1. Requirementsanalyseproces/3. Analyseren requirements/Keepme.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/1. Requirementsanalyseproces/2. Verzamelen requirements/Keepme.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/1. Requirementsanalyseproces/4. Specifieren requirements/Keepme.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/1. Requirementsanalyseproces/6. Beheren requirements/Keepme.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/1. Requirementsanalyseproces/4. Specifieren requirements/Keepme.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/1. Requirementsanalyseproces/5. Valideren requirements/Keepme.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/2. Pakketselectieproces/1. Uitvoeren analyse/Keepme.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/2. Pakketselectieproces/2. Adviseren onderdeelselectie/Keepme.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/3. Ontwerpproces/1. Opstellen ontwerp/Keepme.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/3. Ontwerpproces/2. Vaststellen kwaliteit/Keepme.md | N/A | N/A | No taxonomie found in file. |
+| ⚠️ | Keepme | 2. Ondersteunende-informatie/3. Processen/3. Ontwerpproces/3. Adviseren architectuur/Keepme.md | test | N/A | Invalid taxonomie: test |
+| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/1. Inrichten ontwikkelomgeving/Keepme.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/5. Oplossen fouten/Keepme.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/4. Beredeneren bouwkeuzes/Keepme.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/3. Refactoren applicatie/Keepme.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/6. Beheerproces/6. Uitvoeren configuratie-, change- en releasemangement/Keepme.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/6. Beheerproces/5. Evalueren ontwikkelstraat/Keepme.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/6. Beheerproces/2. Beheren ontwikkelstraat/Keepme.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/6. Beheerproces/1. Managen ontwikkelproces/Keepme.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/6. Beheerproces/3. Gebruiken beheersysteem/Keepme.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | Keepme | 2. Ondersteunende-informatie/3. Processen/6. Beheerproces/4. Beschikbaarstellen software/Keepme.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | Standaard-ABC | 6. Standaarden/Standaard-ABC.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | Standaard-XYZ | 6. Standaarden/Standaard-XYZ.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | arrays | 4. Deeltaken/4. Techniek/JS/4. Data structuren/arrays.md | N/A | JS/Arrays<br>page | No taxonomie found in file. |
@@ -167,14 +168,14 @@ Deze todo items moeten nog worden afgehandeld.
 | ❌ | index | index.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | index | 4. Deeltaken/4. Techniek/JS/index.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | instructies | 4. Deeltaken/4. Techniek/JS/Project/instructies.md | N/A | Project | No taxonomie found in file. |
-| ❌ | keep | 1. Leertaken/QSD/keep.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | keep | 1. Leertaken/OOSDD/keep.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | keep | 1. Leertaken/GP/keep.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | keep | 1. Leertaken/QSD/keep.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | keep | 1. Leertaken/WEBDEV/keep.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | keep | 2. Ondersteunende-informatie/2. SSDLC/5. Deployment - Deployment op Skylab/keep.md | N/A | N/A | No taxonomie found in file. |
-| ❌ | keep | 2. Ondersteunende-informatie/2. SSDLC/1. Requirements - Risk Assessment/keep.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | keep | 2. Ondersteunende-informatie/2. SSDLC/2. Design - Threat Modelling/keep.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | keep | 2. Ondersteunende-informatie/2. SSDLC/3. Development - SAST/keep.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | keep | 2. Ondersteunende-informatie/2. SSDLC/5. Deployment - Deployment op Skylab/keep.md | N/A | N/A | No taxonomie found in file. |
+| ❌ | keep | 2. Ondersteunende-informatie/2. SSDLC/1. Requirements - Risk Assessment/keep.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | keep | 2. Ondersteunende-informatie/2. SSDLC/4. Testing - Vulnerability Scanning/keep.md | N/A | N/A | No taxonomie found in file. |
 | ❌ | objects | 4. Deeltaken/4. Techniek/JS/4. Data structuren/objects.md | N/A | JS/objecten<br>page | No taxonomie found in file. |
 | ❌ | promises | 4. Deeltaken/4. Techniek/JS/7. Asynchroon/promises.md | N/A | JS/Promises<br>page | No taxonomie found in file. |
@@ -193,6 +194,8 @@ Als een image de error heeft over het niet gebruikt worden, betekent dit dat de 
 | 🏳️ | OI_docker_desktop_docker_compose | 2. Ondersteunende-informatie/4. Techniek/Docker/src/OI_docker_desktop_docker_compose.png | Image not used in any file |
 | 🏳️ | OI_docker_desktop_images | 2. Ondersteunende-informatie/4. Techniek/Docker/src/OI_docker_desktop_images.png | Image not used in any file |
 | 🏳️ | OI_docker_desktop_single_container | 2. Ondersteunende-informatie/4. Techniek/Docker/src/OI_docker_desktop_single_container.png | Image not used in any file |
+| 🏳️ | PI_GIt_Pull_Request_3 | 3. Procedurele-informatie/4. Techniek/Workshop Git/src/PI_GIt_Pull_Request_3.png | Image not used in any file |
+| 🏳️ | PI_GIt_Pull_Request_4 | 3. Procedurele-informatie/4. Techniek/Workshop Git/src/PI_GIt_Pull_Request_4.png | Image not used in any file |
 | ❌ | docker_desktop_containers | 2. Ondersteunende-informatie/4. Techniek/Docker/src/docker_desktop_containers.png | Image does not include 4C/ID component |
 | ❌ | docker_desktop_docker_compose | 2. Ondersteunende-informatie/4. Techniek/Docker/src/docker_desktop_docker_compose.png | Image does not include 4C/ID component |
 | ❌ | docker_desktop_images | 2. Ondersteunende-informatie/4. Techniek/Docker/src/docker_desktop_images.png | Image does not include 4C/ID component |
@@ -206,11 +209,11 @@ De onderstaande bestanden zijn succesvol verwerkt.
 | --- | --- | --- | --- | --- |
 | ✅ | 1. Boolean | 4. Deeltaken/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/Boolean/1. Boolean.md | ib-19.2.Datatype-Primitief-Boolean.DT<br>ib-19.3.Datatype-Primitief-Boolean.DT | HBO-i/niveau-2<br>Implementatieproces<br>Bouwen softwaresysteem<br>Datatype-Primitief-Boolean<br>HBO-i/niveau-3<br>ib-19.2.Datatype-Primitief-Boolean.DT<br>ib-19.3.Datatype-Primitief-Boolean.DT | N/A |
 | ✅ | 1. Boolean | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/Boolean/1. Boolean.md | ib-19.2.Datatype-Primitief-Boolean.OI<br>ib-19.3.Datatype-Primitief-Boolean.OI | HBO-i/niveau-2<br>Implementatieproces<br>Bouwen softwaresysteem<br>Datatype-Primitief-Boolean<br>HBO-i/niveau-3<br>ib-19.2.Datatype-Primitief-Boolean.OI<br>ib-19.3.Datatype-Primitief-Boolean.OI | N/A |
-| ✅ | 1. If-Else | 4. Deeltaken/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/If-Else/1. If-Else.md | ib-19.2.Controlestructuur-Beslissingen-If-Else.DT<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.DT | HBO-i/niveau-2<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Beslissingen-If-Else<br>HBO-i/niveau-3<br>ib-19.2.Controlestructuur-Beslissingen-If-Else.DT<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.DT | N/A |
 | ✅ | 1. If-Else | 3. Procedurele-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/If-Else/1. If-Else.md | ib-19.2.Controlestructuur-Beslissingen-If-Else.PI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.PI | HBO-i/niveau-2<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Beslissingen-If-Else<br>HBO-i/niveau-3<br>ib-19.2.Controlestructuur-Beslissingen-If-Else.PI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.PI | N/A |
+| ✅ | 1. If-Else | 4. Deeltaken/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/If-Else/1. If-Else.md | ib-19.2.Controlestructuur-Beslissingen-If-Else.DT<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.DT | HBO-i/niveau-2<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Beslissingen-If-Else<br>HBO-i/niveau-3<br>ib-19.2.Controlestructuur-Beslissingen-If-Else.DT<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.DT | N/A |
 | ✅ | 1. If-Else | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/If-else/1. If-Else.md | ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | HBO-i/niveau-2<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Beslissingen-If-Else<br>HBO-i/niveau-3<br>ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | N/A |
-| ✅ | 1. While | 4. Deeltaken/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/While/1. While.md | ib-19.2.Controlestructuur-Herhaling-While.DT<br>ib-19.3.Controlestructuur-Herhaling-While.DT | HBO-i/niveau-2<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Herhaling-While<br>HBO-i/niveau-3<br>ib-19.2.Controlestructuur-Herhaling-While.DT<br>ib-19.3.Controlestructuur-Herhaling-While.DT | N/A |
 | ✅ | 1. While | 3. Procedurele-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/While/1. While.md | ib-19.2.Controlestructuur-Herhaling-While.PI<br>ib-19.3.Controlestructuur-Herhaling-While.PI | HBO-i/niveau-2<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Herhaling-While<br>HBO-i/niveau-3<br>ib-19.2.Controlestructuur-Herhaling-While.PI<br>ib-19.3.Controlestructuur-Herhaling-While.PI | N/A |
+| ✅ | 1. While | 4. Deeltaken/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/While/1. While.md | ib-19.2.Controlestructuur-Herhaling-While.DT<br>ib-19.3.Controlestructuur-Herhaling-While.DT | HBO-i/niveau-2<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Herhaling-While<br>HBO-i/niveau-3<br>ib-19.2.Controlestructuur-Herhaling-While.DT<br>ib-19.3.Controlestructuur-Herhaling-While.DT | N/A |
 | ✅ | 10. GitHub website | 2. Ondersteunende-informatie/4. Techniek/Git/10. GitHub website.md | bg-24.2.Git-GitHub.OI<br>bg-24.3.Git-GitHub.OI<br>bg-24.2.Git-Tags-en-releases.OI<br>bg-24.3.Git-Tags-en-releases.OI | HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-GitHub<br>HBO-i/niveau-3<br>Git-Tags-en-releases<br>bg-24.2.Git-GitHub.OI<br>bg-24.2.Git-Tags-en-releases.OI<br>bg-24.3.Git-GitHub.OI<br>bg-24.3.Git-Tags-en-releases.OI | N/A |
 | ✅ | 2. Git Repositories | 3. Procedurele-informatie/4. Techniek/Workshop Git/2. Git Repositories.md | bg-24.2.Git-Repositories.PI<br>bg-24.3.Git-Repositories.PI<br>bg-24.2.Git-Commits.PI<br>bg-24.3.Git-Commits.PI<br>bg-24.2.Git-Files.PI<br>bg-24.3.Git-Files.PI<br>bg-24.2.Git-Tools.PI<br>bg-24.3.Git-Tools.PI | HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-Repositories<br>HBO-i/niveau-3<br>Git-Commits<br>Git-Files<br>Git-Tools<br>bg-24.2.Git-Commits.PI<br>bg-24.2.Git-Files.PI<br>bg-24.2.Git-Repositories.PI<br>bg-24.2.Git-Tools.PI<br>bg-24.3.Git-Commits.PI<br>bg-24.3.Git-Files.PI<br>bg-24.3.Git-Repositories.PI<br>bg-24.3.Git-Tools.PI | N/A |
 | ✅ | 2. Git Repositories | 2. Ondersteunende-informatie/4. Techniek/Git/2. Git Repositories.md | bg-24.2.Git-Repositories.OI<br>bg-24.3.Git-Repositories.OI | HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-Repositories<br>HBO-i/niveau-3<br>bg-24.2.Git-Repositories.OI<br>bg-24.3.Git-Repositories.OI | N/A |
@@ -219,7 +222,6 @@ De onderstaande bestanden zijn succesvol verwerkt.
 | ✅ | 3. Git Forks & Branches | 3. Procedurele-informatie/4. Techniek/Workshop Git/3. Git Forks & Branches.md | bg-24.2.Git-Repositories.PI<br>bg-24.3.Git-Repositories.PI<br>bg-24.2.Git-Branches.PI<br>bg-24.3.Git-Branches.PI<br>bg-24.2.Git-GitHub.PI<br>bg-24.3.Git-GitHub.PI | HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-Repositories<br>HBO-i/niveau-3<br>Git-Branches<br>Git-GitHub<br>bg-24.2.Git-Branches.PI<br>bg-24.2.Git-GitHub.PI<br>bg-24.2.Git-Repositories.PI<br>bg-24.3.Git-Branches.PI<br>bg-24.3.Git-GitHub.PI<br>bg-24.3.Git-Repositories.PI | N/A |
 | ✅ | 3. If-Else-Logical-Operators | 2. Ondersteunende-informatie/3. Processen/4. Implementatieproces/2. Bouwen softwaresysteem/If-else/3. If-Else-Logical-Operators.md | ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | HBO-i/niveau-2<br>Implementatieproces<br>Bouwen softwaresysteem<br>Controlestructuur-Beslissingen-If-Else<br>HBO-i/niveau-3<br>ib-19.2.Controlestructuur-Beslissingen-If-Else.OI<br>ib-19.3.Controlestructuur-Beslissingen-If-Else.OI | N/A |
 | ✅ | 4. Git Commits | 2. Ondersteunende-informatie/4. Techniek/Git/4. Git Commits.md | bg-24.2.Git-Commits.OI<br>bg-24.3.Git-Commits.OI<br>bg-24.2.Git-Tags-en-releases.OI<br>bg-24.3.Git-Tags-en-releases.OI | HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-Commits<br>HBO-i/niveau-3<br>Git-Tags-en-releases<br>bg-24.2.Git-Commits.OI<br>bg-24.2.Git-Tags-en-releases.OI<br>bg-24.3.Git-Commits.OI<br>bg-24.3.Git-Tags-en-releases.OI | N/A |
-| ✅ | 4. Git Pull Requests | 3. Procedurele-informatie/4. Techniek/Workshop Git/4. Git Pull Requests.md | bg-24.2.Git-Pull-requests.PI<br>bg-24.3.Git-Pull-requests.PI<br>bg-24.2.Git-Mergen.PI<br>bg-24.3.Git-Mergen.PI | HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-Pull-requests<br>HBO-i/niveau-3<br>Git-Mergen<br>bg-24.2.Git-Mergen.PI<br>bg-24.2.Git-Pull-requests.PI<br>bg-24.3.Git-Mergen.PI<br>bg-24.3.Git-Pull-requests.PI | N/A |
 | ✅ | 5. Git Mergen | 2. Ondersteunende-informatie/4. Techniek/Git/5. Git Mergen.md | bg-24.2.Git-Mergen.OI<br>bg-24.3.Git-Mergen.OI | HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-Mergen<br>HBO-i/niveau-3<br>bg-24.2.Git-Mergen.OI<br>bg-24.3.Git-Mergen.OI | N/A |
 | ✅ | 5. Git Tags & Releases | 3. Procedurele-informatie/4. Techniek/Workshop Git/5. Git Tags & Releases.md | bg-24.2.Git-Tags-en-releases.PI<br>bg-24.3.Git-Tags-en-releases.PI | HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-Tags-en-releases<br>HBO-i/niveau-3<br>bg-24.2.Git-Tags-en-releases.PI<br>bg-24.3.Git-Tags-en-releases.PI | N/A |
 | ✅ | 6. Git Pull requests | 2. Ondersteunende-informatie/4. Techniek/Git/6. Git Pull requests.md | bg-24.2.Git-Pull-requests.OI<br>bg-24.3.Git-Pull-requests.OI | HBO-i/niveau-2<br>Beheerproces<br>Gebruiken beheersysteem<br>Git-Pull-requests<br>HBO-i/niveau-3<br>bg-24.2.Git-Pull-requests.OI<br>bg-24.3.Git-Pull-requests.OI | N/A |
