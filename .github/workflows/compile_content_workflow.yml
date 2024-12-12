@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - content
-    paths-ignore:
-      - '.github/**'
-      - 'test_cases/**'
 
 permissions:
   contents: write
