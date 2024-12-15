@@ -2,13 +2,9 @@ name: PR Validation Workflow
 
 on:
   pull_request:
-    types: 
-      - opened
-      - synchronize
-      - reopened
-      - edited
+    types: [opened, reopened]
     branches:
-      - content  # Trigger only on PRs to the 'content' branch
+      - content
 
 jobs:
   validate-markdown:
