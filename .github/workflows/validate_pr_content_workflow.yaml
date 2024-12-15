@@ -20,14 +20,12 @@ jobs:
       - name: Checkout head branch
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.ref }}  # Ensure the base branch is checked out
+          ref: ${{ github.event.pull_request.head.ref }}  # Ensure the head branch is checked out
 
-      - name: Log current branch
+      - name: Print created or updated files
         run: |
-          echo "Current branch: $(git rev-parse --abbrev-ref HEAD)"
-
-      - name: Print files in content folder
-        run: |
-          echo "Listing all files in the content folder of the base branch:"
-            ls -R content/
-
+          echo "Comparing HEAD to BASE to find created or updated files in the content folder:"
+          git fetch origin ${{ github.event.pull_request.base.ref }}
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }}..HEAD | grep '^content/.*' || true)
+          echo "Changed or created files:"
+          echo "$CHANGED_FILES"
