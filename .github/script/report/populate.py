@@ -65,7 +65,7 @@ from config import TC1_COL, TC2_COL, TC3_COL, PROCES_COL, PROCESSTAP_COL, NOT_NE
 Fills the rapport 1 data with the data from the dataset
 Every TC1 code is the unique identifier
 """
-def populate_rapport1():
+def populateRapport1():
     global Rapport_1
 
     for row in dataset[1:]:
@@ -94,7 +94,7 @@ def populate_rapport1():
 Fills the Rapport 2 data with the data from the dataset.
 Every unique TC3 and TC1 combination will be added to the Rapport 2 data.
 """
-def populate_rapport2():
+def populateRapport2():
     global Rapport_2
 
     for row in dataset[1:]:

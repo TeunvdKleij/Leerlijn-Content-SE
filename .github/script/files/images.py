@@ -3,13 +3,13 @@ import os, re, shutil
 from pathlib import Path
 
 # Variables
-from config import VERBOSE, failedImages, IGNORE_FOLDERS
+from config import failedImages
 
 # Constants
-from config import FAIL_CROSS, NOT_NECESSARY, DEST_DIR, SRC_DIR
+from config import VERBOSE, FAIL_CROSS, NOT_NECESSARY, IGNORE_FOLDERS, ERROR_IMAGE_NOT_USED, ERROR_NO_4CID_COMPONENT, ERROR_IMAGE_NOT_FOUND
 
 # Functions
-from report.table import generate_markdown_table
+from report.table import generateMarkdownTable
 
 
 """
@@ -21,7 +21,7 @@ Args:
     src_dir_name (str): Source directory (only the name of the folder itself)
     dest_dir_name (str): Destination directory (only the name of the folder itself)
 """
-def copy_images(content, src_dir, dest_dir):
+def copyImages(content, src_dir, dest_dir):
     errors = []
     if content is None:
         return errors
@@ -52,8 +52,8 @@ def copy_images(content, src_dir, dest_dir):
             new_image_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy(found_image_path, new_image_path)
         else:
-            if VERBOSE: print(f"Image not found: {image_path}")
-            errors.append(f"Image not found: {image_path}")
+            if VERBOSE: print(ERROR_IMAGE_NOT_FOUND + image_path)
+            errors.append(ERROR_IMAGE_NOT_FOUND + ' `' + image_path + '` ')
 
     return errors
 
@@ -67,7 +67,7 @@ def create_image_table_row(status, file_path, src_dir, error):
     }
 
 # Format the image report table with specific headers and rows
-def format_image_report_table(image_report):
+def formatImageReportTable(image_report):
     headers = ["Status", "Image", "Path", "Error"]
     rows = [[
         file['status'], 
@@ -76,7 +76,7 @@ def format_image_report_table(image_report):
         file['error']
     ] for file in image_report]
 
-    table = generate_markdown_table(headers, rows)
+    table = generateMarkdownTable(headers, rows)
     return table
 
 """
@@ -92,11 +92,11 @@ def fill_failed_images(SRC_DIR, DEST_DIR):
     
     for image in dest_images:
         if not str(image.stem).startswith(("PI", "OI", "LT", "DT")):
-            failedImages.append(create_image_table_row(FAIL_CROSS, image, dest_dir, "Image does not include 4C/ID component"))
+            failedImages.append(create_image_table_row(FAIL_CROSS, image, dest_dir, ERROR_NO_4CID_COMPONENT))
 
     for image in src_images: 
         if str(image.stem) not in {str(img.stem) for img in dest_images}:
-            failedImages.append(create_image_table_row(NOT_NECESSARY, image, src_dir, "Image not used in any file"))    
+            failedImages.append(create_image_table_row(NOT_NECESSARY, image, src_dir, ERROR_IMAGE_NOT_USED))    
 
 """
 Helper method to populate the image report

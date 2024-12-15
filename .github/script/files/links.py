@@ -3,7 +3,7 @@ import re, os
 from pathlib import Path
 
 # Variables
-from config import VALID_DYNAMIC_LINK_PREFIXES, VERBOSE
+from config import VALID_DYNAMIC_LINK_PREFIXES, VERBOSE, ERROR_INVALID_DYNAMIC_LINK
 
 """
 Update dynamic links in the content of a markdown file.
@@ -12,7 +12,7 @@ Args:
     file_path (str): Path to the markdown file.
     content (str): Content of the markdown file.
 """
-def update_dynamic_links(file_path, content):
+def updateDynamicLinks(file_path, content):
     # Find all dynamic links in the content
     dynamic_links = re.findall(r'\[\[[^"\[][^]]*?\]\]', content)
 
@@ -30,8 +30,8 @@ def update_dynamic_links(file_path, content):
 
         # Check if the dynamic link is valid
         if not validate_dynamic_link(file_path, new_link):
-            if VERBOSE: print(f"Error: Invalid dynamic link: {new_link}")
-            errors.append(f"Invalid dynamic link: `{new_link}`")
+            if VERBOSE: print(ERROR_INVALID_DYNAMIC_LINK + new_link)
+            errors.append(ERROR_INVALID_DYNAMIC_LINK + ' `' + new_link + '` ')
 
     return content, errors
 

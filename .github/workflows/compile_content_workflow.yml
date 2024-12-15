@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - content
+    paths-ignore:
+      - '.github/**'
 
 permissions:
   contents: write
@@ -39,9 +41,10 @@ jobs:
         run: |
           python .github/script/compile_content.py --dataset .github/datasets/dataset.xlsx
 
-      - name: Copy report.md to root
+      - name: Copy reports to root
         run: |
-          cp report.md ../
+          cp content_report.md ../
+          cp taxco_report.md ../
 
       # Step 6: Move build folder to root
       - name: Move build folder to root
@@ -67,7 +70,9 @@ jobs:
           git rm -rf build/ || true
           cp -r ../build/ build
           git add build/
-          cp ../report.md report.md
-          git add report.md
-          git commit -m "Sync compiled files and report.md to staging" || echo "No changes to commit"
+          cp ../content_report.md content_report.md
+          cp ../taxco_report.md taxco_report.md
+          git add content_report.md
+          git add taxco_report.md
+          git commit -m "Sync compiled files and reports to staging" || echo "No changes to commit"
           git push origin staging

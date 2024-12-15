@@ -10,7 +10,8 @@ Rapport_2 = {} # Rapport 2 data
 # Constants
 SRC_DIR = "./content" # Source directory where the markdown files are located
 DEST_DIR = "./build" # Destination directory where the updated markdown files will be saved
-REPORT_PATH = "./report.md" # Report path where the report will be saved
+TAXCO_REPORT_PATH = "./taxco_report.md" # Taxco report path where the taxco report will be saved
+CONTENT_REPORT_PATH = "./content_report.md" # Content report path where the content report will be saved
 DATASET = "./.github/datasets/dataset.xlsx" # Dataset containing the taxonomie information
 VERBOSE = False # VERBOSE output flag
 TODO_PATTERN = r'-=[A-Z]+=-' # To-Do pattern
@@ -41,12 +42,23 @@ OI = "Ondersteunende-informatie"
 PI = "Procedurele-informatie"
 DT = "Deeltaken"
 
-#Error message for not including any taxonomy code
-ERROR_MISSING_TAXCO = "No taxonomie found in file."
-ERROR_TAXCO_NOT_NEEDED = "Taxonomie code used when not needed: "
-ERROR_TAXCO_NOT_FOUND = "Taxonomie not found in dataset: "
-ERROR_TAXCO_IN_WRONG_4CID_COMPONENT = "4C/ID component from taxonomie not matching with 4C/ID folder: "
+# Error message for not including any taxonomy code
+ERROR_INVALID_TAXCO = "Ongeldige taxonomiecode: "
+ERROR_MISSING_TAXCO = "Geen taxonomiecode gevonden."
+ERROR_TAXCO_NOT_NEEDED = "Taxonomiecode gebruikt wanneer niet nodig: "
+ERROR_TAXCO_NOT_FOUND = "Taxonomie niet gevonden in dataset: "
+ERROR_TAXCO_IN_WRONG_4CID_COMPONENT = "4C/ID-component van taxonomie komt niet overeen met 4C/ID-map: "
 
+# Error message for images
+ERROR_IMAGE_NOT_FOUND = "Afbeelding niet gevonden: "
+ERROR_IMAGE_NOT_USED = "Afbeelding wordt in geen enkel bestand gebruikt"
+ERROR_NO_4CID_COMPONENT = "Afbeelding bevat geen 4C/ID-component."
+
+# Error message for dynamic links
+ERROR_INVALID_DYNAMIC_LINK = "Ongeldige dynamische link: "
+
+# WIP errors
+ERROR_WIP_FOUND = "Work-in-progress items gevonden: "
 
 # Icons
 SUCCESS = "✅"

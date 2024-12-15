@@ -11,10 +11,10 @@ from config import failedFiles
 
 # Functions
 from files.images import fill_failed_images
-from report.generate import generate_report
-from files.parse import parse_markdown_files, parse_dataset_file
+from report.generate import generateReport
+from files.parse import parseMarkdownFiles, parseDatasetFile
 from tests.evaluate import evaluate_tests
-from report.populate import populate_rapport1, populate_rapport2
+from report.populate import populateRapport1, populateRapport2
 
 def validate_test_report():
     expected_test_report_path =  Path(__file__).resolve().parents[1] / 'report/expected_test_report.md'
@@ -61,21 +61,21 @@ def test():
         shutil.rmtree(DEST_DIR)
         os.mkdir(DEST_DIR)
 
-    parse_dataset_file(DATASET)
-    populate_rapport1()
-    populate_rapport2()
+    parseDatasetFile(DATASET)
+    populateRapport1()
+    populateRapport2()
 
-    parse_markdown_files(SRC_DIR, DEST_DIR) 
+    parseMarkdownFiles(SRC_DIR, DEST_DIR) 
     
     fill_failed_images(SRC_DIR, DEST_DIR) 
-    generate_report(REPORT_PATH) 
+    generateReport(REPORT_PATH) 
 
     if validate_test_report():
         print("Test report validation successful")
         if evaluate_tests():
             print("Test evaluation successful")
             if(validate_draft()):
-                print("Draft test succesful")
+                print("Draft test successful")
                 sys.exit(0)
             else:
                 print("Draft test failed")

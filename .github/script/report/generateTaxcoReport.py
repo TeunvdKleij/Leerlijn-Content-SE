@@ -1,18 +1,18 @@
 # Variables
-from config import VERBOSE, Rapport_1, Rapport_2, WIPFiles, failedFiles, failedImages, parsedFiles, REPORT_PATH
+from config import VERBOSE, Rapport_1, Rapport_2
 
 # Constants
 from config import LT, DT, OI, PI, FAIL_CIRCLE, SUCCESS, NOT_NECESSARY
 
 # Functions
-from files.markdown_utils import format_file_report_table
-from files.images import format_image_report_table
-from report.table import generate_markdown_table
+from files.markdown_utils import formatFileReportTable
+from files.images import formatImageReportTable
+from report.table import generateMarkdownTable
 
 """
 Generate the report based on the taxonomie report, success, and failed reports.
 """
-def generate_report(REPORT_PATH):
+def generateTaxcoReport(REPORT_PATH):
     if VERBOSE: print("Generating report...")
     with open(REPORT_PATH, "w", encoding="utf-8") as f:
         f.write('---\ndraft: true\n---\n')
@@ -23,7 +23,7 @@ def generate_report(REPORT_PATH):
         f.write('- ⛔️ Er is geen enkel bestand met deze taxonomiecode op dit niveau \n')
         f.write('- 🏳️ De taxonomiecode wordt niet aangeboden op dit niveau (X in de Dataset) \n')
         f.write('\n')
-        f.write(generate_rapport_1())
+        f.write(generateProcess())
 
         f.write('\n\n')
 
@@ -34,53 +34,13 @@ def generate_report(REPORT_PATH):
         f.write('- ⛔️ Het onderwerp met taxonomie code wordt **niet** aangeboden op het aangegeven niveau \n')
         f.write('- 🏳️ Het onderwerp hoeft met deze taxonomie code niet aangeboden te worden op het aangegeven niveau \n')
         f.write('\n')
-        f.write(generate_rapport_2())
-
-        f.write('\n\n')
-
-        f.write("## Work-in-progress bestanden\n")
-        f.write('Doel: De onderstaande bestanden hebben nog todo items in de markdown staan.\n')
-        f.write('Deze todo items moeten nog worden afgehandeld.\n')
-        f.write('\n')
-        f.write(format_file_report_table(sorted(WIPFiles, key=lambda x: x['file'])))
-
-        f.write('\n\n')
-
-        f.write("## Gefaalde bestanden\n")
-        f.write("*Doel: De onderstaande bestanden zijn niet succesvol verwerkt.*\n\n")
-        f.write('❌ Dit bestand bevat nog geen taxonomie code\n')
-        f.write('⚠️ Dit bestand bevat een foute taxonomie code. Zie de *Errors* kolom om te weten wat er mis is\n')
-        f.write('🟠 Dit bestand bevat een taxonomie code die niet toegevoegd hoeft te zijn\n')
-        f.write('\n')
-        f.write(format_file_report_table(sorted(failedFiles, key=lambda x: x['file'])))
-
-        f.write('\n\n')
-
-        f.write("## Gefaalde images\n")
-        f.write("*Doel: De onderstaande images missen een 4C/ID component.*\n\n")
-        f.write('Als een image de error heeft over het niet gebruikt worden, betekent dit dat de image niet in build staat, maar nog wel in content.\n\n')
-        f.write(format_image_report_table(sorted(failedImages, key=lambda x: x['image'])))
-
-        f.write('\n\n')
-
-        f.write("## Geslaagde bestanden\n")
-        f.write("De onderstaande bestanden zijn succesvol verwerkt.\n")
-        f.write('\n')
-        f.write(format_file_report_table(sorted(parsedFiles, key=lambda x: x['file'])))
-
-        f.write('\n\n')
+        f.write(generateSubject())
 
     if VERBOSE:
         print("Rapport 1:")
-        print(generate_rapport_1())
+        print(generateProcess())
         print("Rapport 2:")
-        print(generate_rapport_2())
-        print("Geslaagde bestanden:")
-        print(format_file_report_table(sorted(parsedFiles, key=lambda x: x['file'])))
-        print("Gefaalde bestanden:")
-        print(format_file_report_table(sorted(failedFiles, key=lambda x: x['file'])))
-        print("Gefaalde images:")
-        print(format_image_report_table(sorted(failedImages, key=lambda x: x['image'])))
+        print(generateSubject())
         print("Report generated.")
 
 
@@ -89,7 +49,7 @@ Format the report table for table 1
 Returns:
     table (str): Markdown table string.
 """
-def generate_rapport_1():
+def generateProcess():
     if VERBOSE: print("Generating Rapport 1 table...")
 
     headers = ["TC1", "Proces", "Processtap", "Niveau 1", "Niveau 2", "Niveau 3"]
@@ -103,7 +63,7 @@ def generate_rapport_1():
         niveau_3 = FAIL_CIRCLE if tc2_levels[2] == 'x' else SUCCESS if tc2_levels[2] == 'v' or tc2_levels[2] == 'g' else NOT_NECESSARY
         rows.append([tc, proces, processtap, niveau_1, niveau_2, niveau_3])
 
-    table = generate_markdown_table(headers, rows)
+    table = generateMarkdownTable(headers, rows)
     if VERBOSE: print("Rapport 1 table generated.")
     return table
 
@@ -112,13 +72,13 @@ Format the report for table 2
 Returns:
     table (str): Markdown table string.
 """
-def generate_rapport_2():
+def generateSubject():
     if VERBOSE: print("Generating Rapport 2 table...")
 
     headers = ["TC3", "TC1", "TC2", LT, OI, PI, DT]
     rows = []
 
-    def get_status(value):
+    def getStatus(value):
         if value == 'v' or value == 'g':
             return SUCCESS
         elif value != NOT_NECESSARY:
@@ -129,22 +89,22 @@ def generate_rapport_2():
     for tc3, details in Rapport_2.items():
         for tc1, other in details.items():
             tc2_levels = other.get('TC2', [''] * 3)
-            tc2 = ' '.join([get_status(level) for level in tc2_levels])
+            tc2 = ' '.join([getStatus(level) for level in tc2_levels])
 
             leertaak_levels = other.get(LT, [''] * 3)
-            leertaak = ' '.join([get_status(level) for level in leertaak_levels])
+            leertaak = ' '.join([getStatus(level) for level in leertaak_levels])
 
             ondersteunende_informatie_levels = other.get(OI, [''] * 3)
-            ondersteunende_informatie = ' '.join([get_status(level) for level in ondersteunende_informatie_levels])
+            ondersteunende_informatie = ' '.join([getStatus(level) for level in ondersteunende_informatie_levels])
             
             procedurele_informatie_levels = other.get(PI, [''] * 3)
-            procedurele_informatie = ' '.join([get_status(level) for level in procedurele_informatie_levels])
+            procedurele_informatie = ' '.join([getStatus(level) for level in procedurele_informatie_levels])
             
             deeltaak_levels = other.get(DT, [''] * 3)
-            deeltaak = ' '.join([get_status(level) for level in deeltaak_levels])
+            deeltaak = ' '.join([getStatus(level) for level in deeltaak_levels])
 
             rows.append([tc3, tc1, tc2, leertaak, ondersteunende_informatie, procedurele_informatie, deeltaak])
 
-    table = generate_markdown_table(headers, rows)
+    table = generateMarkdownTable(headers, rows)
     if VERBOSE: print("Rapport 2 table generated.")
     return table
