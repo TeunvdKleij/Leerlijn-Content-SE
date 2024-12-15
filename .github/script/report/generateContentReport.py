@@ -25,7 +25,7 @@ def generateContentReport(REPORT_PATH):
         f.write("## Gefaalde bestanden\n")
         f.write("*Doel: De onderstaande bestanden zijn niet succesvol verwerkt.*\n\n")
         f.write('❌ Dit bestand bevat nog geen taxonomie code\n')
-        f.write('⚠️ Dit bestand bevat een foute taxonomie code. Zie de *Errors* kolom om te weten wat er mis is\n')
+        f.write('⚠️ Dit bestand bevat fouten. Zie de *Errors* kolom om te weten wat er mis is\n')
         f.write('🟠 Dit bestand bevat een taxonomie code die niet toegevoegd hoeft te zijn\n')
         f.write('\n')
         f.write(formatFileReportTable(sorted(failedFiles, key=lambda x: x['file'])))
