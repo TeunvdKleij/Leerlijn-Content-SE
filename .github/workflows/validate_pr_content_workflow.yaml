@@ -11,33 +11,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Configure Git
-      - name: Configure Git
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-
-      # Step 2: Checkout the base branch (content)
+      # Step 1: Checkout the base branch (content)
       - name: Checkout the base branch (content)
         uses: actions/checkout@v3
         with:
           ref: content  # Checkout the base branch (content)
 
-      # Step 3: Fetch the base branch and pull request branch (HEAD)
-      - name: Fetch the base and PR branches
+      # Step 2: Fetch the pull request branch (HEAD)
+      - name: Fetch the pull request branch (HEAD)
         run: |
-          # Fetch the base branch (content) from origin if not already available
-          git fetch origin content
-          
-          # Fetch the PR branch using the PR head reference
           git fetch origin ${{ github.event.pull_request.head.ref }}
 
-      # Step 4: Get the list of changed or added files
-      - name: Get list of changed or added files
+      # Step 3: Checkout the pull request branch (HEAD)
+      - name: Checkout the pull request branch (HEAD)
         run: |
-          # Compare the base (content) branch with the pull request branch (HEAD)
-          CHANGED_FILES=$(git diff --name-only --diff-filter=AM origin/content..origin/${{ github.event.pull_request.head.ref }})
+          git checkout ${{ github.event.pull_request.head.ref }}
+
+      # Step 4: Merge the base (content) branch into the pull request branch (HEAD)
+      - name: Merge content into HEAD
+        run: |
+          git merge origin/content --no-ff --no-commit  # Merge the base branch into the HEAD branch without committing yet
+
+      # Step 5: Get the list of changed or added files
+      - name: Get list of new or changed files after the merge
+        run: |
+          # Get the list of files that have been changed or added since the last sync (after the merge)
+          CHANGED_FILES=$(git diff --name-only --diff-filter=AM origin/content...HEAD)
 
           # Output the list of changed or added files
-          echo "Changed or created files in the pull request:"
+          echo "Changed or created files in the pull request after the merge:"
           echo "$CHANGED_FILES"
