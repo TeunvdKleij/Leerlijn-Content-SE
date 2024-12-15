@@ -17,26 +17,17 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-      # Step 2: Checkout code
-      - name: Checkout code
+      - name: Checkout base branch
         uses: actions/checkout@v3
-
-      # Step 3: Set up Python
-      - name: Set up Python
-        uses: actions/setup-python@v4
         with:
-          python-version: "3.x"
+          ref: ${{ github.event.pull_request.base.ref }}  # Ensure the base branch is checked out
 
-      # Step 4: Install dependencies
-      - name: Install dependencies
+      - name: Log current branch
         run: |
-          pip install pandas openpyxl
+          echo "Current branch: $(git rev-parse --abbrev-ref HEAD)"
 
-      - name: Identify changed markdown files
+      - name: Print files in content folder
         run: |
-          BASE_SHA=${{ github.event.pull_request.base.sha || 'HEAD^' }}
-          HEAD_SHA=${{ github.event.pull_request.head.sha || 'HEAD' }}
-          CHANGED_FILES=$(git diff --name-only $BASE_SHA $HEAD_SHA | grep '^content/' || true)
-          echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_ENV
-          echo "Changed Markdown files: $CHANGED_FILES"
+          echo "Listing all files in the content folder of the base branch:"
+          ls content/
 
