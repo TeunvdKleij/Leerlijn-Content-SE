@@ -89,3 +89,7 @@ jobs:
         run: |
           echo "Report file:"
           find . -type f -name "content_report.md"
+
+      - name: Run the find errors script
+        run: |
+          python .github/script/pre_validate_pr_content.py

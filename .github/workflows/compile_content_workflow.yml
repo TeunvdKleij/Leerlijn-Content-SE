@@ -39,7 +39,7 @@ jobs:
       # Step 5: Run the Python script
       - name: Run compile_content.py
         run: |
-          python .github/script/compile_content.py --dataset .github/datasets/dataset.xlsx
+          python .github/script/compile_content.py
 
       - name: Copy reports to root
         run: |

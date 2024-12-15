@@ -1,7 +1,6 @@
 import os
 import time
 import shutil
-from pathlib import Path
 
 from config import DEST_DIR, SRC_DIR, TAXCO_REPORT_PATH, CONTENT_REPORT_PATH, DATASET
 
