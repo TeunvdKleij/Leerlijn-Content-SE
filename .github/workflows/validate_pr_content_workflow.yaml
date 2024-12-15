@@ -75,7 +75,8 @@ jobs:
 
       - name: Change to the content branch
         run: |
-          git checkout content
+          git checkout content --
+          echo "Checked out content branch"
 
       - name: Validate on the content branch
         run: |
