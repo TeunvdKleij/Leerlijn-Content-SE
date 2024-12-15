@@ -20,12 +20,22 @@ jobs:
       - name: Checkout head branch
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.ref }}  # Ensure the head branch is checked out
+          ref: ${{ github.event.pull_request.head.ref }}  # Ensure the head branch is checked out          
 
+      - name: List changed files
+        id: changed-files
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: files } = await github.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+            });
+            const changedFiles = files.map(file => file.filename).filter(filename => filename.startsWith('content/'));
+            return { changedFiles };
+  
       - name: Print created or updated files
         run: |
-          echo "Comparing BASE to HEAD to find created or updated files in the content folder:"
-          git fetch origin ${{ github.event.pull_request.base.ref }}
-          CHANGED_FILES=$(git diff --name-only HEAD..origin/${{ github.event.pull_request.base.ref }} | grep '^content/.*' || true)
           echo "Changed or created files:"
-          echo "$CHANGED_FILES"
+          echo "${{ steps.changed-files.outputs.changedFiles }}"
