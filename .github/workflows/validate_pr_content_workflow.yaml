@@ -73,6 +73,10 @@ jobs:
         run: |
           git checkout content
 
+      - name: Validate on the content branch
+        run: |
+          echo "Current branch: $(git branch --show-current)"
+
       - name: Delete files in the content directory
         run: |
           rm -rf content
