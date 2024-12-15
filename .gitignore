@@ -4,7 +4,3 @@
 .DS_Store
 __pycache__
 content/
-.github/datasets/
-.github/script/
-.github/README.md
-.github/workflows/

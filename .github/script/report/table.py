@@ -6,7 +6,7 @@ Args:
 Returns:
     table (str): Markdown table string.
 """
-def generate_markdown_table(headers, rows):
+def generateMarkdownTable(headers, rows):
     table = "| " + " | ".join(headers) + " |\n"
     table += "| " + " | ".join(["---"] * len(headers)) + " |\n"
 

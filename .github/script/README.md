@@ -1,7 +1,7 @@
-# Documentation validate_content.py
+# Documentation compile_content.py
 
 ## Overview
-The validate_content.py script is designed to update markdown files with taxonomie tags, generate reports, and optionally run tests. 
+The compile_content.py script is designed to update markdown files with taxonomie tags, generate reports, and optionally run tests. 
 It processes markdown files from a source directory, updates them based on a dataset, and saves the updated files and reports to a destination directory.
 
 ## Command Line Arguments
@@ -15,26 +15,26 @@ The main entry point of the script. It performs the following steps:
 1. Parses command line arguments.
 2. Resolves the source and destination directories.
 3. Sets the global VERBOSE and Testing flags based on the arguments.
-4. Fills the reports with the dataset information by calling `parse_dataset_file`, `populate_rapport1` and `populate_rapport2`
+4. Fills the reports with the dataset information by calling `parseDatasetFile`, `populateRapport1` and `populateRapport2`
 5. If the `--testing` flag is set, it runs the test cases and evaluates the results.
 6. If the `--testing` flag is not set, it deletes everything in the destination folder, parses the markdown files, populates the image report, and generates the final report.
 
-### parse_dataset_file(dataset_file)
+### parseDatasetFile(dataset_file)
 Parses the dataset file from an XLSX file to a list.
 
-### parse_markdown_files(src_dir, dest_dir)
+### parseMarkdownFiles(src_dir, dest_dir)
 Updates markdown files in the source directory with taxonomie tags and generates reports.
 
-### populate_rapport1()
+### populateRapport1()
 Fills the Rapport 1 data with the data from the dataset.
 
-### populate_rapport2()
+### populateRapport2()
 Fills the Rapport 2 data with the data from the dataset.
 
 ### populate_image_report(src_dir, dest_dir)
 Populates the image report with data from the images in the folders.
 
-### generate_report() 
+### generateReport() 
 Generates the final report based on the taxonomie report, success, and failed reports.
 
 ### run_test_cases(TEST_DIR)
@@ -49,7 +49,7 @@ Evaluates the test results.
 ## Example Usage
 
 ```sh
-python .github/validate_content.py --src "./content" --dest "./build" --dataset .github/datasets/dataset.xlsx --verbose
+python .github/compile_content.py --src "./content" --dest "./build" --dataset .github/datasets/dataset.xlsx --verbose
 ```
 
 This command will process the markdown files in the content directory, update them based on the dataset in `./datasets/dataset.xlsx`, and save the updated files and reports to the build directory with verbose output.

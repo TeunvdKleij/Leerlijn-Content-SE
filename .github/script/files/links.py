@@ -3,16 +3,16 @@ import re, os
 from pathlib import Path
 
 # Variables
-from config import VALID_DYNAMIC_LINK_PREFIXES, VERBOSE
+from config import VALID_DYNAMIC_LINK_PREFIXES, ERROR_INVALID_DYNAMIC_LINK
 
 """
 Update dynamic links in the content of a markdown file.
 
 Args:
-    file_path (str): Path to the markdown file.
+    filePath (str): Path to the markdown file.
     content (str): Content of the markdown file.
 """
-def update_dynamic_links(file_path, content):
+def updateDynamicLinks(filePath, content, skipValidateDynamicLinks):
     # Find all dynamic links in the content
     dynamic_links = re.findall(r'\[\[[^"\[][^]]*?\]\]', content)
 
@@ -21,17 +21,25 @@ def update_dynamic_links(file_path, content):
     for link in dynamic_links:
         # Skip links that start with any of the valid prefixes
         cleaned_link = link.strip('[[]]')
+        
         if any(cleaned_link.startswith(prefix) for prefix in VALID_DYNAMIC_LINK_PREFIXES):
             return content, errors
+        
         # Strip 'content/' prefix if present
         new_link = link.replace('content/', '')
+        
         # Replace the old link with the new link in the content
         content = content.replace(link, new_link)
+        
+        # Skip dynamic link check if flag is set
+        # This is used in the PR validation check when only updated the content is being checked
+        if(skipValidateDynamicLinks):
+            continue
 
         # Check if the dynamic link is valid
-        if not validate_dynamic_link(file_path, new_link):
-            if VERBOSE: print(f"Error: Invalid dynamic link: {new_link}")
-            errors.append(f"Invalid dynamic link: `{new_link}`")
+        if not validateDynamicLink(filePath, new_link):
+            print(ERROR_INVALID_DYNAMIC_LINK + new_link)
+            errors.append(ERROR_INVALID_DYNAMIC_LINK + ' `' + new_link + '` ')
 
     return content, errors
 
@@ -39,18 +47,18 @@ def update_dynamic_links(file_path, content):
 Checks if the dynamic link is valid and the file exists.
 
 Args:
-    source_file_path (str): Path to the source file.
+    source_filePath (str): Path to the source file.
     link (str): Dynamic link to validate.
 """
-def validate_dynamic_link(source_file_path, link):
+def validateDynamicLink(source_filePath, link):
     # Define the root content directory (assuming it is one level up from the current script)
-    content_path = source_file_path
+    content_path = source_filePath
     while Path(content_path).name != 'content' and Path(content_path).name != 'test_cases':
         content_path = content_path.parent
-    # content_path = Path(__file__).resolve().parents[2] / 'content'
+    
     # Verify that content_path exists
     if not content_path.exists():
-        if VERBOSE: print(f"Error: Content path '{content_path}' does not exist.")
+        print(f"Error: Content path '{content_path}' does not exist.")
         return False
 
     # Clean up the link by removing the surrounding [[ and ]]
@@ -74,6 +82,6 @@ def validate_dynamic_link(source_file_path, link):
 
     # If no valid file is found, report error with details
     if not found_file:
-        if VERBOSE: print(f"Error: source file: {source_file_path}, target file '{file_name}' not found in content.")
+        print(f"Error: source file: {source_filePath}, target file '{file_name}' not found in content.")
 
     return False

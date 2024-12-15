@@ -10,7 +10,7 @@ import argparse
 from config import VERBOSE, failedImages
 
 # Functions
-from files.parse import parse_markdown_files
+from files.parse import parseMarkdownFiles
 
 Markdown_Count_Check = False  
 
@@ -32,7 +32,7 @@ def evaluate_tests():
         shutil.rmtree(dest_dir)
         os.mkdir(dest_dir)
         
-    parse_markdown_files(src_dir, dest_dir)
+    parseMarkdownFiles(src_dir, dest_dir)
 
     Markdown_Count_Check = check_markdown_files_count(src_dir) == check_markdown_files_count(dest_dir)
 

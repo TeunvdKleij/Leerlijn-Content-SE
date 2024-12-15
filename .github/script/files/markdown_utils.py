@@ -3,30 +3,31 @@ import re
 from pathlib import Path
 
 # Variables
-from config import failedFiles, VERBOSE, dataset, Rapport_2, WIPFiles
+from config import failedFiles, dataset, Rapport_2, WIPFiles
 
 # Constants
-from config import PROCES_COL, PROCESSTAP_COL, TC3_COL, TC2_COL, NOT_NECESSARY, ERROR_MISSING_TAXCO, TAXONOMIE_PATTERN, TODO_PATTERN
+from config import PROCES_COL, PROCESSTAP_COL, TC3_COL, TC2_COL, TAXONOMIE_PATTERN, TODO_PATTERN, FOLDERS_FOR_4CID, VERBOSE, ERROR_INVALID_TAXCO
+from config import ERROR_MISSING_TAXCO, NOT_NECESSARY, ERROR_TAXCO_NOT_NEEDED, ERROR_TAXCO_NOT_FOUND, ERROR_TAXCO_IN_WRONG_4CID_COMPONENT
 
 # Functions
-from report.table import generate_markdown_table
-from report.update import update_rapport1_data, update_rapport2_data
+from report.table import generateMarkdownTable
+from report.update import updateProcessReportData, updateSubjectReportData
 
 
-# Create a file report based on the status, file path, taxonomie, and tags.
-def create_file_report(status, file_path, src_dir, taxonomie, tags, errors):
+# Create a new row in the file report based on the status, file path, taxonomie, and tags.
+def createFileReportRow(status, filePath, src_dir, taxonomie, tags, errors):
     return {
         "status": status,
-        "file": file_path.stem,
-        "path": str(file_path.relative_to(src_dir)),
+        "file": filePath.stem,
+        "path": str(filePath.relative_to(src_dir)),
         "taxonomie": '<br>'.join(taxonomie) if taxonomie else "N/A",
         "tags": '<br>'.join(tags) if tags else "N/A",
         "errors": '<br>'.join(errors) if errors else "N/A"
     }
 
 # Format the success or failed report table based on a list.
-def format_file_report_table(file_report):
-    headers = ["Status", "File", "Path", "Taxonomie", "Tags"]
+def formatFileReportTable(file_report):
+    headers = ["Status", "File", "Path", "Taxonomie", "Tags", "Errors"]
 
     if file_report == failedFiles or file_report == WIPFiles : headers.append("Errors")
     rows = [[
@@ -38,16 +39,16 @@ def format_file_report_table(file_report):
         file['errors']
      ] for file in file_report]
 
-    table = generate_markdown_table(headers, rows)
+    table = generateMarkdownTable(headers, rows)
     return table
 
 """
 Generate tags based on the taxonomie values
 Args:
     taxonomies (list): List of taxonomie values.
-    file_path (str): Path to the file.
+    filePath (str): Path to the file.
 """
-def generate_tags(taxonomies, file_path, existing_tags):
+def generateTags(taxonomies, filePath, existingTags):
     tags = []
     errors = []
     combined_tags = []
@@ -58,8 +59,8 @@ def generate_tags(taxonomies, file_path, existing_tags):
             if VERBOSE : print(f"Generating tags for taxonomie: {taxonomie}")
             # Check if the taxonomie is in the correct format
             if not re.match(TAXONOMIE_PATTERN, taxonomie):
-                errors.append(f"Invalid taxonomie: {taxonomie}")
-                if VERBOSE: print(f"Invalid taxonomie: {taxonomie}")
+                errors.append(ERROR_INVALID_TAXCO + ' `' + taxonomie + '` ')
+                if VERBOSE: print(ERROR_INVALID_TAXCO + taxonomie)
                 continue
 
             # split the taxonomie in it's different parts
@@ -92,39 +93,45 @@ def generate_tags(taxonomies, file_path, existing_tags):
                             # Check if the taxonomie is not needed
                             splitted_row2 =  row[TC2_COL].split(',')
                             if splitted_row2[int(tc_2)-1] == "X": 
-                               tags.append(NOT_NECESSARY)    
-
-                            # Sort the tags so that the HBO-i tags are first
-                            tags.sort(key=lambda x: x.startswith('HBO-i'), reverse=True)
+                               tags.append(NOT_NECESSARY)
                             
-                            update_rapport1_data(tc_1, tc_2)
-                            update_rapport2_data(get_file_type(file_path), tc_1, tc_2, tc_3)   
+                            # Checks if the fourth path has the matching 4C/ID component (looking at the folder and taxonomie code)
+                            containsCorrectTaxcos = check_if_file_contains_wrong_4cid(taxonomies, filePath)
+                            if containsCorrectTaxcos:
+                                updateProcessReportData(tc_1, tc_2)
+                                updateSubjectReportData(getFileType(filePath), tc_1, tc_2, tc_3)   
+                            else:   
+                                errors.append(ERROR_TAXCO_IN_WRONG_4CID_COMPONENT + ' `' + taxonomie + '` ')                        
+
                             taxonomie_tags = sorted(list(set(taxonomies)))
 
         # If no tags were found, add an error
             if NOT_NECESSARY in tags: 
                 tags.remove(NOT_NECESSARY)
-                errors.append(f"Taxonomie used where it is not needed: {taxonomie}")
+                errors.append(ERROR_TAXCO_NOT_NEEDED + ' `' + taxonomie + '` ')   
             if tags == [] and not errors:
-                    errors.append(f"Taxonomie not found in dataset: {taxonomie}")
-                    if VERBOSE: print(f"Taxonomie not found in dataset: {taxonomie}")
+                errors.append(ERROR_TAXCO_NOT_FOUND + ' `' + taxonomie + '` ')   
+                if VERBOSE: print(ERROR_TAXCO_NOT_FOUND + taxonomie)
     else:
         errors.append(ERROR_MISSING_TAXCO)
-        if VERBOSE: print(ERROR_MISSING_TAXCO)
+        if VERBOSE: print(ERROR_MISSING_TAXCO)  
 
     # Combine the existing tags with the new tags
-    if existing_tags: combined_tags += existing_tags 
+    if existingTags: combined_tags += existingTags 
     if tags : combined_tags += tags 
     if taxonomie_tags : combined_tags += taxonomie_tags
+    
+    # Sort combined_tags so that "HBO-i/niveau-" tags are moved to the start
+    combined_tags = sorted(combined_tags, key=lambda tag: (not tag.startswith("HBO-i/niveau-"), tag))
 
     return list(dict.fromkeys(combined_tags)), errors
 
 # Returns the folder name after the 'content' directory in the path.
-def get_file_type(file_path):
+def getFileType(filePath):
     # Convert to Path object if not already
-    file_path = Path(file_path)
+    filePath = Path(filePath)
     # Find the 'content' directory in the path
-    folder_path = file_path
+    folder_path = filePath
 
     while folder_path.parent.name != 'content' and folder_path.parent.name != 'test_cases':
         folder_path = folder_path.parent
@@ -137,7 +144,7 @@ def split_taxonomie(taxonomie):
     return taxonomie.split('.')
 
 # Helper function to extract specific values from the content of a markdown file.
-def extract_values(content, field_name):
+def extractHeaderValues(content, field_name):
     lines = content.splitlines()
     values = []
 
@@ -158,11 +165,22 @@ def extract_values(content, field_name):
 
     return values if values else None
 
-
-"""
-Helper function to find all the To-Do items in the content of a markdown file.
-"""	
-def find_ToDo_items(content):
+# Helper function to find all the To-Do items in the content of a markdown file.	
+def findWIPItems(content):
     # Find all the todo items in the content
     todo_items = re.findall(TODO_PATTERN, content)
     return todo_items
+
+# Checks if a file contains at least one wrong taxonomie code (based on incorrect placement of 4C/ID)
+def check_if_file_contains_wrong_4cid(taxonomies, filePath):
+    containsOnlyCorrectTaxonomie = True
+    for taxonomie in taxonomies:
+        if not re.match(TAXONOMIE_PATTERN, taxonomie):
+            continue
+        tc_1, tc_2, tc_3, tc_4 = split_taxonomie(taxonomie)  
+        if tc_1 and tc_2 and tc_3:
+            if tc_4 in FOLDERS_FOR_4CID:
+                expected_folder = FOLDERS_FOR_4CID[tc_4]
+                if expected_folder not in str(filePath):
+                    containsOnlyCorrectTaxonomie = False
+    return containsOnlyCorrectTaxonomie            
