@@ -27,12 +27,7 @@ jobs:
         run: |
           git checkout ${{ github.event.pull_request.head.ref }}
 
-      # Step 4: Merge the base (content) branch into the pull request branch (HEAD)
-      - name: Merge content into HEAD
-        run: |
-          git merge origin/content --no-ff --no-commit  # Merge the base branch into the HEAD branch without committing yet
-
-      # Step 5: Get the list of changed or added files
+      # Step 4: Get the list of changed or added files
       - name: Get list of new or changed files after the merge
         run: |
           # Get the list of files that have been changed or added since the last sync (after the merge)
