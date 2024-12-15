@@ -2,7 +2,7 @@ name: PR Validation Workflow
 
 on:
   pull_request:
-    types: [opened, reopened]
+    types: [opened, reopened, synchronize]
     branches:
       - content
 
@@ -23,17 +23,20 @@ jobs:
         with:
           ref: content  # Checkout the base branch (content)
 
-      # Step 3: Fetch the head branch (pull request)
-      - name: Checkout the pull request branch (HEAD)
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}  # Checkout the pull request branch
+      # Step 3: Fetch the base branch and pull request branch (HEAD)
+      - name: Fetch the base and PR branches
+        run: |
+          # Fetch the base branch (content) from origin if not already available
+          git fetch origin content
+          
+          # Fetch the PR branch using the PR head reference
+          git fetch origin ${{ github.event.pull_request.head.ref }}
 
-      # Step 4: Get the list of changed files between the base and head branches
+      # Step 4: Get the list of changed or added files
       - name: Get list of changed or added files
         run: |
           # Compare the base (content) branch with the pull request branch (HEAD)
-          CHANGED_FILES=$(git diff --name-only --diff-filter=AM content..${{ github.event.pull_request.head.ref }})
+          CHANGED_FILES=$(git diff --name-only --diff-filter=AM origin/content..origin/${{ github.event.pull_request.head.ref }})
 
           # Output the list of changed or added files
           echo "Changed or created files in the pull request:"
