@@ -16,6 +16,18 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          pip install pandas openpyxl
+
       - name: Checkout head branch
         uses: actions/checkout@v3
         with:
@@ -38,3 +50,13 @@ jobs:
         run: |
           echo "Changed or created files:"
           echo "${{ steps.changed-files.outputs.changedFiles }}"
+
+      - name: Copy changed files to a temp directory
+        run: |
+          mkdir ../temp
+          cp ${{ steps.changed-files.outputs.changedFiles }} ../temp
+
+      - name: Print copied files
+        run: |
+          echo "Copied files:"
+          ls -R ../temp
