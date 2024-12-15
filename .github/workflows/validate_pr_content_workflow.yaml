@@ -20,14 +20,16 @@ jobs:
       - name: Checkout head branch
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.ref }}  # Ensure the head branch is checked out          
+          ref: ${{ github.event.pull_request.head.ref }}  # Ensure the head branch is checked out
 
-      - name: Print created or updated files
+      - name: Fetch base branch and compare files
         run: |
-          echo "Comparing HEAD to BASE to find created or updated files in the content folder:"
-          git fetch origin ${{ github.event.pull_request.base.ref }}  # Fetch the base branch
-          
-          # Show the changed or created files in HEAD relative to BASE
-          CHANGED_FILES=$(git diff --name-only --diff-filter=AM HEAD..origin/${{ github.event.pull_request.base.ref }} | grep '^content/.*' || true)
-          echo "Changed or created files:"
+          # Fetch the base branch (to ensure we are comparing with the latest)
+          git fetch origin content
+
+          # Find changed or created files in the HEAD (pull request) branch, relative to the base branch (content)
+          CHANGED_FILES=$(git diff --name-only --diff-filter=AM HEAD..origin/content | grep '^content/.*' || true)
+
+          # Print out the files that were changed or created in HEAD
+          echo "Changed or created files in HEAD:"
           echo "$CHANGED_FILES"
