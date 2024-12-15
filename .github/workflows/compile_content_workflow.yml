@@ -54,9 +54,10 @@ jobs:
       # Step 7: Commit report.md to content branch
       - name: Commit report.md to content branch
         run: |
-          git add report.md
+          git add content_report.md
+          git add taxco_report.md
           if ! git diff-index --quiet HEAD; then
-            git commit -m "Update report.md"
+            git commit -m "Update reports"
             git push origin content
           else
             echo "No changes to commit"
