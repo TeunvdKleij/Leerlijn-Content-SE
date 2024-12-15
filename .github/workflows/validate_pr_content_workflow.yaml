@@ -2,7 +2,13 @@ name: PR Validation Workflow
 
 on:
   pull_request:
-    types: [opened, reopened]
+    types: 
+      - opened
+      - reopened
+      - synchronize  # Triggers when new commits are pushed to the PR
+      - ready_for_review  # Triggered when the PR is marked as ready for review
+      - review_requested  # Triggered when a review is requested for the PR
+      - review_request_removed  # Triggered when a review request is removed
     branches:
       - content
 
