@@ -64,7 +64,7 @@ jobs:
             cp --parents "$file" ../temp
           done
 
-      - name: Print copied files
+      - name: Copy files to temp directory
         run: |
           echo "Copied files:"
           find ../temp -type f
@@ -87,9 +87,13 @@ jobs:
           echo "Copied files back:"
           find content -type f
 
+      - name: Validate on the content branch
+        run: |
+          echo "Current branch: $(git branch --show-current)"
+        
       - name: Run compile_content.py
         run: |
-          python .github/script/compile_content.py --dataset .github/datasets/dataset.xlsx
+          python .github/script/compile_content.py
 
       - name: Print the contents of the report file
         run: |
