@@ -33,31 +33,8 @@ jobs:
           pip install pandas openpyxl
 
       - name: Identify changed markdown files
-        id: changed-files
         run: |
-          CHANGED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep '^content/.*\.md$' || true)
-          echo "::set-output name=files::$CHANGED_FILES"
-
-      - name: Delete files in the content directory
-        run: |
-          rm -rf content
-          mkdir content
-
-      - name: Copy changed files to the content directory
-        run: |
-          for file in ${{ steps.changed-files.outputs.files }}; do
-            cp $file content/
-          done
-
-      - name: Print the copied files
-        run: |
-          ls content
-
-      - name: Print the build files
-        run: |
-          ls build
-
-      # - name: Run compile_content.py
-      #   run: |
-      #     python .github/script/compile_content.py --dataset .github/datasets/dataset.xlsx
+          CHANGED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha || 'HEAD^' }} ${{ github.event.pull_request.head.sha || 'HEAD' }} | grep '^content/.*\\.md$' || true)
+          echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_ENV
+          echo "Changed Markdown files: $CHANGED_FILES"
 
