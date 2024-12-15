@@ -31,7 +31,8 @@ jobs:
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number,
             });
-            return files.map(file => file.filename).join('\n')
+            const changedFiles = files.map(file => file.filename).filter(filename => filename.startsWith('content/'));
+            core.setOutput('changedFiles', changedFiles.join('\n'));
 
       - name: Print created or updated files
         run: |
