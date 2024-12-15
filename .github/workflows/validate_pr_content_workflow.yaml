@@ -17,19 +17,36 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-      - name: Checkout head branch
+      - name: Checkout the base branch
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.ref }}  # Ensure the head branch is checked out
+          ref: content  # Checkout the base branch (content)
 
-      - name: Fetch base branch and compare files
+      - name: Get list of files in BASE branch (content)
+        id: base_files
         run: |
-          # Fetch the base branch (to ensure we are comparing with the latest)
-          git fetch origin content
+          BASE_FILES=$(find content -type f)  # Find all files in the content directory in the base branch
+          echo "BASE_FILES=$BASE_FILES" >> $GITHUB_ENV  # Save the result as an environment variable
 
-          # Find changed or created files in the HEAD (pull request) branch, relative to the base branch (content)
-          CHANGED_FILES=$(git diff --name-only --diff-filter=AM HEAD..origin/content | grep '^content/.*' || true)
+      - name: Checkout the head branch (pull request)
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}  # Checkout the pull request branch
 
-          # Print out the files that were changed or created in HEAD
-          echo "Changed or created files in HEAD:"
-          echo "$CHANGED_FILES"
+      - name: Get list of files in HEAD branch (pull request)
+        id: head_files
+        run: |
+          HEAD_FILES=$(find content -type f)  # Find all files in the content directory in the HEAD branch
+          echo "HEAD_FILES=$HEAD_FILES" >> $GITHUB_ENV  # Save the result as an environment variable
+
+      - name: Compare BASE and HEAD file lists
+        run: |
+          # Compare the two lists and print files that are in HEAD but not in BASE
+          echo "Comparing files between BASE and HEAD..."
+
+          # Get the list of files that exist in HEAD but not in BASE
+          NEW_FILES=$(comm -13 <(echo "$BASE_FILES" | sort) <(echo "$HEAD_FILES" | sort))
+
+          # Print out the new files that were added or modified in the HEAD branch
+          echo "New or modified files in HEAD (the pull request branch):"
+          echo "$NEW_FILES"
