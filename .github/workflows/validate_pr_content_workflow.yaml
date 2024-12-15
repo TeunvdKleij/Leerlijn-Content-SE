@@ -24,8 +24,8 @@ jobs:
 
       - name: Print created or updated files
         run: |
-          echo "Comparing HEAD to BASE to find created or updated files in the content folder:"
+          echo "Comparing BASE to HEAD to find created or updated files in the content folder:"
           git fetch origin ${{ github.event.pull_request.base.ref }}
-          CHANGED_FILES=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }}..HEAD | grep '^content/.*' || true)
+          CHANGED_FILES=$(git diff --name-only HEAD..origin/${{ github.event.pull_request.base.ref }} | grep '^content/.*' || true)
           echo "Changed or created files:"
           echo "$CHANGED_FILES"
