@@ -93,13 +93,13 @@ def generateTags(taxonomies, file_path, existing_tags):
                             # Check if the taxonomie is not needed
                             splitted_row2 =  row[TC2_COL].split(',')
                             if splitted_row2[int(tc_2)-1] == "X": 
-                               tags.append(NOT_NECESSARY)    
+                               tags.append(NOT_NECESSARY)
                             
                             # Checks if the fourth path has the matching 4C/ID component (looking at the folder and taxonomie code)
                             containsCorrectTaxcos = check_if_file_contains_wrong_4cid(taxonomies, file_path)
                             if containsCorrectTaxcos:
                                 updateProcessReportData(tc_1, tc_2)
-                                updateSubjectReportData(get_file_type(file_path), tc_1, tc_2, tc_3)   
+                                updateSubjectReportData(getFileType(file_path), tc_1, tc_2, tc_3)   
                             else:   
                                 errors.append(ERROR_TAXCO_IN_WRONG_4CID_COMPONENT + ' `' + taxonomie + '` ')                        
 
@@ -120,11 +120,14 @@ def generateTags(taxonomies, file_path, existing_tags):
     if existing_tags: combined_tags += existing_tags 
     if tags : combined_tags += tags 
     if taxonomie_tags : combined_tags += taxonomie_tags
+    
+    # Sort combined_tags so that "HBO-i/niveau-" tags are moved to the start
+    combined_tags = sorted(combined_tags, key=lambda tag: (not tag.startswith("HBO-i/niveau-"), tag))
 
     return list(dict.fromkeys(combined_tags)), errors
 
 # Returns the folder name after the 'content' directory in the path.
-def get_file_type(file_path):
+def getFileType(file_path):
     # Convert to Path object if not already
     file_path = Path(file_path)
     # Find the 'content' directory in the path
@@ -162,7 +165,6 @@ def extractHeaderValues(content, field_name):
 
     return values if values else None
 
-
 # Helper function to find all the To-Do items in the content of a markdown file.	
 def findWIPItems(content):
     # Find all the todo items in the content
@@ -182,5 +184,3 @@ def check_if_file_contains_wrong_4cid(taxonomies, file_path):
                 if expected_folder not in str(file_path):
                     containsOnlyCorrectTaxonomie = False
     return containsOnlyCorrectTaxonomie            
-
-

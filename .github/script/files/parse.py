@@ -125,4 +125,4 @@ def saveParsedFile(file_path, taxonomie, tags, difficulty, isDraft, content, des
 
     if VERBOSE:
         print(f"File completed: {file_path}")
-        print("-" * 50)                
+        print("-" * 50)
