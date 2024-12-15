@@ -69,6 +69,10 @@ jobs:
           echo "Copied files:"
           find ../temp -type f
 
+      - name: Fetch all branches
+        run: |
+          git fetch --all
+
       - name: Change to the content branch
         run: |
           git checkout content
