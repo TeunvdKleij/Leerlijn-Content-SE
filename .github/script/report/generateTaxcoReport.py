@@ -5,7 +5,6 @@ from config import VERBOSE, Rapport_1, Rapport_2
 from config import LT, DT, OI, PI, FAIL_CIRCLE, SUCCESS, NOT_NECESSARY
 
 # Functions
-from files.markdown_utils import formatFileReportTable
 from files.images import formatImageReportTable
 from report.table import generateMarkdownTable
 

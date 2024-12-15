@@ -1,3 +1,4 @@
+from doctest import SKIP
 import os
 import time
 import shutil
@@ -5,15 +6,22 @@ import shutil
 from config import DEST_DIR, SRC_DIR, TAXCO_REPORT_PATH, CONTENT_REPORT_PATH, DATASET
 
 from files.parse import parseDatasetFile, parseMarkdownFiles
-from files.images import fill_failed_images
+from files.images import fillFailedImages
 from report.populate import populateRapport1, populateRapport2
 from report.generateTaxcoReport import generateTaxcoReport
 from report.generateContentReport import generateContentReport
+import argparse
 
 """
 Main entry point of the script.
 """
-def main():
+def main():    
+    parser = argparse.ArgumentParser(description="Compile content script.")
+    parser.add_argument('--skip-link-check', action='store_true', help='Skip link check in markdown files.')
+    args = parser.parse_args()
+
+    skipDynamicLinkCheck = args.skip_link_check
+    
     if not os.path.exists(DATASET):
         print(f"Dataset file {DATASET} not found.")
         exit(404) 
@@ -31,8 +39,10 @@ def main():
         shutil.rmtree(DEST_DIR)
         os.mkdir(DEST_DIR)
 
-    parseMarkdownFiles(SRC_DIR, DEST_DIR) 
-    fill_failed_images(SRC_DIR, DEST_DIR) 
+    parseMarkdownFiles(SRC_DIR, DEST_DIR, skipDynamicLinkCheck) 
+    
+    fillFailedImages(SRC_DIR, DEST_DIR) 
+    
     generateTaxcoReport(TAXCO_REPORT_PATH)
     generateContentReport(CONTENT_REPORT_PATH)
 

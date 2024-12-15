@@ -15,11 +15,11 @@ from report.update import updateProcessReportData, updateSubjectReportData
 
 
 # Create a new row in the file report based on the status, file path, taxonomie, and tags.
-def createFileReportRow(status, file_path, src_dir, taxonomie, tags, errors):
+def createFileReportRow(status, filePath, src_dir, taxonomie, tags, errors):
     return {
         "status": status,
-        "file": file_path.stem,
-        "path": str(file_path.relative_to(src_dir)),
+        "file": filePath.stem,
+        "path": str(filePath.relative_to(src_dir)),
         "taxonomie": '<br>'.join(taxonomie) if taxonomie else "N/A",
         "tags": '<br>'.join(tags) if tags else "N/A",
         "errors": '<br>'.join(errors) if errors else "N/A"
@@ -46,9 +46,9 @@ def formatFileReportTable(file_report):
 Generate tags based on the taxonomie values
 Args:
     taxonomies (list): List of taxonomie values.
-    file_path (str): Path to the file.
+    filePath (str): Path to the file.
 """
-def generateTags(taxonomies, file_path, existing_tags):
+def generateTags(taxonomies, filePath, existingTags):
     tags = []
     errors = []
     combined_tags = []
@@ -96,10 +96,10 @@ def generateTags(taxonomies, file_path, existing_tags):
                                tags.append(NOT_NECESSARY)
                             
                             # Checks if the fourth path has the matching 4C/ID component (looking at the folder and taxonomie code)
-                            containsCorrectTaxcos = check_if_file_contains_wrong_4cid(taxonomies, file_path)
+                            containsCorrectTaxcos = check_if_file_contains_wrong_4cid(taxonomies, filePath)
                             if containsCorrectTaxcos:
                                 updateProcessReportData(tc_1, tc_2)
-                                updateSubjectReportData(getFileType(file_path), tc_1, tc_2, tc_3)   
+                                updateSubjectReportData(getFileType(filePath), tc_1, tc_2, tc_3)   
                             else:   
                                 errors.append(ERROR_TAXCO_IN_WRONG_4CID_COMPONENT + ' `' + taxonomie + '` ')                        
 
@@ -117,7 +117,7 @@ def generateTags(taxonomies, file_path, existing_tags):
         if VERBOSE: print(ERROR_MISSING_TAXCO)  
 
     # Combine the existing tags with the new tags
-    if existing_tags: combined_tags += existing_tags 
+    if existingTags: combined_tags += existingTags 
     if tags : combined_tags += tags 
     if taxonomie_tags : combined_tags += taxonomie_tags
     
@@ -127,11 +127,11 @@ def generateTags(taxonomies, file_path, existing_tags):
     return list(dict.fromkeys(combined_tags)), errors
 
 # Returns the folder name after the 'content' directory in the path.
-def getFileType(file_path):
+def getFileType(filePath):
     # Convert to Path object if not already
-    file_path = Path(file_path)
+    filePath = Path(filePath)
     # Find the 'content' directory in the path
-    folder_path = file_path
+    folder_path = filePath
 
     while folder_path.parent.name != 'content' and folder_path.parent.name != 'test_cases':
         folder_path = folder_path.parent
@@ -172,7 +172,7 @@ def findWIPItems(content):
     return todo_items
 
 # Checks if a file contains at least one wrong taxonomie code (based on incorrect placement of 4C/ID)
-def check_if_file_contains_wrong_4cid(taxonomies, file_path):
+def check_if_file_contains_wrong_4cid(taxonomies, filePath):
     containsOnlyCorrectTaxonomie = True
     for taxonomie in taxonomies:
         if not re.match(TAXONOMIE_PATTERN, taxonomie):
@@ -181,6 +181,6 @@ def check_if_file_contains_wrong_4cid(taxonomies, file_path):
         if tc_1 and tc_2 and tc_3:
             if tc_4 in FOLDERS_FOR_4CID:
                 expected_folder = FOLDERS_FOR_4CID[tc_4]
-                if expected_folder not in str(file_path):
+                if expected_folder not in str(filePath):
                     containsOnlyCorrectTaxonomie = False
     return containsOnlyCorrectTaxonomie            

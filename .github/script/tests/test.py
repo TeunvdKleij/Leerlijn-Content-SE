@@ -10,7 +10,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from config import failedFiles
 
 # Functions
-from files.images import fill_failed_images
+from files.images import fillFailedImages
 from report.generate import generateReport
 from files.parse import parseMarkdownFiles, parseDatasetFile
 from tests.evaluate import evaluate_tests
@@ -67,7 +67,7 @@ def test():
 
     parseMarkdownFiles(SRC_DIR, DEST_DIR) 
     
-    fill_failed_images(SRC_DIR, DEST_DIR) 
+    fillFailedImages(SRC_DIR, DEST_DIR) 
     generateReport(REPORT_PATH) 
 
     if validate_test_report():

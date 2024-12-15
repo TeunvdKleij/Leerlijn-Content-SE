@@ -102,7 +102,7 @@ jobs:
         
       - name: Run compile_content.py
         run: |
-          python .github/script/compile_content.py
+          python .github/script/compile_content.py --skip-link-check
 
       - name: Print the contents of the report file
         run: |

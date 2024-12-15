@@ -6,7 +6,7 @@ from pathlib import Path
 from config import failedImages
 
 # Constants
-from config import VERBOSE, FAIL_CROSS, NOT_NECESSARY, IGNORE_FOLDERS, ERROR_IMAGE_NOT_USED, ERROR_NO_4CID_COMPONENT, ERROR_IMAGE_NOT_FOUND
+from config import FAIL_CROSS, NOT_NECESSARY, IGNORE_FOLDERS, ERROR_IMAGE_NOT_USED, ERROR_NO_4CID_COMPONENT, ERROR_IMAGE_NOT_FOUND
 
 # Functions
 from report.table import generateMarkdownTable
@@ -47,9 +47,10 @@ def copyImages(content, src_dir, dest_dir):
                 break
 
         if found_image_path and found_image_path.exists():
-            relative_path = found_image_path.relative_to(src_dir)
-            new_image_path = dest_dir / relative_path
+            relativePath = found_image_path.relative_to(src_dir)
+            new_image_path = dest_dir / relativePath
             new_image_path.parent.mkdir(parents=True, exist_ok=True)
+            
             shutil.copy(found_image_path, new_image_path)
         else:
             print(ERROR_IMAGE_NOT_FOUND + image_path)
@@ -58,11 +59,11 @@ def copyImages(content, src_dir, dest_dir):
     return errors
 
 # Create a row for the image report table
-def create_image_table_row(status, file_path, src_dir, error):
+def createImageTableTow(status, filePath, src_dir, error):
     return {
         "status" : status,
-        "image": file_path.stem,
-        "path": str(file_path.relative_to(src_dir)),
+        "image": filePath.stem,
+        "path": str(filePath.relative_to(src_dir)),
         "error": error,
     }
 
@@ -83,25 +84,23 @@ def formatImageReportTable(image_report):
 Fills the image Rapport with data from the images in the folders
 Every unique TC3 and TC1 combination will be added to the Rapport 2 data.
 """
-def fill_failed_images(SRC_DIR, DEST_DIR):
+def fillFailedImages(SRC_DIR, DEST_DIR):
     src_dir = Path(SRC_DIR).resolve()
     dest_dir = Path(DEST_DIR).resolve()
     
-    src_images = get_images_in_folder(src_dir)
-    dest_images = get_images_in_folder(dest_dir)
+    src_images = getImagesInFolder(src_dir)
+    dest_images = getImagesInFolder(dest_dir)
     
     for image in dest_images:
         if not str(image.stem).startswith(("PI", "OI", "LT", "DT")):
-            failedImages.append(create_image_table_row(FAIL_CROSS, image, dest_dir, ERROR_NO_4CID_COMPONENT))
+            failedImages.append(createImageTableTow(FAIL_CROSS, image, dest_dir, ERROR_NO_4CID_COMPONENT))
 
     for image in src_images: 
         if str(image.stem) not in {str(img.stem) for img in dest_images}:
-            failedImages.append(create_image_table_row(NOT_NECESSARY, image, src_dir, ERROR_IMAGE_NOT_USED))    
+            failedImages.append(createImageTableTow(NOT_NECESSARY, image, src_dir, ERROR_IMAGE_NOT_USED))    
 
-"""
-Helper method to populate the image report
-"""
-def get_images_in_folder(dir):
+# Helper method to populate the image report
+def getImagesInFolder(dir):
     folders = [folder for folder in Path(dir).rglob("src") if folder.is_dir()]
 
     images = set()
@@ -111,8 +110,9 @@ def get_images_in_folder(dir):
         if any(ignore_folder in str(folder) for ignore_folder in IGNORE_FOLDERS):
             continue
         
+        # Skip deprecated folders
         if "deprecated" in str(folder):
             continue
         
-        images.update(file_path for file_path in folder.rglob("*")) 
+        images.update(filePath for filePath in folder.rglob("*")) 
     return images
