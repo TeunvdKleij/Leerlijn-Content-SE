@@ -21,16 +21,19 @@ def updateDynamicLinks(file_path, content):
     for link in dynamic_links:
         # Skip links that start with any of the valid prefixes
         cleaned_link = link.strip('[[]]')
+        
         if any(cleaned_link.startswith(prefix) for prefix in VALID_DYNAMIC_LINK_PREFIXES):
             return content, errors
+        
         # Strip 'content/' prefix if present
         new_link = link.replace('content/', '')
+        
         # Replace the old link with the new link in the content
         content = content.replace(link, new_link)
 
         # Check if the dynamic link is valid
-        if not validate_dynamic_link(file_path, new_link):
-            if VERBOSE: print(ERROR_INVALID_DYNAMIC_LINK + new_link)
+        if not validateDynamicLink(file_path, new_link):
+            print(ERROR_INVALID_DYNAMIC_LINK + new_link)
             errors.append(ERROR_INVALID_DYNAMIC_LINK + ' `' + new_link + '` ')
 
     return content, errors
@@ -42,15 +45,15 @@ Args:
     source_file_path (str): Path to the source file.
     link (str): Dynamic link to validate.
 """
-def validate_dynamic_link(source_file_path, link):
+def validateDynamicLink(source_file_path, link):
     # Define the root content directory (assuming it is one level up from the current script)
     content_path = source_file_path
     while Path(content_path).name != 'content' and Path(content_path).name != 'test_cases':
         content_path = content_path.parent
-    # content_path = Path(__file__).resolve().parents[2] / 'content'
+    
     # Verify that content_path exists
     if not content_path.exists():
-        if VERBOSE: print(f"Error: Content path '{content_path}' does not exist.")
+        print(f"Error: Content path '{content_path}' does not exist.")
         return False
 
     # Clean up the link by removing the surrounding [[ and ]]
@@ -74,6 +77,6 @@ def validate_dynamic_link(source_file_path, link):
 
     # If no valid file is found, report error with details
     if not found_file:
-        if VERBOSE: print(f"Error: source file: {source_file_path}, target file '{file_name}' not found in content.")
+        print(f"Error: source file: {source_file_path}, target file '{file_name}' not found in content.")
 
     return False

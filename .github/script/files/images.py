@@ -52,7 +52,7 @@ def copyImages(content, src_dir, dest_dir):
             new_image_path.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy(found_image_path, new_image_path)
         else:
-            if VERBOSE: print(ERROR_IMAGE_NOT_FOUND + image_path)
+            print(ERROR_IMAGE_NOT_FOUND + image_path)
             errors.append(ERROR_IMAGE_NOT_FOUND + ' `' + image_path + '` ')
 
     return errors
