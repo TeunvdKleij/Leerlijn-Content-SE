@@ -2,7 +2,7 @@ name: PR Validation Workflow
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize]
+    types: [opened, reopened]
     branches:
       - content
 
@@ -11,28 +11,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the base branch (content)
-      - name: Checkout the base branch (content)
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Checkout head branch
         uses: actions/checkout@v3
         with:
-          ref: content  # Checkout the base branch (content)
+          ref: ${{ github.event.pull_request.head.ref }}
 
-      # Step 2: Fetch the pull request branch (HEAD)
-      - name: Fetch the pull request branch (HEAD)
+      - name: List changed files
+        id: changed-files
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: files } = await github.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+            });
+            const changedFiles = files.map(file => file.filename).filter(filename => filename.startsWith('content/'));
+            return { changedFiles };
+
+      - name: Print created or updated files
         run: |
-          git fetch origin ${{ github.event.pull_request.head.ref }}
-
-      # Step 3: Checkout the pull request branch (HEAD)
-      - name: Checkout the pull request branch (HEAD)
-        run: |
-          git checkout ${{ github.event.pull_request.head.ref }}
-
-      # Step 4: Get the list of changed or added files
-      - name: Get list of new or changed files after the merge
-        run: |
-          # Get the list of files that have been changed or added since the last sync (after the merge)
-          CHANGED_FILES=$(git diff --name-only --diff-filter=AM origin/content...HEAD)
-
-          # Output the list of changed or added files
-          echo "Changed or created files in the pull request after the merge:"
-          echo "$CHANGED_FILES"
+          echo "Changed or created files:"
+          echo "${{ steps.changed-files.outputs.changedFiles }}"
