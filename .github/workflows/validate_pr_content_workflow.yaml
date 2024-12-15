@@ -17,10 +17,10 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-      - name: Checkout base branch
+      - name: Checkout head branch
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.base.ref }}  # Ensure the base branch is checked out
+          ref: ${{ github.event.pull_request.head.ref }}  # Ensure the base branch is checked out
 
       - name: Log current branch
         run: |
@@ -29,5 +29,5 @@ jobs:
       - name: Print files in content folder
         run: |
           echo "Listing all files in the content folder of the base branch:"
-          ls content/
+            ls -R content/
 
