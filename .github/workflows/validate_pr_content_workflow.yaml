@@ -17,33 +17,24 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-      - name: Checkout the base branch
+      # Step 2: Checkout the base branch (content)
+      - name: Checkout the base branch (content)
         uses: actions/checkout@v3
         with:
           ref: content  # Checkout the base branch (content)
 
-      - name: Get list of files in BASE branch (content) and save to base.txt
-        run: |
-          # Create a file with the list of all files in the content directory
-          find content -type f > ../base.txt  # Save the result to a file in the parent directory
-
-      - name: Checkout the head branch (pull request)
+      # Step 3: Fetch the head branch (pull request)
+      - name: Checkout the pull request branch (HEAD)
         uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.ref }}  # Checkout the pull request branch
 
-      - name: Get list of files in HEAD branch (pull request) and save to head.txt
+      # Step 4: Get the list of changed files between the base and head branches
+      - name: Get list of changed or added files
         run: |
-          # Create a file with the list of all files in the content directory
-          find content -type f > ../head.txt  # Save the result to a file in the parent directory
+          # Compare the base (content) branch with the pull request branch (HEAD)
+          CHANGED_FILES=$(git diff --name-only --diff-filter=AM content..${{ github.event.pull_request.head.ref }})
 
-      - name: Compare BASE and HEAD file lists
-        run: |
-          echo "Comparing files between BASE and HEAD..."
-
-          # Compare the two file lists and get the files that are in HEAD but not in BASE
-          NEW_FILES=$(comm -13 <(sort ../base.txt) <(sort ../head.txt))
-
-          # Print out the new files that were added or modified in the HEAD branch
-          echo "New or modified files in HEAD (the pull request branch):"
-          echo "$NEW_FILES"
+          # Output the list of changed or added files
+          echo "Changed or created files in the pull request:"
+          echo "$CHANGED_FILES"
