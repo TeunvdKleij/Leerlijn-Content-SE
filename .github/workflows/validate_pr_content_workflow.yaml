@@ -61,4 +61,4 @@ jobs:
       - name: Print copied files
         run: |
           echo "Copied files:"
-          ls -R ../temp
+          find ../temp -type f
