@@ -36,7 +36,7 @@ def parseDatasetFile(dataset_file):
         exit(404)
 
 # Update markdown files in the source directory with taxonomie tags and generate reports.
-def parseMarkdownFiles(SRC_DIR, DEST_DIR, SKIP_DYNAMIC_LINK_CHECK):
+def parseMarkdownFiles(SRC_DIR, DEST_DIR, skipValidateDynamicLinks):
     if VERBOSE: print("Parsing markdown files...")
 
     destDir = Path(DEST_DIR).resolve()
@@ -62,7 +62,7 @@ def parseMarkdownFiles(SRC_DIR, DEST_DIR, SKIP_DYNAMIC_LINK_CHECK):
         with open(filePath, 'r', encoding='utf-8') as f:
             content = f.read()
 
-        content, linkErrors = updateDynamicLinks(filePath, content, SKIP_DYNAMIC_LINK_CHECK)
+        content, linkErrors = updateDynamicLinks(filePath, content, skipValidateDynamicLinks)
         imageErrors = copyImages(content, srcDir, destDir)
         existingTags = extractHeaderValues(content, 'tags')
         taxonomie = extractHeaderValues(content, 'taxonomie')

@@ -12,7 +12,7 @@ Args:
     filePath (str): Path to the markdown file.
     content (str): Content of the markdown file.
 """
-def updateDynamicLinks(filePath, content, SKIP_DYNAMIC_LINK_CHECK):
+def updateDynamicLinks(filePath, content, skipValidateDynamicLinks):
     # Find all dynamic links in the content
     dynamic_links = re.findall(r'\[\[[^"\[][^]]*?\]\]', content)
 
@@ -32,7 +32,8 @@ def updateDynamicLinks(filePath, content, SKIP_DYNAMIC_LINK_CHECK):
         content = content.replace(link, new_link)
         
         # Skip dynamic link check if flag is set
-        if(SKIP_DYNAMIC_LINK_CHECK):
+        # This is used in the PR validation check when only updated the content is being checked
+        if(skipValidateDynamicLinks):
             continue
 
         # Check if the dynamic link is valid
