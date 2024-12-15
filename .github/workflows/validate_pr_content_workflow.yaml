@@ -53,8 +53,8 @@ jobs:
 
       - name: Copy changed files to a temp directory
         run: |
-          mkdir ../temp
-          for file in ${{ steps.changed-files.outputs.changedFiles }}; do
+          mkdir -p ../temp
+          echo "${{ steps.changed-files.outputs.changedFiles }}" | while IFS= read -r file; do
             cp --parents "$file" ../temp
           done
 
