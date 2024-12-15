@@ -62,3 +62,17 @@ jobs:
         run: |
           echo "Copied files:"
           find ../temp -type f
+
+      - name: Delete files in the content directory
+        run: |
+          rm -rf content
+          mkdir content
+
+      - name: Copy files back to the content directory
+        run: |
+          cp -r ../temp/content/* content
+
+      - name: Print copied files
+        run: |
+          echo "Copied files:"
+          find content -type f
