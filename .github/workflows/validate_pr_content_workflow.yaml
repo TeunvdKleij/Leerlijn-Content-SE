@@ -63,6 +63,10 @@ jobs:
           echo "Copied files:"
           find ../temp -type f
 
+      - name: Change to the content branch
+        run: |
+          git checkout content
+
       - name: Delete files in the content directory
         run: |
           rm -rf content
@@ -74,5 +78,14 @@ jobs:
 
       - name: Print copied files
         run: |
-          echo "Copied files:"
+          echo "Copied files back:"
           find content -type f
+
+      - name: Run compile_content.py
+        run: |
+          python .github/script/compile_content.py --dataset .github/datasets/dataset.xlsx
+
+      - name: Print the contents of the report file
+        run: |
+          echo "Report file:"
+          find . -type f -name "content_report.md"
