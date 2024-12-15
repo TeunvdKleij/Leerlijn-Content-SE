@@ -36,6 +36,10 @@ jobs:
         run: |
           pip install pandas openpyxl
 
+      - name: Checkout content branch
+        run: |
+          git checkout content --
+
       # Step 5: Run the Python script
       - name: Run compile_content.py
         run: |

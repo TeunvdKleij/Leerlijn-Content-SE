@@ -39,4 +39,4 @@ jobs:
 
       - name: Run test.py script
         run: |
-          python .github/script/tests/test.py
+          python .github/script/tests/run_tests.py
