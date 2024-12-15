@@ -22,30 +22,27 @@ jobs:
         with:
           ref: content  # Checkout the base branch (content)
 
-      - name: Get list of files in BASE branch (content)
-        id: base_files
+      - name: Get list of files in BASE branch (content) and save to base.txt
         run: |
-          BASE_FILES=$(find content -type f)  # Find all files in the content directory in the base branch
-          echo "BASE_FILES=$BASE_FILES" >> $GITHUB_ENV  # Save the result as an environment variable
+          # Create a file with the list of all files in the content directory
+          find content -type f > ../base.txt  # Save the result to a file in the parent directory
 
       - name: Checkout the head branch (pull request)
         uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.ref }}  # Checkout the pull request branch
 
-      - name: Get list of files in HEAD branch (pull request)
-        id: head_files
+      - name: Get list of files in HEAD branch (pull request) and save to head.txt
         run: |
-          HEAD_FILES=$(find content -type f)  # Find all files in the content directory in the HEAD branch
-          echo "HEAD_FILES=$HEAD_FILES" >> $GITHUB_ENV  # Save the result as an environment variable
+          # Create a file with the list of all files in the content directory
+          find content -type f > ../head.txt  # Save the result to a file in the parent directory
 
       - name: Compare BASE and HEAD file lists
         run: |
-          # Compare the two lists and print files that are in HEAD but not in BASE
           echo "Comparing files between BASE and HEAD..."
 
-          # Get the list of files that exist in HEAD but not in BASE
-          NEW_FILES=$(comm -13 <(echo "$BASE_FILES" | sort) <(echo "$HEAD_FILES" | sort))
+          # Compare the two file lists and get the files that are in HEAD but not in BASE
+          NEW_FILES=$(comm -13 <(sort ../base.txt) <(sort ../head.txt))
 
           # Print out the new files that were added or modified in the HEAD branch
           echo "New or modified files in HEAD (the pull request branch):"
