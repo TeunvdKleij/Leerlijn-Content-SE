@@ -54,7 +54,9 @@ jobs:
       - name: Copy changed files to a temp directory
         run: |
           mkdir ../temp
-          cp ${{ steps.changed-files.outputs.changedFiles }} ../temp
+          for file in ${{ steps.changed-files.outputs.changedFiles }}; do
+            cp --parents "$file" ../temp
+          done
 
       - name: Print copied files
         run: |
