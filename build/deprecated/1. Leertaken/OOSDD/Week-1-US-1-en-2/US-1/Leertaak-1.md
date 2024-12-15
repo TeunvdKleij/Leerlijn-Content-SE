@@ -3,10 +3,10 @@ title: Leertaak-1
 taxonomie: None
 tags:
 - HBO-i/niveau-2
-- OOSDD/Week-1/Leertaak-1
-- C#/classes/basics
-- UML/basics
 - Algoritmiek/basics
+- C#/classes/basics
+- OOSDD/Week-1/Leertaak-1
+- UML/basics
 draft: true 
 ---
 
