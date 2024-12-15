@@ -1,0 +1,130 @@
+name: PR Validation Workflow
+
+on:
+  pull_request:
+    types: 
+      - opened
+      - reopened
+      - synchronize  # Triggers when new commits are pushed to the PR
+      - ready_for_review  # Triggered when the PR is marked as ready for review
+      - review_requested  # Triggered when a review is requested for the PR
+      - review_request_removed  # Triggered when a review request is removed
+    branches:
+      - content
+
+jobs:
+  validate-markdown:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          pip install pandas openpyxl
+
+      - name: Checkout head branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: List changed files
+        id: changed-files
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: files } = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+            });
+            const changedFiles = files.map(file => file.filename).filter(filename => filename.startsWith('content/'));
+            core.setOutput('changedFiles', changedFiles.join('\n'));
+
+      - name: Print created or updated files
+        run: |
+          echo "Changed or created files:"
+          echo "${{ steps.changed-files.outputs.changedFiles }}"
+
+      - name: Copy changed files to a temp directory
+        run: |
+          mkdir -p ../temp
+          echo "${{ steps.changed-files.outputs.changedFiles }}" | while IFS= read -r file; do
+            cp --parents "$file" ../temp
+          done
+
+      - name: Copy files to temp directory
+        run: |
+          echo "Copied files:"
+          find ../temp -type f
+
+      - name: Fetch all branches
+        run: |
+          git fetch --all
+
+      - name: Change to the content branch
+        run: |
+          git checkout content --
+          echo "Checked out content branch"
+
+      - name: Validate on the content branch
+        run: |
+          echo "Current branch: $(git branch --show-current)"
+
+      - name: Delete files in the content directory
+        run: |
+          rm -rf content
+          mkdir content
+
+      - name: Copy files back to the content directory
+        run: |
+          cp -r ../temp/content/* content
+
+      - name: Print copied files
+        run: |
+          echo "Copied files back:"
+          find content -type f
+
+      - name: Validate on the content branch
+        run: |
+          echo "Current branch: $(git branch --show-current)"
+        
+      - name: Run compile_content.py
+        run: |
+          python .github/script/compile_content.py --skip-link-check
+
+      - name: Print the contents of the report file
+        run: |
+          echo "Report file:"
+          find . -type f -name "content_report.md"
+
+      - name: Read the content of the report file
+        id: read-report
+        run: |
+          report_content=$(cat content_report.md)
+          echo "report_content<<EOF" >> $GITHUB_ENV
+          echo "$report_content" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Post a comment with the content report on the PR
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const commentBody = process.env.report_content;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body: commentBody
+            });
