@@ -13,7 +13,7 @@ Deze todo items moeten nog worden afgehandeld.
 *Doel: De onderstaande bestanden zijn niet succesvol verwerkt.*
 
 ❌ Dit bestand bevat nog geen taxonomie code
-⚠️ Dit bestand bevat een foute taxonomie code. Zie de *Errors* kolom om te weten wat er mis is
+⚠️ Dit bestand bevat fouten. Zie de *Errors* kolom om te weten wat er mis is
 🟠 Dit bestand bevat een taxonomie code die niet toegevoegd hoeft te zijn
 
 | Status | File | Path | Taxonomie | Tags | Errors |
